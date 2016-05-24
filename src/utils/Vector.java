@@ -10,12 +10,20 @@ public class Vector {
 		this.y = y;
 	}
 
+	public float getX() {
+		return this.x;
+	}
+
+	public float getY() {
+		return this.y;
+	}
+
 	public void add(final Vector v) {
 		this.x += v.x;
 		this.y += v.y;
 	}
 
-	public void diff(final Vector v) {
+	public void sub(final Vector v) {
 		this.x -= v.x;
 		this.y -= v.y;
 	}
@@ -31,11 +39,13 @@ public class Vector {
 	}
 
 	public void div(final float z) {
-		this.mul(1 / z);
+		this.x /= z;
+		this.y /= z;
 	}
 
 	public void div(final float z1, final float z2) {
-		this.mul(1 / z1, 1 / z2);
+		this.x /= z1;
+		this.y /= z2;
 	}
 
 	public double mag() {
@@ -47,4 +57,7 @@ public class Vector {
 		this.div(magnitude);
 	}
 
+	public double dist(final Vector v) {
+		return Math.sqrt(Math.pow((v.getX() - this.x), 2) + Math.pow((v.getY() - this.y), 2));
+	}
 }

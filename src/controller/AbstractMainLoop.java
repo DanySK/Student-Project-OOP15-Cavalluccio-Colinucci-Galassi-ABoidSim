@@ -3,7 +3,7 @@ package controller;
 /**
  * Abstract class.
  */
-public abstract class AbstractMainLoop implements MainLoop {
+public abstract class AbstractMainLoop extends Thread implements MainLoop {
 
 	private LoopStatus status;
 	private long fps;
@@ -40,11 +40,14 @@ public abstract class AbstractMainLoop implements MainLoop {
 	}
 
 	@Override
-	public abstract void pause();
+	public abstract void run();
 
 	@Override
-	public abstract void resume();
+	public abstract void pauseLoop();
 
 	@Override
-	public abstract void abort();
+	public abstract void resumeLoop();
+
+	@Override
+	public abstract void abortLoop();
 }

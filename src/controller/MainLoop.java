@@ -44,17 +44,22 @@ public interface MainLoop {
 	long getFPS();
 
 	/**
+	 * This method starts the loop.
+	 */
+	void run();
+
+	/**
 	 * This method pause the app.
 	 */
-	void pause();
+	void pauseLoop();
 
 	/**
 	 * This method resume the previoulsy paused loop.
 	 */
-	void resume();
+	void resumeLoop();
 
 	/**
 	 * this method kills the app and close the program.
 	 */
-	void abort();
+	void abortLoop();
 }

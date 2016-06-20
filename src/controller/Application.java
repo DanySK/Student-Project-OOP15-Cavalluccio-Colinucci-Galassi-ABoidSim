@@ -17,7 +17,7 @@ public class Application {
 	 */
 	public Application() {
 		this.controller = null; // TO DO: substitute with actual implementation
-		this.view = null;
+		this.view = null; // TO DO: substitute with actual implementation
 		this.controller.setView(this.view);
 		this.controller.start();
 	}

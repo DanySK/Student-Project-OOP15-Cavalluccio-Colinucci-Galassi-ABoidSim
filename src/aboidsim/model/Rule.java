@@ -8,6 +8,7 @@ import aboidsim.util.Vector;
  * Functional interface.
  *
  */
+@FunctionalInterface
 public interface Rule {
 
 	/**

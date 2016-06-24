@@ -11,6 +11,8 @@ import aboidsim.util.Vector;
  * This implementation is an enumeration that represent any possible rule that
  * can be considered in the simulation.
  *
+ * Each rule describes a different behavior.
+ *
  */
 public enum RuleImpl implements Rule {
 	/**

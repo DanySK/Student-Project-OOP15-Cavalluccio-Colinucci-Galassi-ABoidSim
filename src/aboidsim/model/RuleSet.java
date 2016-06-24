@@ -67,13 +67,13 @@ public class RuleSet {
 	 *
 	 * @return a Vector that represent the movement decision made by a boid.
 	 */
-	Vector applyRules(final Set<Boid> boids) {
+	Vector applyRules(final Boid theBoid, final Set<Boid> boids) {
 		final Vector vect = new Vector(0.0, 0.0);
 		if (boids.isEmpty()) {
 			return vect;
 		} else {
 			for (final Rule r : this.rules) {
-				vect.add(r.apply(boids));
+				vect.add(r.apply(theBoid, boids));
 			}
 		}
 		return vect;

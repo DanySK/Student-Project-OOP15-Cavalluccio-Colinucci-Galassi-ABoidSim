@@ -3,6 +3,8 @@ package aboidsim.model;
 import java.util.HashSet;
 import java.util.Set;
 
+import aboidsim.util.Vector;
+
 /**
  * Container class that represent a set of Rule implementation.
  *
@@ -28,4 +30,52 @@ public class RuleSet {
 		this.rules = newRules;
 	}
 
+	/**
+	 * This method adds a rule.
+	 *
+	 * @param rule
+	 *            the rule which will be added to the set
+	 */
+	public void addRule(final Rule rule) {
+		if (!this.rules.contains(rule)) {
+			this.rules.add(rule);
+		}
+	}
+
+	/**
+	 * This method removes a rule.
+	 *
+	 * @param rule
+	 *            the rule which will be removed from the set
+	 */
+	public void removeRule(final Rule rule) {
+		if (this.rules.contains(rule)) {
+			this.rules.remove(rule);
+		}
+	}
+
+	/**
+	 * This method removes any rules, making the set empty.
+	 *
+	 */
+	public void clearSet() {
+		this.rules.clear();
+	}
+
+	/**
+	 * This method applies any rule contained in the set
+	 *
+	 * @return a Vector that represent the movement decision made by a boid.
+	 */
+	Vector applyRules(final Set<Boid> boids) {
+		final Vector vect = new Vector(0.0, 0.0);
+		if (boids.isEmpty()) {
+			return vect;
+		} else {
+			for (final Rule r : this.rules) {
+				vect.add(r.apply(boids));
+			}
+		}
+		return vect;
+	}
 }

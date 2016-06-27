@@ -11,7 +11,7 @@ import aboidsim.util.Vector;
  */
 public class RuleSet {
 
-	private final Set<Rule> rules;
+	private final Set<RuleImpl> rules;
 
 	/**
 	 * Basic constructor with no arguments.
@@ -26,7 +26,7 @@ public class RuleSet {
 	 * @param newRules
 	 *            the rules to initialize the set with.
 	 */
-	public RuleSet(final Set<Rule> newRules) {
+	public RuleSet(final Set<RuleImpl> newRules) {
 		this.rules = newRules;
 	}
 
@@ -36,7 +36,7 @@ public class RuleSet {
 	 * @param rule
 	 *            the rule which will be added to the set
 	 */
-	public void addRule(final Rule rule) {
+	public void addRule(final RuleImpl rule) {
 		if (!this.rules.contains(rule)) {
 			this.rules.add(rule);
 		}
@@ -48,7 +48,7 @@ public class RuleSet {
 	 * @param rule
 	 *            the rule which will be removed from the set
 	 */
-	public void removeRule(final Rule rule) {
+	public void removeRule(final RuleImpl rule) {
 		if (this.rules.contains(rule)) {
 			this.rules.remove(rule);
 		}
@@ -72,7 +72,7 @@ public class RuleSet {
 		if (boids.isEmpty()) {
 			return vect;
 		} else {
-			for (final Rule r : this.rules) {
+			for (final RuleImpl r : this.rules) {
 				vect.add(r.apply(theBoid, boids));
 			}
 		}

@@ -21,7 +21,22 @@ public enum RuleImpl implements Rule {
 	COHESION("Cohesion", 0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
-			return null;
+			final Vector vectorSum = new Vector(0.0, 0.0);
+			if (!boids.isEmpty()) {
+				for (final Boid boid : boids) {
+					// vectorSum.add(boid.getPosition());
+				}
+				// vectorSum.div(boids.size();
+				final Vector desiredDirection = new Vector(0.0, 0.0); // Vector.sub(vectorSum,
+																		// theBoid.getPosition());
+				desiredDirection.norm(); // O è meglio normalizzare dopo?
+				// desiredDirection.mul(theBoid.getAverageSpeed());
+				// Vector steer = Vector.sub(desiredDirection,
+				// theBoid.getVelocity());
+				return null; // return steer;
+			} else {
+				return vectorSum;
+			}
 		}
 	},
 	/**
@@ -34,11 +49,12 @@ public enum RuleImpl implements Rule {
 			final Vector vectorSum = new Vector(0.0, 0.0);
 			if (!boids.isEmpty()) {
 				for (final Boid boid : boids) {
-					// vectorSum.add(boid.velocity);
+					// vectorSum.add(boid.getVelocity());
 				}
 				// vectorSum.div(boids.size();
-				// Vector steer = Vector.sub(vectorSum, theBoid.velocity)
+				// Vector steer = Vector.sub(vectorSum, theBoid.getVelocity());
 				// steer.norm();
+				// steer.mul(theBoid.getAverageSpeed());
 				return null; // steer
 			} else {
 				return vectorSum;
@@ -52,7 +68,22 @@ public enum RuleImpl implements Rule {
 	SEPARATION("Separation", 2) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
-			return null;
+			final Vector vectorDiff = new Vector(0.0, 0.0);
+			if (!boids.isEmpty()) {
+				for (final Boid boid : boids) {
+					// vectorDiff.sub(boid.getPosition());
+				}
+				// vectorDiff.div(boids.size();
+				final Vector desiredDirection = new Vector(0.0, 0.0); // Vector.sub(vectorDiff,
+																		// theBoid.getPosition());
+				desiredDirection.norm(); // O è meglio normalizzare dopo?
+				// desiredDirection.mul(theBoid.getAverageSpeed());
+				// Vector steer = Vector.sub(desiredDirection,
+				// theBoid.getVelocity());
+				return null; // return steer;
+			} else {
+				return vectorDiff;
+			}
 		}
 	},;
 

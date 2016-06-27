@@ -54,7 +54,7 @@ public enum RuleImpl implements Rule {
 	 * @param n
 	 * @param idNumber
 	 */
-	private RuleImpl(final String n, final Integer idNumber) {
+	RuleImpl(final String n, final Integer idNumber) {
 	}
 
 	/**

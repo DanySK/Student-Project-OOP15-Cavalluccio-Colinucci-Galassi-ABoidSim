@@ -31,7 +31,18 @@ public enum RuleImpl implements Rule {
 	ALIGNMENT("Alignment", 1) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
-			return null;
+			final Vector vectorSum = new Vector(0.0, 0.0);
+			if (!boids.isEmpty()) {
+				for (final Boid boid : boids) {
+					// vectorSum.add(boid.velocity);
+				}
+				// vectorSum.div(boids.size();
+				// Vector steer = Vector.sub(vectorSum, theBoid.velocity)
+				// steer.norm();
+				return null; // steer
+			} else {
+				return vectorSum;
+			}
 		}
 	},
 	/**

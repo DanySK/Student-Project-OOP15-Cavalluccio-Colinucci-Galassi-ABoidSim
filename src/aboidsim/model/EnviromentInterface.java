@@ -23,4 +23,10 @@ public interface EnviromentInterface {
      */
     Set<Boid> getEnviroment();
 
+    /**
+     *
+     * @return Collision radius of every single component of the simulation
+     */
+    double getCollisionRadius();
+
 }

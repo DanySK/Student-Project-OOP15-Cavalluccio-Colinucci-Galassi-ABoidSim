@@ -23,7 +23,6 @@ public class Boid implements BoidInterface {
     private int life; // when life gets lower, hunger grews up
     private final int maxMembers;
 
-    private static final double COLLISION_RADIUS = 0.50;
     private final double influenceRadius;
     private Set<Boid> nearBoids; // a list with closest boids of same level
 
@@ -83,6 +82,56 @@ public class Boid implements BoidInterface {
         } else {
             return this.level < Boid.PREDATOR_HUNGER; // isPredator
         }
+    }
+
+    @Override
+    public void eating() {
+        this.life = this.life + 10;
+    }
+
+    @Override
+    public int getLevel() {
+        return this.level;
+    }
+
+    @Override
+    public Vector getPosition() {
+        return this.position;
+    }
+
+    @Override
+    public int getLife() {
+        return this.life;
+    }
+
+    @Override
+    public Set<Boid> getNearBoids() {
+        return this.nearBoids;
+    }
+
+    @Override
+    public Vector getAcceleration() {
+        return this.acceleration;
+    }
+
+    @Override
+    public Vector getSpeed() {
+        return this.speed;
+    }
+
+    @Override
+    public double getAverageSpeed() {
+        return this.averageSpeed;
+    }
+
+    @Override
+    public int getMaxMembers() {
+        return this.maxMembers;
+    }
+
+    @Override
+    public double getInfluenceRadius() {
+        return this.influenceRadius;
     }
 
     private Levels getInfo(final int lev) {

@@ -12,6 +12,7 @@ import java.util.Set;
 public class Enviroment implements EnviromentInterface {
 
     private final Set<Boid> enviroment;
+    private static final double COLLISION_RADIUS = 0.50;
 
     /**
      * Constructor.
@@ -21,22 +22,18 @@ public class Enviroment implements EnviromentInterface {
         this.enviroment = new HashSet<>();
     }
 
-    /**
-     * Add a boid to the enviroment.
-     *
-     * @param b
-     *            Boid to add
-     */
+    @Override
     public void add(final Boid b) {
         this.enviroment.add(b);
     }
 
-    /**
-     * Getter for the enviroment.
-     *
-     * @return The whole enviroment
-     */
+    @Override
     public Set<Boid> getEnviroment() {
         return this.enviroment;
+    }
+
+    @Override
+    public double getCollisionRadius() {
+        return Enviroment.COLLISION_RADIUS;
     }
 }

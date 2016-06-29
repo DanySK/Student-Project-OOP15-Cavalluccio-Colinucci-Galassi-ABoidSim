@@ -1,5 +1,8 @@
 package aboidsim.model;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import aboidsim.util.Vector;
 
 /**
@@ -13,7 +16,9 @@ public class TreeBoid {
 
     private static final int TREE_BOID_LIFE = 500;
     private final Vector position;
-    private final int life;
+    private int life;
+
+    private final Enviroment env = new Enviroment();
 
     /**
      * Constructor.
@@ -28,6 +33,16 @@ public class TreeBoid {
     }
 
     /**
-     * metodo per il nutrimento dei boid erbivori
+     * A treeboid feeds other herbivore boids.
      */
+    public void feeding() {
+        final Set<Boid> herbivoreBoids = this.env.getEnviroment().stream()
+                .filter(b -> b.getLevel() < Levels.BOID_L5.getId()).collect(Collectors.toSet());
+        for (final Boid b : herbivoreBoids) {
+            if (this.position.dist(b.getPosition()) < this.env.getCollisionRadius()) {
+                this.life = this.life - 10;
+                b.eating();
+            }
+        }
+    }
 }

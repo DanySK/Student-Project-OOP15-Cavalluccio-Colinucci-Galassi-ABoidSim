@@ -49,12 +49,12 @@ public interface MainLoop {
 	void run();
 
 	/**
-	 * This method pause the app.
+	 * This method pause the application.
 	 */
 	void pauseLoop();
 
 	/**
-	 * This method resume the previoulsy paused loop.
+	 * This method resume the previously paused loop.
 	 */
 	void resumeLoop();
 

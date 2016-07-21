@@ -1,6 +1,7 @@
 package aboidsim.controller;
 
 import aboidsim.model.Model;
+import aboidsim.util.Input;
 import aboidsim.view.View;
 
 /**
@@ -29,6 +30,16 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 		this.msPerFrame = 1000 / this.getFPS();
 		this.model = m;
 		this.view = v;
+	}
+
+	class InputResolverImpl implements InputResolver {
+
+		@Override
+		public void resolveInput(final Input input) {
+			if (input.equals(Input.CREATE_BOID)) {
+			}
+		}
+
 	}
 
 	@Override // TO DO

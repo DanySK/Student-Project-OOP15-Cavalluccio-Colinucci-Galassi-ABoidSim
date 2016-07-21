@@ -8,18 +8,21 @@ import aboidsim.view.View;
  * implementation.
  *
  */
-public class Application {
+public final class Application {
 	/**
-	 * Constructor.
+	 * This methods starts the application.
 	 */
-	public Application() {
+	public static void main() {
 		final Model model = null; // TO DO: substitute with actual
-									// implementation
+		// implementation
 		final View view = null; // TO DO: substitute with actual implementation
-		final MainLoop mainLoop = new FixedTimestepMainLoop(30);
+		final MainLoop mainLoop = new FixedTimestepMainLoop(model, view, 30);
 		final Controller controller = new ControllerImpl(model, view, mainLoop);
 
 		// this.controller.setView(this.view);
 		controller.start();
+	}
+
+	private Application() {
 	}
 }

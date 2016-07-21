@@ -1,5 +1,8 @@
 package aboidsim.controller;
 
+import aboidsim.model.Model;
+import aboidsim.view.View;
+
 /**
  * Main loop implementation. This loop runs with a fixed timestep. This means
  * that it always cycle after the same amount of time.
@@ -8,16 +11,24 @@ package aboidsim.controller;
 public class FixedTimestepMainLoop extends AbstractMainLoop {
 
 	private final long msPerFrame;
+	private final Model model;
+	private final View view;
 
 	/**
 	 * Constructor.
-	 *
+	 * 
+	 * @param m
+	 *            the Model.
+	 * @param v
+	 *            the View.
 	 * @param desiredFps
 	 *            the desired frames per second.
 	 */
-	public FixedTimestepMainLoop(final long desiredFps) {
+	public FixedTimestepMainLoop(final Model m, final View v, final long desiredFps) {
 		super(desiredFps);
 		this.msPerFrame = 1000 / this.getFPS();
+		this.model = m;
+		this.view = v;
 	}
 
 	@Override // TO DO

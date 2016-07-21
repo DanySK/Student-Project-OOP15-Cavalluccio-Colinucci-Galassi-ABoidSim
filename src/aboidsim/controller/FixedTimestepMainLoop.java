@@ -16,7 +16,7 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 
 	/**
 	 * Constructor.
-	 * 
+	 *
 	 * @param m
 	 *            the Model.
 	 * @param v
@@ -36,6 +36,8 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 		final long lastTime = System.currentTimeMillis();
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			// TO DO bisogna collegare il controller, la view e il model
+
+			// view.getInputs
 
 			final long timePassed = System.currentTimeMillis() - lastTime;
 			if (timePassed < this.msPerFrame) {

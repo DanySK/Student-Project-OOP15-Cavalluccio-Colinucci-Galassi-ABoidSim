@@ -1,39 +1,55 @@
 package aboidsim.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
+import aboidsim.util.Vector;
+
 /**
- *
- * This class show all the components of the simulation enviroment. (Not
- * tree-boids)
+ * Interface of the whole simulation.
  *
  */
-public class Enviroment implements EnviromentInterface {
-
-    private final Set<Boid> enviroment;
-    private static final double COLLISION_RADIUS = 0.50;
+public interface Enviroment {
 
     /**
-     * Constructor.
+     * Add a boid to the enviroment.
+     *
+     * @param pos
+     *            New boid position.
+     * @param liv
+     *            New boid level.
      */
-    public Enviroment() {
+    void createBoid(final Vector pos, final int liv);
 
-        this.enviroment = new HashSet<>();
-    }
+    /**
+     * Destroy a boid in this position (if present).
+     *
+     * @param pos
+     *            of designated boid.
+     */
+    void destroyBoid(final Vector pos);
 
-    @Override
-    public void add(final Boid b) {
-        this.enviroment.add(b);
-    }
+    /**
+     * Add all the closest boids to the "sameLevelNearBoids" field until max
+     * size (maxMembers).
+     */
+    void checkBoidSameLevel();
 
-    @Override
-    public Set<Boid> getEnviroment() {
-        return this.enviroment;
-    }
+    /**
+     * Add all the closest boids to the "otherLevelNearBoids" field.
+     */
+    void checkBoidOtherLevel();
 
-    @Override
-    public double getCollisionRadius() {
-        return Enviroment.COLLISION_RADIUS;
-    }
+    /**
+     * Getter for the enviroment.
+     *
+     * @return The whole enviroment
+     */
+    Set<Boid> getEnviroment();
+
+    /**
+     *
+     * @return Collision radius of every single component of the simulation
+     */
+    double getCollisionRadius();
+
 }

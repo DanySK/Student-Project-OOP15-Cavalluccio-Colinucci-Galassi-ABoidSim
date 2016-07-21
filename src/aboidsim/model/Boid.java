@@ -113,7 +113,7 @@ public class Boid implements BoidInterface {
 
     @Override
     public Set<Boid> getNearBoids() {
-        return this.nearBoids;
+        return this.sameLevelNearBoids;
     }
 
     @Override

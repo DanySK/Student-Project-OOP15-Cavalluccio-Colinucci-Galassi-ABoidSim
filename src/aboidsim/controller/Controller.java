@@ -39,7 +39,23 @@ public interface Controller {
 	 *
 	 * @return the Model
 	 */
-	View getModel();
+	Model getModel();
+
+	/**
+	 * Setter. The method sets the main loop.
+	 *
+	 * @param mainLoop
+	 *            loop the main loop being set.
+	 *
+	 */
+	void setMainLoop(MainLoop mainLoop);
+
+	/**
+	 * Getter. The method return the MainLoop currently used.
+	 *
+	 * @return the MainLoop
+	 */
+	MainLoop getMainLoop();
 
 	/**
 	 * The method that starts the loop.

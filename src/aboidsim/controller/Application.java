@@ -9,19 +9,17 @@ import aboidsim.view.View;
  *
  */
 public class Application {
-
-	private final Controller controller;
-	private final View view;
-	private final Model model;
-
 	/**
 	 * Constructor.
 	 */
 	public Application() {
-		this.model = null; // TO DO: substitute with actual implementation
-		this.controller = null; // TO DO: substitute with actual implementation
-		this.view = null; // TO DO: substitute with actual implementation
-		this.controller.setView(this.view);
-		// this.controller.start();
+		final Model model = null; // TO DO: substitute with actual
+									// implementation
+		final View view = null; // TO DO: substitute with actual implementation
+		final MainLoop mainLoop = new FixedTimestepMainLoop(30);
+		final Controller controller = new ControllerImpl(model, view, mainLoop);
+
+		// this.controller.setView(this.view);
+		controller.start();
 	}
 }

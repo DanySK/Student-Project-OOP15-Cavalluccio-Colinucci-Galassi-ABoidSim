@@ -2,6 +2,7 @@ package aboidsim.controller;
 
 import aboidsim.model.Model;
 import aboidsim.util.Input;
+import aboidsim.util.InputInfo;
 import aboidsim.view.View;
 
 /**
@@ -14,6 +15,7 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 	private final long msPerFrame;
 	private final Model model;
 	private final View view;
+	private final Controller controller;
 
 	/**
 	 * Constructor.
@@ -25,18 +27,32 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 	 * @param desiredFps
 	 *            the desired frames per second.
 	 */
-	public FixedTimestepMainLoop(final Model m, final View v, final long desiredFps) {
+	public FixedTimestepMainLoop(final Model m, final View v, final Controller c, final long desiredFps) {
 		super(desiredFps);
 		this.msPerFrame = 1000 / this.getFPS();
 		this.model = m;
+		this.controller = c;
 		this.view = v;
 	}
 
 	class InputResolverImpl implements InputResolver {
 
 		@Override
-		public void resolveInput(final Input input) {
-			if (input.equals(Input.CREATE_BOID)) {
+		public void resolveInput(final InputInfo inputInfo) {
+			if (inputInfo.getInput().equals(Input.CREATE_BOID)) {
+				// FixedTimestepMainLoop.this.model.createBoid(inputInfo.getPosition(),
+				// InputInfo.getNumber());
+				return;
+			} else if (inputInfo.getInput().equals(Input.DESTROY_BOID)) {
+				// FixedTimestepMainLoop.this.model.destroyBoid(inputInfo.getPosition());
+				return;
+			} else if (inputInfo.getInput().equals(Input.TOGGLE_RULE)) {
+				// FixedTimestepMainLoop.this.model.toggleRule(inputInfo.getNumber());
+				return;
+			} else if (inputInfo.getInput().equals(Input.PAUSE)) {
+				FixedTimestepMainLoop.this.pauseLoop();
+			} else if (inputInfo.getInput().equals(Input.CLOSE)) {
+				FixedTimestepMainLoop.this.abortLoop();
 			}
 		}
 
@@ -48,7 +64,8 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			// TO DO bisogna collegare il controller, la view e il model
 
-			// view.getInputs
+			// InputResolver inputResolver = new InputResolverImpl();
+			// inputResolver.resolveInputs(view.getInputs());
 
 			final long timePassed = System.currentTimeMillis() - lastTime;
 			if (timePassed < this.msPerFrame) {

@@ -26,7 +26,7 @@ public class ControllerImpl implements Controller {
 	public ControllerImpl(final Model m, final View v) {
 		this.model = m;
 		this.view = v;
-		this.mainLoop = new FixedTimestepMainLoop(m, v, this.FPS);
+		this.mainLoop = new FixedTimestepMainLoop(m, v, this, this.FPS);
 	}
 
 	@Override

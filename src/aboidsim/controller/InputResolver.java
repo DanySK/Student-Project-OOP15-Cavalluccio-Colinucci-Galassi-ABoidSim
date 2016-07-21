@@ -2,7 +2,7 @@ package aboidsim.controller;
 
 import java.util.List;
 
-import aboidsim.util.Input;
+import aboidsim.util.InputInfo;
 
 /**
  * This interface is necessary to transform any input coming form the view into
@@ -17,7 +17,7 @@ public interface InputResolver {
 	 * @param input
 	 *            an input
 	 */
-	void resolveInput(Input input);
+	void resolveInput(InputInfo input);
 
 	/**
 	 * Default method. We resolve any Input contained in a list. The order of
@@ -26,7 +26,7 @@ public interface InputResolver {
 	 * @param inputList
 	 *            A list of inputs
 	 */
-	default void resolveInputList(final List<Input> inputList) {
+	default void resolveInputList(final List<InputInfo> inputList) {
 		inputList.forEach(i -> this.resolveInput(i));
 	}
 }

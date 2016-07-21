@@ -14,12 +14,11 @@ public final class Application {
 	 */
 	public static void main() {
 		final Model model = null; // TO DO: substitute with actual
-		// implementation
+									// implementation
 		final View view = null; // TO DO: substitute with actual implementation
-		final MainLoop mainLoop = new FixedTimestepMainLoop(model, view, 30);
-		final Controller controller = new ControllerImpl(model, view, mainLoop);
+		final Controller controller = new ControllerImpl(model, view);
 
-		// this.controller.setView(this.view);
+		// view.setController(controller);
 		controller.start();
 	}
 

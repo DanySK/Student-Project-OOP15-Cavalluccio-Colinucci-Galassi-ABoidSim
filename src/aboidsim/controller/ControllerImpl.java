@@ -9,6 +9,8 @@ import aboidsim.view.View;
  */
 public class ControllerImpl implements Controller {
 
+	private final int FPS = 30;
+
 	private Model model;
 	private View view;
 	private MainLoop mainLoop;
@@ -20,13 +22,12 @@ public class ControllerImpl implements Controller {
 	 *            a Model implementation
 	 * @param v
 	 *            a View implementation
-	 * @param mL
-	 *            a MainLoop implementation
+	 *
 	 */
-	public ControllerImpl(final Model m, final View v, final MainLoop mL) {
+	public ControllerImpl(final Model m, final View v) {
 		this.model = m;
 		this.view = v;
-		this.mainLoop = mL;
+		this.mainLoop = new FixedTimestepMainLoop(m, v, this.FPS);
 	}
 
 	@Override

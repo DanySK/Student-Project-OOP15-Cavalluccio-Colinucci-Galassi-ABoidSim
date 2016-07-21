@@ -20,14 +20,16 @@ public class Boid implements BoidInterface {
 
     private final int level;
     private final double averageSpeed;
-    private int life; // when life gets lower, hunger grews up
+    private int life;
     private final int maxMembers;
 
     private final double influenceRadius;
-    private Set<Boid> nearBoids; // a list with closest boids of same level
+    // private final Set<Boid> otherLevelNearBoids;
+    private Set<Boid> sameLevelNearBoids; // a list with closest
+                                          // boids of same level
 
     private static final int PREDATOR_HUNGER = 20;
-    private static final int HERBIVORE_HUNGER = 20;
+    private static final int HERBIVORE_HUNGER = 10;
 
     private final Enviroment env = new Enviroment();
 
@@ -59,12 +61,17 @@ public class Boid implements BoidInterface {
 
     @Override
     public void checkNearBoids() {
+
+    }
+
+    @Override
+    public void checkSameCloseBoid() {
         final Set<Boid> sameLevelBoid = this.env.getEnviroment().stream().filter(b -> b.level == this.level)
                 .collect(Collectors.toSet());
         for (final Boid b : sameLevelBoid) {
             if (this.position.dist(b.position) < this.influenceRadius) {
-                if (this.nearBoids.size() < this.maxMembers) {
-                    this.nearBoids.add(b);
+                if (this.sameLevelNearBoids.size() < this.maxMembers) {
+                    this.sameLevelNearBoids.add(b);
                 }
             }
         }

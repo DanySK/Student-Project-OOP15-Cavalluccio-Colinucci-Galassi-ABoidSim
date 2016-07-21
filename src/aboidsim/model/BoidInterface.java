@@ -13,9 +13,14 @@ import aboidsim.util.Vector;
 public interface BoidInterface {
 
     /**
-     * check closest boids.
+     * check closest boids of other types.
      */
     void checkNearBoids();
+
+    /**
+     * check closest boids of same type.
+     */
+    void checkSameCloseBoid();
 
     /**
      * decrement life each loop iteration.

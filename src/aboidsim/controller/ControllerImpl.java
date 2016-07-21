@@ -22,7 +22,6 @@ public class ControllerImpl implements Controller {
 	 *            a Model implementation
 	 * @param v
 	 *            a View implementation
-	 *
 	 */
 	public ControllerImpl(final Model m, final View v) {
 		this.model = m;

@@ -4,7 +4,7 @@
   <local-check-config name="Default" location="C:\Users\Marco\Desktop\workspace\OOP15-ABoidSim\style.xml" type="external" description="XML per il progetto OOP.">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="Default" local="true">
+  <fileset name="all" enabled="true" check-config-name="MYSTYLE" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

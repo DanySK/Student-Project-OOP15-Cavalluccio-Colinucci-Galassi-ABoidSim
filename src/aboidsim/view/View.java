@@ -6,7 +6,10 @@ import aboidsim.util.InputInfo;
 
 public interface View {
 
-	
+	/**
+	 * 
+	 * @return list of inputs and clears it
+	 */
 	List<InputInfo> getInputs();
 	
 	

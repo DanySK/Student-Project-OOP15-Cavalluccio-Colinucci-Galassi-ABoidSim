@@ -30,6 +30,11 @@ class RuleSet {
 		this.rules = newRules;
 	}
 
+	/**
+	 * Getter. This methods return the set of rules
+	 * 
+	 * @return the set of rules
+	 */
 	Set<RuleImpl> getRules() {
 		return this.rules;
 	}

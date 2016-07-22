@@ -9,14 +9,14 @@ import aboidsim.util.Vector;
  * Container class that represent a set of Rule implementation.
  *
  */
-public class RuleSet {
+class RuleSet {
 
 	private final Set<RuleImpl> rules;
 
 	/**
 	 * Basic constructor with no arguments.
 	 */
-	public RuleSet() {
+	RuleSet() {
 		this.rules = new HashSet<>();
 	}
 
@@ -26,8 +26,12 @@ public class RuleSet {
 	 * @param newRules
 	 *            the rules to initialize the set with.
 	 */
-	public RuleSet(final Set<RuleImpl> newRules) {
+	RuleSet(final Set<RuleImpl> newRules) {
 		this.rules = newRules;
+	}
+
+	Set<RuleImpl> getRules() {
+		return this.rules;
 	}
 
 	/**

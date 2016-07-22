@@ -30,6 +30,12 @@ public interface Boid {
     boolean isPredator();
 
     /**
+     *
+     * @return if a boid is a tree or not.
+     */
+    boolean isNotTree();
+
+    /**
      * A boid eating from a tree or eating other boids if predator.
      */
     void eating();

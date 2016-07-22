@@ -8,19 +8,20 @@ import aboidsim.util.Vector;
 
 /**
  *
- * This class show all the components of the simulation enviroment. (Not
+ * This class show all the components of the simulation environment. (Not
  * tree-boids)
  *
  */
-public class EnviromentImpl implements Enviroment {
+public class EnvironmentImpl implements Environment {
 
     private final Set<Boid> enviroment;
     private static final double COLLISION_RADIUS = 0.50;
+    private final RuleSet rules = new RuleSet();
 
     /**
      * Constructor.
      */
-    public EnviromentImpl() {
+    public EnvironmentImpl() {
         this.enviroment = new HashSet<>();
     }
 
@@ -33,7 +34,7 @@ public class EnviromentImpl implements Enviroment {
     @Override
     public void destroyBoid(final Vector pos) {
         this.enviroment.remove(this.enviroment.stream()
-                .filter(boid -> boid.getPosition().dist(pos) < EnviromentImpl.COLLISION_RADIUS).findFirst().get());
+                .filter(boid -> boid.getPosition().dist(pos) < EnvironmentImpl.COLLISION_RADIUS).findFirst().get());
     }
 
     @Override
@@ -61,12 +62,19 @@ public class EnviromentImpl implements Enviroment {
     }
 
     @Override
+    public void collision() {
+        for (final Boid boid : this.enviroment) {
+
+        }
+    }
+
+    @Override
     public Set<Boid> getEnviroment() {
         return this.enviroment;
     }
 
     @Override
     public double getCollisionRadius() {
-        return EnviromentImpl.COLLISION_RADIUS;
+        return EnvironmentImpl.COLLISION_RADIUS;
     }
 }

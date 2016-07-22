@@ -61,7 +61,9 @@ public class BoidImpl implements Boid {
 
     @Override
     public void decrementLife() {
-        this.life = this.life - 1;
+        if (this.isNotTree()) {
+            this.life = this.life - 1;
+        }
     }
 
     @Override
@@ -76,6 +78,11 @@ public class BoidImpl implements Boid {
     @Override
     public boolean isPredator() {
         return this.level > Levels.HERBIVORE_L5.getId();
+    }
+
+    @Override
+    public boolean isNotTree() {
+        return this.level != Levels.TREE_L0.getId();
     }
 
     @Override

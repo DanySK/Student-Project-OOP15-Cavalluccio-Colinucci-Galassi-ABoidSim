@@ -8,7 +8,7 @@ import aboidsim.util.Vector;
  * Interface of the whole simulation.
  *
  */
-public interface Enviroment {
+public interface Environment {
 
     /**
      * Add a boid to the enviroment.
@@ -40,9 +40,14 @@ public interface Enviroment {
     void checkBoidOtherLevel();
 
     /**
-     * Getter for the enviroment.
+     * Manage all the boid collision and consequences.
+     */
+    void collision();
+
+    /**
+     * Getter for the environment.
      *
-     * @return The whole enviroment
+     * @return The whole environment
      */
     Set<Boid> getEnviroment();
 
@@ -51,5 +56,4 @@ public interface Enviroment {
      * @return Collision radius of every single component of the simulation
      */
     double getCollisionRadius();
-
 }

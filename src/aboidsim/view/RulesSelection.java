@@ -32,9 +32,12 @@ public class RulesSelection extends Scene{
             Text titolo = new Text("Seleziona regole da abilitare: ");
             layout.getChildren().add(titolo);
             layout.getChildren().addAll(this.boxes);
-            layout.getChildren().add(conferma);
-            
-            conferma.setOnAction(e -> this.addInputs());
+		layout.getChildren().add(conferma);
+
+		conferma.setOnAction(e -> {
+			this.addInputs();
+			this.printSelectedRules();
+		});
             
     }
     
@@ -58,6 +61,10 @@ public class RulesSelection extends Scene{
         System.out.println(this.returnSelectedRules().toString());
     }
     
+    
+    /**
+     * add rules to the list in class InputHandler
+     */
 	private void addInputs() {
 		this.returnSelectedRules().stream()
 			.forEach(e -> InputHandler.getInputHandler().addInput(new InputInfo(Input.TOGGLE_RULE, e)));

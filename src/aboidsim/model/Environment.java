@@ -45,6 +45,14 @@ public interface Environment {
     void collision();
 
     /**
+     * Rule management.
+     *
+     * @param ruleId
+     *            id rule.
+     */
+    void toggleRule(final int ruleId);
+
+    /**
      * Getter for the environment.
      *
      * @return The whole environment

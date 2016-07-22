@@ -1,6 +1,7 @@
 package aboidsim.model;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -11,7 +12,7 @@ public interface Model {
 
     /**
      *
-     * @return the enviroment of the simulation.
+     * @return the environment of the simulation.
      */
 
     Environment getSimulation();
@@ -21,4 +22,10 @@ public interface Model {
      * @return get all possible levels.
      */
     List<Integer> getLevels();
+
+    /**
+     *
+     * @return a set of active rules.
+     */
+    Set<RuleImpl> getActiveRules();
 }

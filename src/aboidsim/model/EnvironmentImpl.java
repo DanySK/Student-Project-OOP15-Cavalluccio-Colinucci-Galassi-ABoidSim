@@ -1,5 +1,6 @@
 package aboidsim.model;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -8,8 +9,7 @@ import aboidsim.util.Vector;
 
 /**
  *
- * This class show all the components of the simulation environment. (Not
- * tree-boids)
+ * This class show all the components of the simulation environment.
  *
  */
 public class EnvironmentImpl implements Environment {
@@ -65,6 +65,16 @@ public class EnvironmentImpl implements Environment {
     public void collision() {
         for (final Boid boid : this.enviroment) {
 
+        }
+    }
+
+    @Override
+    public void toggleRule(final int ruleId) {
+        final RuleImpl rule = Arrays.stream(RuleImpl.values()).filter(r -> r.getID() == ruleId).findFirst().get();
+        if (this.rules.getRules().contains(rule)) {
+            this.rules.removeRule(rule);
+        } else {
+            this.rules.addRule(rule);
         }
     }
 

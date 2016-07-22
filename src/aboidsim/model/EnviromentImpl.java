@@ -21,7 +21,6 @@ public class EnviromentImpl implements Enviroment {
      * Constructor.
      */
     public EnviromentImpl() {
-
         this.enviroment = new HashSet<>();
     }
 

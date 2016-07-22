@@ -24,6 +24,12 @@ public interface Boid {
     boolean isHungry();
 
     /**
+     *
+     * @return if a boid is a predator or not.
+     */
+    boolean isPredator();
+
+    /**
      * A boid eating from a tree or eating other boids if predator.
      */
     void eating();

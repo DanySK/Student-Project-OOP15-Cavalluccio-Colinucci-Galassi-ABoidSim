@@ -7,4 +7,11 @@ package aboidsim.model;
  */
 public interface Model {
 
+    /**
+     *
+     * @return the enviroment of the simulation.
+     */
+
+    Enviroment getSimulation();
+
 }

@@ -66,11 +66,16 @@ public class BoidImpl implements Boid {
 
     @Override
     public boolean isHungry() {
-        if (this.level < Levels.HERBIVORE_L5.getId()) { // isHerbivore
-            return this.life < BoidImpl.HERBIVORE_HUNGER;
-        } else {
+        if (this.isPredator()) {
             return this.level < BoidImpl.PREDATOR_HUNGER; // isPredator
+        } else {
+            return this.life < BoidImpl.HERBIVORE_HUNGER; // isHerbivore
         }
+    }
+
+    @Override
+    public boolean isPredator() {
+        return this.level > Levels.HERBIVORE_L5.getId();
     }
 
     @Override
@@ -131,6 +136,4 @@ public class BoidImpl implements Boid {
     private Levels getInfo(final int lev) {
         return Arrays.stream(Levels.values()).filter(l -> l.getId() == lev).findFirst().get();
     }
-
-    // metodo collisione
 }

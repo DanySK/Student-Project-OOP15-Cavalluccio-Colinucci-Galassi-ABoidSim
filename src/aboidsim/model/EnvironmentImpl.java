@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import aboidsim.util.Pair;
 import aboidsim.util.Vector;
 
 /**
@@ -12,17 +13,21 @@ import aboidsim.util.Vector;
  * This class show all the components of the simulation environment.
  *
  */
-public class EnvironmentImpl implements Environment {
+public final class EnvironmentImpl implements Environment {
 
-    private final Set<Boid> enviroment;
+    private static final EnvironmentImpl ENVIRONMENT_IMPL = new EnvironmentImpl();
+    private final Set<Boid> enviroment = new HashSet<>();
     private static final double COLLISION_RADIUS = 0.50;
     private final RuleSet rules = new RuleSet();
 
     /**
      * Constructor.
      */
-    public EnvironmentImpl() {
-        this.enviroment = new HashSet<>();
+    private EnvironmentImpl() {
+    }
+
+    static EnvironmentImpl getEnviromentImpl() {
+        return EnvironmentImpl.ENVIRONMENT_IMPL;
     }
 
     @Override
@@ -76,6 +81,11 @@ public class EnvironmentImpl implements Environment {
         } else {
             this.rules.addRule(rule);
         }
+    }
+
+    @Override
+    public Pair<Vector, Integer> getEntities() {
+        return null;
     }
 
     @Override

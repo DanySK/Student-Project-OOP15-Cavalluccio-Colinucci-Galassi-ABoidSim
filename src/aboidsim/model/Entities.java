@@ -8,7 +8,7 @@ package aboidsim.model;
  *
  */
 
-enum Levels {
+enum Entities {
 
     TREE_L0(0, 500, 0, 0, 0), HERBIVORE_L1(1, 10, 1.5, 10, 1.1), HERBIVORE_L2(2, 20, 2.5, 9, 1.2), HERBIVORE_L3(3, 30,
             3.5, 8, 1.3), HERBIVORE_L4(4, 40, 4.5, 7, 1.4), HERBIVORE_L5(5, 50, 5.5, 6, 1.5), PREDATOR_L6(6, 60, 6.5, 5,
@@ -34,7 +34,7 @@ enum Levels {
      * @param avSpeed
      *            Boid average speed
      */
-    Levels(final int iD, final int lif, final double rad, final int maxM, final double avSpeed) {
+    Entities(final int iD, final int lif, final double rad, final int maxM, final double avSpeed) {
         this.id = iD;
         this.life = lif;
         this.influenceRadius = rad;

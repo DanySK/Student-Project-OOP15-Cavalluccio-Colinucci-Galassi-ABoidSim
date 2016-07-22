@@ -2,6 +2,7 @@ package aboidsim.model;
 
 import java.util.Set;
 
+import aboidsim.util.Pair;
 import aboidsim.util.Vector;
 
 /**
@@ -11,7 +12,7 @@ import aboidsim.util.Vector;
 public interface Environment {
 
     /**
-     * Add a boid to the enviroment.
+     * Add a boid to the environment.
      *
      * @param pos
      *            New boid position.
@@ -51,6 +52,12 @@ public interface Environment {
      *            id rule.
      */
     void toggleRule(final int ruleId);
+
+    /**
+     *
+     * @return all the entities of the environment with position and level.
+     */
+    Pair<Vector, Integer> getEntities();
 
     /**
      * Getter for the environment.

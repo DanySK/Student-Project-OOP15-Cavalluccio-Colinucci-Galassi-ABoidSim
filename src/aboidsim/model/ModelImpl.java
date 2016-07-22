@@ -21,7 +21,7 @@ public class ModelImpl implements Model {
 
     @Override
     public List<Integer> getLevels() {
-        return Arrays.stream(Levels.values()).map(values -> values.getId()).collect(Collectors.toList());
+        return Arrays.stream(Entities.values()).map(values -> values.getId()).collect(Collectors.toList());
     }
 
     @Override

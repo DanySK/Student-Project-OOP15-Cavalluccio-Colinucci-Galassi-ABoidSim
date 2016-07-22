@@ -47,7 +47,7 @@ public class BoidImpl implements Boid {
         this.acceleration = new Vector(0, 0);
         this.speed = new Vector(r.nextDouble(), r.nextDouble());
 
-        final Levels lev = this.getInfo(liv);
+        final Entities lev = this.getInfo(liv);
 
         // Boid initialization
         this.level = lev.getId();
@@ -77,12 +77,12 @@ public class BoidImpl implements Boid {
 
     @Override
     public boolean isPredator() {
-        return this.level > Levels.HERBIVORE_L5.getId();
+        return this.level > Entities.HERBIVORE_L5.getId();
     }
 
     @Override
     public boolean isNotTree() {
-        return this.level != Levels.TREE_L0.getId();
+        return this.level != Entities.TREE_L0.getId();
     }
 
     @Override
@@ -140,7 +140,7 @@ public class BoidImpl implements Boid {
         return this.influenceRadius;
     }
 
-    private Levels getInfo(final int lev) {
-        return Arrays.stream(Levels.values()).filter(l -> l.getId() == lev).findFirst().get();
+    private Entities getInfo(final int lev) {
+        return Arrays.stream(Entities.values()).filter(l -> l.getId() == lev).findFirst().get();
     }
 }

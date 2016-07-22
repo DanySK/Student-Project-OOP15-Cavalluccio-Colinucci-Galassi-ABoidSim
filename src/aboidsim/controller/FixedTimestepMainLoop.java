@@ -2,7 +2,6 @@ package aboidsim.controller;
 
 import aboidsim.model.Model;
 import aboidsim.util.Input;
-import aboidsim.util.InputInfo;
 import aboidsim.view.View;
 
 /**
@@ -29,33 +28,12 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	 * @param desiredFps
 	 *            the desired frames per second.
 	 */
-	public FixedTimestepMainLoop(final Model m, final View v, final Controller c, final long desiredFps) {
+	FixedTimestepMainLoop(final Model m, final View v, final Controller c, final long desiredFps) {
 		super(desiredFps);
 		this.msPerFrame = 1000 / this.getFPS();
 		this.model = m;
 		this.controller = c;
 		this.view = v;
-	}
-
-	class InputResolverImpl implements InputResolver {
-
-		@Override
-		public void resolveInput(final InputInfo inputInfo) {
-			if (inputInfo.getInput().equals(Input.CREATE_BOID)) {
-				FixedTimestepMainLoop.this.model.getSimulation().createBoid(inputInfo.getPosition(),
-						inputInfo.getNumber().intValue());
-			} else if (inputInfo.getInput().equals(Input.DESTROY_BOID)) {
-				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(inputInfo.getPosition());
-			} else if (inputInfo.getInput().equals(Input.TOGGLE_RULE)) {
-				// FixedTimestepMainLoop.this.model.toggleRule(inputInfo.getNumber());
-				return;
-			} else if (inputInfo.getInput().equals(Input.PAUSE)) {
-				FixedTimestepMainLoop.this.pauseLoop();
-			} else if (inputInfo.getInput().equals(Input.CLOSE)) {
-				FixedTimestepMainLoop.this.abortLoop();
-			}
-		}
-
 	}
 
 	@Override // TO DO
@@ -64,7 +42,21 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			// TO DO bisogna collegare il controller, la view e il model
 
-			final InputResolver inputResolver = new InputResolverImpl();
+			final InputResolver inputResolver = i -> {
+				if (i.getInput().equals(Input.CREATE_BOID)) {
+					FixedTimestepMainLoop.this.model.getSimulation().createBoid(i.getPosition(),
+							i.getNumber().intValue());
+				} else if (i.getInput().equals(Input.DESTROY_BOID)) {
+					FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
+				} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
+					// FixedTimestepMainLoop.this.model.toggleRule(inputInfo.getNumber());
+					return;
+				} else if (i.getInput().equals(Input.PAUSE)) {
+					FixedTimestepMainLoop.this.pauseLoop();
+				} else if (i.getInput().equals(Input.CLOSE)) {
+					FixedTimestepMainLoop.this.abortLoop();
+				}
+			};
 			// inputResolver.resolveInputs(view.getInputs());
 
 			final long timePassed = System.currentTimeMillis() - lastTime;

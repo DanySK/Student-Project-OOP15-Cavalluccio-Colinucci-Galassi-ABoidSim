@@ -4,7 +4,7 @@ package aboidsim.controller;
  * Abstract class.
  *
  */
-public abstract class AbstractMainLoop extends Thread implements MainLoop {
+abstract class AbstractMainLoop extends Thread implements MainLoop {
 
 	private LoopStatus status;
 	private long fps;
@@ -15,7 +15,7 @@ public abstract class AbstractMainLoop extends Thread implements MainLoop {
 	 * @param desiredFps
 	 *            the desired fps.
 	 */
-	public AbstractMainLoop(final long desiredFps) {
+	AbstractMainLoop(final long desiredFps) {
 		this.status = LoopStatus.RUNNING;
 		this.fps = desiredFps;
 	}

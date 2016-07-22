@@ -10,7 +10,7 @@ import aboidsim.util.InputInfo;
  *
  */
 @FunctionalInterface
-public interface InputResolver {
+interface InputResolver {
 	/**
 	 * This method translate any input in an action performed by the model.
 	 *

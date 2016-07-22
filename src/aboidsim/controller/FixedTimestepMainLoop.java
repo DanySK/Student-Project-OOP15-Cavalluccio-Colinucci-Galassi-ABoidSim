@@ -10,7 +10,7 @@ import aboidsim.view.View;
  * that it always cycle after the same amount of time.
  *
  */
-public class FixedTimestepMainLoop extends AbstractMainLoop {
+class FixedTimestepMainLoop extends AbstractMainLoop {
 
 	private final long msPerFrame;
 	private final Model model;
@@ -64,7 +64,7 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			// TO DO bisogna collegare il controller, la view e il model
 
-			// InputResolver inputResolver = new InputResolverImpl();
+			final InputResolver inputResolver = new InputResolverImpl();
 			// inputResolver.resolveInputs(view.getInputs());
 
 			final long timePassed = System.currentTimeMillis() - lastTime;

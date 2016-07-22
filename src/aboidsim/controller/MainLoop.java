@@ -3,7 +3,7 @@ package aboidsim.controller;
 /**
  * Interface for any type of loop.
  */
-public interface MainLoop {
+interface MainLoop {
 
 	/**
 	 * LoopStatus enumeration.

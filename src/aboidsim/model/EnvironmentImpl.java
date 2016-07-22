@@ -40,7 +40,7 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void checkBoidSameLevel() {
         for (final Boid boid : this.enviroment) {
-            if (boid.getLevel() > Levels.TREE_L0.getId()) {
+            if (boid.isNotTree()) {
                 boid.getSameLevelNearBoids()
                         .addAll(this.enviroment.stream().filter(b -> boid.getLevel() == b.getLevel())
                                 .filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
@@ -52,7 +52,7 @@ public class EnvironmentImpl implements Environment {
     @Override
     public void checkBoidOtherLevel() {
         for (final Boid boid : this.enviroment) {
-            if (boid.getLevel() > Levels.TREE_L0.getId()) {
+            if (boid.isNotTree()) {
                 boid.getOtherLevelNearBoids()
                         .addAll(this.enviroment.stream().filter(b -> boid.getLevel() != b.getLevel())
                                 .filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())

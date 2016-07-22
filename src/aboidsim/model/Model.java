@@ -1,7 +1,6 @@
 package aboidsim.model;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -25,7 +24,7 @@ public interface Model {
 
     /**
      *
-     * @return a set of active rules.
+     * @return a list of active rules.
      */
-    Set<RuleImpl> getActiveRules();
+    List<String> getRules();
 }

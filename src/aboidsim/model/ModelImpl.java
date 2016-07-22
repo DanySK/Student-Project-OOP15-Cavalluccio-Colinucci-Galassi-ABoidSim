@@ -2,7 +2,6 @@ package aboidsim.model;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -14,7 +13,6 @@ import java.util.stream.Collectors;
 public class ModelImpl implements Model {
 
     private final Environment simulation = new EnvironmentImpl();
-    private final RuleSet activeRules = new RuleSet();
 
     @Override
     public Environment getSimulation() {
@@ -27,7 +25,7 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public Set<RuleImpl> getActiveRules() {
-        return this.activeRules.getRules();
+    public List<String> getRules() {
+        return RuleImpl.getRuleNames();
     }
 }

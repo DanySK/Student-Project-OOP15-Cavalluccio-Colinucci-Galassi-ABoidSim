@@ -3,6 +3,8 @@ package aboidsim.view;
 import java.util.ArrayList;
 import java.util.List;
 
+import aboidsim.util.Input;
+import aboidsim.util.InputInfo;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -32,7 +34,7 @@ public class RulesSelection extends Scene{
             layout.getChildren().addAll(this.boxes);
             layout.getChildren().add(conferma);
             
-            conferma.setOnAction(e -> this.printSelectedRules());
+            conferma.setOnAction(e -> this.addInputs());
             
     }
     
@@ -56,7 +58,10 @@ public class RulesSelection extends Scene{
         System.out.println(this.returnSelectedRules().toString());
     }
     
-    
-    
-    
+	private void addInputs() {
+		this.returnSelectedRules().stream()
+			.forEach(e -> InputHandler.getInputHandler().addInput(new InputInfo(Input.TOGGLE_RULE, e)));
+
+	}
+
 }

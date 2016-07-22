@@ -9,7 +9,7 @@ public class ViewImpl implements View {
 	@Override
 	public List<InputInfo> getInputs() {
 		// TODO Auto-generated method stub
-		return null;
+		return InputHandler;
 	}
 
 }

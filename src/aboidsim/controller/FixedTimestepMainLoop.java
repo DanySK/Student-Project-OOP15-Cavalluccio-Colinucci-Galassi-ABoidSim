@@ -24,6 +24,8 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 	 *            the Model.
 	 * @param v
 	 *            the View.
+	 * @param c
+	 *            the Controller.
 	 * @param desiredFps
 	 *            the desired frames per second.
 	 */
@@ -40,12 +42,10 @@ public class FixedTimestepMainLoop extends AbstractMainLoop {
 		@Override
 		public void resolveInput(final InputInfo inputInfo) {
 			if (inputInfo.getInput().equals(Input.CREATE_BOID)) {
-				// FixedTimestepMainLoop.this.model.createBoid(inputInfo.getPosition(),
-				// InputInfo.getNumber());
-				return;
+				FixedTimestepMainLoop.this.model.getSimulation().createBoid(inputInfo.getPosition(),
+						inputInfo.getNumber().intValue());
 			} else if (inputInfo.getInput().equals(Input.DESTROY_BOID)) {
-				// FixedTimestepMainLoop.this.model.destroyBoid(inputInfo.getPosition());
-				return;
+				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(inputInfo.getPosition());
 			} else if (inputInfo.getInput().equals(Input.TOGGLE_RULE)) {
 				// FixedTimestepMainLoop.this.model.toggleRule(inputInfo.getNumber());
 				return;

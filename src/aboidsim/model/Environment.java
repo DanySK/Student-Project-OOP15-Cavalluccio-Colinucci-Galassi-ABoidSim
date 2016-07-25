@@ -57,7 +57,7 @@ public interface Environment {
      *
      * @return all the entities of the environment with position and level.
      */
-    Pair<Vector, Integer> getEntities();
+    Set<Pair<Vector, Integer>> getEntities();
 
     /**
      * Getter for the environment.

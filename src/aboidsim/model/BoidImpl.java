@@ -25,8 +25,7 @@ public class BoidImpl implements Boid {
 
     private final double influenceRadius;
     private final Set<Boid> otherLevelNearBoids;
-    private final Set<Boid> sameLevelNearBoids; // a list with closest
-    // boids of same level
+    private final Set<Boid> sameLevelNearBoids;
 
     private static final int PREDATOR_HUNGER = 20;
     private static final int HERBIVORE_HUNGER = 10;

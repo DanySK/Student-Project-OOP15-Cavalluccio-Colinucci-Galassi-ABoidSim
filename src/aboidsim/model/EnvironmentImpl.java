@@ -10,7 +10,8 @@ import aboidsim.util.Vector;
 
 /**
  *
- * This class show all the components of the simulation environment.
+ * This class show all the components of the simulation environment. Singleton
+ * pattern used.
  *
  */
 public final class EnvironmentImpl implements Environment {
@@ -23,7 +24,7 @@ public final class EnvironmentImpl implements Environment {
     /**
      * Constructor.
      */
-    private EnvironmentImpl() {
+    EnvironmentImpl() {
     }
 
     static EnvironmentImpl getEnviromentImpl() {
@@ -69,7 +70,9 @@ public final class EnvironmentImpl implements Environment {
     @Override
     public void collision() {
         for (final Boid boid : this.enviroment) {
+            if (boid.isNotTree()) {
 
+            }
         }
     }
 
@@ -84,8 +87,9 @@ public final class EnvironmentImpl implements Environment {
     }
 
     @Override
-    public Pair<Vector, Integer> getEntities() {
-        return null;
+    public Set<Pair<Vector, Integer>> getEntities() {
+        return this.enviroment.stream().map(boid -> new Pair<>(boid.getPosition(), boid.getLevel()))
+                .collect(Collectors.toSet());
     }
 
     @Override

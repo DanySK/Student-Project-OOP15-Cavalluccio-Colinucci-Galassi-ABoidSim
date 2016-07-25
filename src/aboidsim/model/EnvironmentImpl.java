@@ -106,7 +106,7 @@ public final class EnvironmentImpl implements Environment {
 
 		for (final Boid boid : this.enviroment) {
 			for (final Rule rule : this.rules.getRules()) {
-
+				boid.
 			}
 		}
 

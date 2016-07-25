@@ -18,7 +18,7 @@ public enum RuleImpl implements Rule {
 	/**
 	 * Cohesion. This rule keep the boids of the same group close to each other.
 	 */
-	COHESION("Cohesion", 0) {
+	COHESION("Cohesion", 0, 1) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);
@@ -29,8 +29,8 @@ public enum RuleImpl implements Rule {
 				vectorSum.div(boids.size());
 				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
 				desiredDirection.norm();
-				desiredDirection.mul(theBoid.getAverageSpeed());
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
+				steer.mul(this.getDefaultModifier());
 				return steer;
 			} else {
 				return vectorSum;
@@ -41,7 +41,7 @@ public enum RuleImpl implements Rule {
 	 * Alignment. This rule keep the boids of the same group going towards the
 	 * same direction.
 	 */
-	ALIGNMENT("Alignment", 1) {
+	ALIGNMENT("Alignment", 1, 1) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);
@@ -52,7 +52,7 @@ public enum RuleImpl implements Rule {
 				vectorSum.div(boids.size());
 				vectorSum.norm();
 				final Vector steer = Vector.sub(vectorSum, theBoid.getSpeed());
-				steer.mul(theBoid.getAverageSpeed());
+				steer.mul(this.getDefaultModifier());
 				return steer;
 			} else {
 				return vectorSum;
@@ -63,7 +63,7 @@ public enum RuleImpl implements Rule {
 	 * Separation. This rule keep the boids of the same group separated (the
 	 * opposite of Cohesion).
 	 */
-	SEPARATION("Separation", 2) {
+	SEPARATION("Separation", 2, 1) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorDiff = new Vector(0.0, 0.0);
@@ -76,6 +76,7 @@ public enum RuleImpl implements Rule {
 				desiredDirection.norm();
 				desiredDirection.mul(theBoid.getAverageSpeed());
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
+				steer.mul(this.getDefaultModifier());
 				return steer;
 			} else {
 				return vectorDiff;
@@ -85,6 +86,7 @@ public enum RuleImpl implements Rule {
 
 	private String name;
 	private Integer id;
+	private Integer defaultModifier;
 
 	/**
 	 * Private constructor.
@@ -92,7 +94,7 @@ public enum RuleImpl implements Rule {
 	 * @param n
 	 * @param idNumber
 	 */
-	RuleImpl(final String n, final Integer idNumber) {
+	RuleImpl(final String n, final Integer idNumber, final Integer dM) {
 	}
 
 	/**
@@ -111,6 +113,16 @@ public enum RuleImpl implements Rule {
 	 */
 	public Integer getID() {
 		return this.id;
+	}
+
+	/**
+	 * Getter. This method return the default modifier used to "weigh" the
+	 * impact of the rule.
+	 *
+	 * @return the modifier of the rule
+	 */
+	public Integer getDefaultModifier() {
+		return this.defaultModifier;
 	}
 
 	/**

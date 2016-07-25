@@ -121,28 +121,36 @@ public final class EnvironmentImpl implements Environment {
 			final Set<Boid> closePredators = closeOtherLevelBoids.stream()
 					.filter(pred -> (pred.isPredator() && boid.getLevel() < pred.getLevel()))
 					.collect(Collectors.toSet());
+			for (final Boid pred : closePredators) {
+				/*
+				 * if (boid.getPosition() - pred.getPosition() <
+				 * this.getCollisionRadius()) { boid.decrementLife();
+				 * pred.incrementLife(); }
+				 */
+			}
+			if (!boid.isNotTree()) { // If the boid is a Tree Boid, there is
+										// nothing left to do
+				return;
+			}
+			if (this.rules.getRules().contains(RuleImpl.EVASION)) {
+				sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
+				sumVector.mul(boid.getAverageSpeed());
+			}
 
-			/*
-			 * for (Boid pred : closePredators) { if (boid.getPosition -
-			 * pred.getPosition < this.getCollisionRadius()) {
-			 * boid.decrementLife(); pred.incrementLife(); } if
-			 * (this.rules.getRules().contains(RuleImpl.EVASION)) {
-			 * sumVector.add(RuleImpl.EVASION.apply(boid, closePredators)) }
-			 *
-			 * }
-			 */
-			if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
-				sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+
+				if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
+					sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+				}
+				if (this.rules.getRules().contains(RuleImpl.COHESION)) {
+					sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
+				}
+				if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
+					sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
+				}
 			}
-			if (this.rules.getRules().contains(RuleImpl.COHESION)) {
-				sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
-			}
-			if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
-				sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
-			}
+
 			sumVector.mul(boid.getAverageSpeed());
 			// boid.setPosition(Vector.add(boid.getPosition, sumVector));
 		}
-
 	}
 }

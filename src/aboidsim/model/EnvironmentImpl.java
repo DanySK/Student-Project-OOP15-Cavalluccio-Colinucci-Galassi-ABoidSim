@@ -111,6 +111,7 @@ public final class EnvironmentImpl implements Environment {
 		this.checkBoidSameLevel();
 		for (final Boid boid : this.enviroment) {
 			final Vector sumVector = new Vector(0.0, 0.0);
+			boid.decrementLife(); // Life is decremented here
 			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
 										// the simulation
 				this.enviroment.remove(boid);
@@ -132,11 +133,22 @@ public final class EnvironmentImpl implements Environment {
 										// nothing left to do
 				return;
 			}
-			if (this.rules.getRules().contains(RuleImpl.EVASION)) {
+			if (this.rules.getRules().contains(RuleImpl.EVASION)) { // Safety is
+																	// the
+																	// largest
+																	// priority
 				sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
 				sumVector.mul(boid.getAverageSpeed());
+				return;
 			}
+			if (!closeOtherLevelBoids.isEmpty()) {
+				final Boid nearest = null; // getNearestBoid(boid,
+											// closeOtherLevelBoids)
+				if (closePredators.isEmpty() && boid.isHungry()) {
+					if (boid.isHungry()) {
 
+					}
+				}
 
 				if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
 					sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));

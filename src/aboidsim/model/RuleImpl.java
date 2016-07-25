@@ -18,7 +18,7 @@ public enum RuleImpl implements Rule {
 	/**
 	 * Cohesion. This rule keep the boids of the same group close to each other.
 	 */
-	COHESION("Cohesion", 0, 1) {
+	COHESION("Cohesion", 0, 1.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);
@@ -41,7 +41,7 @@ public enum RuleImpl implements Rule {
 	 * Alignment. This rule keep the boids of the same group going towards the
 	 * same direction.
 	 */
-	ALIGNMENT("Alignment", 1, 1) {
+	ALIGNMENT("Alignment", 1, 1.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);
@@ -63,7 +63,7 @@ public enum RuleImpl implements Rule {
 	 * Separation. This rule keep the boids of the same group separated (the
 	 * opposite of Cohesion).
 	 */
-	SEPARATION("Separation", 2, 1) {
+	SEPARATION("Separation", 2, 1.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorDiff = new Vector(0.0, 0.0);
@@ -82,11 +82,23 @@ public enum RuleImpl implements Rule {
 				return vectorDiff;
 			}
 		}
-	},;
+	},
+	/**
+	 * Evasion. This rule is the same of Separation, but we define it in a
+	 * different way to allow us to implement more complex behaviours.
+	 */
+	EVASION("Evasion", 3, 1.2) {
+
+		@Override
+		public Vector apply(final Boid theBoid, final Set<Boid> closeBoids) {
+			return RuleImpl.SEPARATION.apply(theBoid, closeBoids);
+		}
+
+	};
 
 	private String name;
 	private Integer id;
-	private Integer defaultModifier;
+	private Double defaultModifier;
 
 	/**
 	 * Private constructor.
@@ -94,7 +106,7 @@ public enum RuleImpl implements Rule {
 	 * @param n
 	 * @param idNumber
 	 */
-	RuleImpl(final String n, final Integer idNumber, final Integer dM) {
+	RuleImpl(final String n, final Integer idNumber, final Double dM) {
 	}
 
 	/**
@@ -121,7 +133,7 @@ public enum RuleImpl implements Rule {
 	 *
 	 * @return the modifier of the rule
 	 */
-	public Integer getDefaultModifier() {
+	public Double getDefaultModifier() {
 		return this.defaultModifier;
 	}
 

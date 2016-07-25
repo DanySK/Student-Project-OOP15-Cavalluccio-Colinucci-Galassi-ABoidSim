@@ -102,12 +102,46 @@ public final class EnvironmentImpl implements Environment {
 		return EnvironmentImpl.COLLISION_RADIUS;
 	}
 
+	/**
+	 * This method is called once every cycle. It updates the position of every
+	 * boid according to the rules.
+	 */
 	public void updateEnvironment() {
-
+		this.checkBoidOtherLevel();
+		this.checkBoidSameLevel();
 		for (final Boid boid : this.enviroment) {
-			for (final Rule rule : this.rules.getRules()) {
-				boid.
+			final Vector sumVector = new Vector(0.0, 0.0);
+			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
+										// the simulation
+				this.enviroment.remove(boid);
+				return;
 			}
+			final Set<Boid> closeSameLevelBoids = boid.getSameLevelNearBoids();
+			final Set<Boid> closeOtherLevelBoids = boid.getOtherLevelNearBoids();
+			final Set<Boid> closePredators = closeOtherLevelBoids.stream()
+					.filter(pred -> (pred.isPredator() && boid.getLevel() < pred.getLevel()))
+					.collect(Collectors.toSet());
+
+			/*
+			 * for (Boid pred : closePredators) { if (boid.getPosition -
+			 * pred.getPosition < this.getCollisionRadius()) {
+			 * boid.decrementLife(); pred.incrementLife(); } if
+			 * (this.rules.getRules().contains(RuleImpl.EVASION)) {
+			 * sumVector.add(RuleImpl.EVASION.apply(boid, closePredators)) }
+			 *
+			 * }
+			 */
+			if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
+				sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+			}
+			if (this.rules.getRules().contains(RuleImpl.COHESION)) {
+				sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
+			}
+			if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
+				sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
+			}
+			sumVector.mul(boid.getAverageSpeed());
+			// boid.setPosition(Vector.add(boid.getPosition, sumVector));
 		}
 
 	}

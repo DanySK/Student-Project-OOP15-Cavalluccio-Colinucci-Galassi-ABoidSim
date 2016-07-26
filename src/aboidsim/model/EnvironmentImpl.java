@@ -2,6 +2,7 @@ package aboidsim.model;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -106,6 +107,7 @@ public final class EnvironmentImpl implements Environment {
 	 * This method is called once every cycle. It updates the position of every
 	 * boid according to the rules.
 	 */
+	@Override
 	public void updateEnvironment() {
 		this.checkBoidOtherLevel();
 		this.checkBoidSameLevel();
@@ -133,34 +135,43 @@ public final class EnvironmentImpl implements Environment {
 										// nothing left to do
 				return;
 			}
-			if (this.rules.getRules().contains(RuleImpl.EVASION)) { // Safety is
-																	// the
-																	// largest
-																	// priority
+			if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
+				// Safety has the bigger priority
 				sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
 				sumVector.mul(boid.getAverageSpeed());
 				return;
-			}
-			if (!closeOtherLevelBoids.isEmpty()) {
-				final Boid nearest = null; // getNearestBoid(boid,
-											// closeOtherLevelBoids)
-				if (closePredators.isEmpty() && boid.isHungry()) {
-					if (boid.isHungry()) {
+			} else {
+				if (!closeOtherLevelBoids.isEmpty()) {
+					if (closePredators.isEmpty() && boid.isHungry()) {
+						// If there are no predators around
+						Optional<Boid> prey = Optional.empty();
+						if (boid.isPredator()) {
+							/*
+							 * The predator boid will look for any lower level
+							 * (except the tree) in his radius. HE MAY WANT TO
+							 * CHANGE TARGET
+							 */
+							prey = closeOtherLevelBoids.stream().filter(b -> b.isNotTree()).findFirst();
+						} else {
+							// This boid in an herbivore
+							prey = closeOtherLevelBoids.stream().filter(b -> !b.isNotTree()).findFirst();
+						}
+						if (prey.isPresent()) {
+							// If there is an available prey
+						}
+					}
 
+					if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
+						sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+					}
+					if (this.rules.getRules().contains(RuleImpl.COHESION)) {
+						sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
+					}
+					if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
+						sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
 					}
 				}
-
-				if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
-					sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
-				}
-				if (this.rules.getRules().contains(RuleImpl.COHESION)) {
-					sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
-				}
-				if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
-					sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
-				}
 			}
-
 			sumVector.mul(boid.getAverageSpeed());
 			// boid.setPosition(Vector.add(boid.getPosition, sumVector));
 		}

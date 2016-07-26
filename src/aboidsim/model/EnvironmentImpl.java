@@ -136,7 +136,6 @@ public final class EnvironmentImpl implements Environment {
 					if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
 						// Safety has the bigger priority
 						sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
-						sumVector.mul(boid.getAverageSpeed());
 					} else {
 						// The boid seeks a target to eat
 						if (!closeOtherLevelBoids.isEmpty() && closePredators.isEmpty() && boid.isHungry()) {
@@ -161,7 +160,6 @@ public final class EnvironmentImpl implements Environment {
 								final Vector desiredDirection = Vector.sub(prey.get().getPosition(),
 										boid.getPosition());
 								desiredDirection.norm();
-								desiredDirection.mul(boid.getAverageSpeed());
 								/*
 								 * We want the boid to steer towards the target
 								 */
@@ -190,6 +188,7 @@ public final class EnvironmentImpl implements Environment {
 								 * rapid turns and it feels more "real"
 								 */
 
+								// TO DO TO DO TO DO
 							}
 						}
 					}

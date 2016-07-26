@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <fileset-config file-format-version="1.2.0" simple-config="true" sync-formatter="false">
-<<<<<<< working copy
-  <fileset name="all" enabled="true" check-config-name="REGOLE CUSTOM" local="false">
-=======
-  <local-check-config name="Default" location="C:\Users\Marco\Desktop\workspace\OOP15-ABoidSim\style.xml" type="external" description="XML per il progetto OOP.">
-    <additional-data name="protect-config-file" value="false"/>
-  </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="MyConfig" local="false">
->>>>>>> destination
+  <fileset name="all" enabled="true" check-config-name="Default" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>

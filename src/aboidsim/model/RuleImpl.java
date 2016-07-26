@@ -85,7 +85,8 @@ public enum RuleImpl implements Rule {
 	},
 	/**
 	 * Evasion. This rule is the same of Separation, but we define it in a
-	 * different way to allow us to implement more complex behaviours.
+	 * different way to allow us to implement more complex behaviours towards
+	 * enemies/predators.
 	 */
 	EVASION("Evasion", 3, 1.2) {
 

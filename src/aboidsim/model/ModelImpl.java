@@ -12,20 +12,20 @@ import java.util.stream.Collectors;
 
 public class ModelImpl implements Model {
 
-	private final Environment simulation = new EnvironmentImpl();
+    private final Environment simulation = EnvironmentImpl.getEnviromentImpl();
 
-	@Override
-	public Environment getSimulation() {
-		return this.simulation;
-	}
+    @Override
+    public Environment getSimulation() {
+        return this.simulation;
+    }
 
-	@Override
-	public List<Integer> getLevels() {
-		return Arrays.stream(Entities.values()).map(values -> values.getId()).collect(Collectors.toList());
-	}
+    @Override
+    public List<Integer> getLevels() {
+        return Arrays.stream(Entities.values()).map(values -> values.getId()).collect(Collectors.toList());
+    }
 
-	@Override
-	public List<String> getRules() {
-		return RuleImpl.getRuleNames();
-	}
+    @Override
+    public List<String> getRules() {
+        return RuleImpl.getRuleNames();
+    }
 }

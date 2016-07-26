@@ -13,6 +13,9 @@ public interface View {
 	List<InputInfo> getInputs();
 	
 	
+	void start(List<String> boids, List<String> rules);
+	
+	
 	
 	
 }

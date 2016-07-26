@@ -28,7 +28,7 @@ public class Test extends Application {
         final List<String> parole = Arrays.asList("Sony", "Xiaomi", "Huawei");
         // stage.setScene(new SceltaRegole(parole));
 
-        stage.setScene(new BoidSelection(Arrays.asList("ciao", "come", "va")));
+     //   stage.setScene(new BoidSelection(Arrays.asList("ciao", "come", "va")));
         // stage.setScene(new SceltaRegole(parole));
         stage.show();
     }

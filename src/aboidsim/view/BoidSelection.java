@@ -11,9 +11,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class BoidSelection extends Scene{
+public class BoidSelection extends VBox{
     
-    private static VBox layout = new VBox(8);
+   // private static VBox layout = new VBox(8);
     private final ComboBox<String> box;
     private Optional<String> selectedItem = Optional.empty();
     private List<String> boidList;
@@ -25,7 +25,7 @@ public class BoidSelection extends Scene{
      * @param elements
      */
     public BoidSelection(final List<String> elements) {
-        super(layout);
+        super(5);
         this.boidList = elements;
         box = new ComboBox<>();
         box.setPromptText("seleziona elemento da inserire");
@@ -36,9 +36,9 @@ public class BoidSelection extends Scene{
 
         final Button show = new Button("mostra elem selezionato");
         show.setOnAction(e -> this.printSelectedItem());
-        layout.setAlignment(Pos.CENTER);
-        layout.setPadding(new Insets(8));
-        layout.getChildren().addAll(title, box, show);
+        this.setAlignment(Pos.CENTER);
+        this.setPadding(new Insets(8));
+        this.getChildren().addAll(title, box, show);
 
     }
 

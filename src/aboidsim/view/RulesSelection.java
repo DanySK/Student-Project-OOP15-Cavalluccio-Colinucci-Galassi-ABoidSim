@@ -12,11 +12,11 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-public class RulesSelection extends Scene{
+public class RulesSelection extends VBox{
 
     private final List<String> rules;
     private final List<CheckBox> boxes = new ArrayList<>();
-    private static VBox layout = new VBox(10);
+   // private static VBox layout = new VBox(10);
     private Button conferma = new Button("Conferma");
 
     
@@ -25,14 +25,14 @@ public class RulesSelection extends Scene{
      * @param rules list of the rules
      */
     public RulesSelection(final List<String> rules) {
-            super(layout);
-            layout.setPadding(new Insets(10));
+            super(5);
+            this.setPadding(new Insets(10));
             this.rules = rules;
             this.rules.stream().forEach(e -> this.boxes.add(new CheckBox(e)));
             Text titolo = new Text("Seleziona regole da abilitare: ");
-            layout.getChildren().add(titolo);
-            layout.getChildren().addAll(this.boxes);
-		layout.getChildren().add(conferma);
+            this.getChildren().add(titolo);
+            this.getChildren().addAll(this.boxes);
+		this.getChildren().add(conferma);
 
 		conferma.setOnAction(e -> {
 			this.addInputs();
@@ -40,28 +40,28 @@ public class RulesSelection extends Scene{
 		});
             
     }
-    
-    
+
     /**
      * 
      * @return a list of the selected rules
      */
     public List<Integer> returnSelectedRules() {
-        final  List<Integer> list = new ArrayList<>();
+        final List<Integer> list = new ArrayList<>();
         boxes.stream().forEach(e -> {
-            if (e.isSelected()) list.add(this.rules.indexOf(e.getText()));
+            if (e.isSelected()) {
+                list.add(this.rules.indexOf(e.getText()));
+            }
         });
         return list;
     }
-    
+
     /**
      * test method
      */
     private void printSelectedRules() {
         System.out.println(this.returnSelectedRules().toString());
     }
-    
-    
+
     /**
      * add rules to the list in class InputHandler
      */

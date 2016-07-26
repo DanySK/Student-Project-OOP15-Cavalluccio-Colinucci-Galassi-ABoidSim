@@ -137,7 +137,6 @@ public final class EnvironmentImpl implements Environment {
 						// Safety has the bigger priority
 						sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
 						sumVector.mul(boid.getAverageSpeed());
-						return;
 					} else {
 						if (!closeOtherLevelBoids.isEmpty()) {
 							if (closePredators.isEmpty() && boid.isHungry()) {
@@ -168,6 +167,7 @@ public final class EnvironmentImpl implements Environment {
 									 * target
 									 */
 									sumVector.add(Vector.sub(desiredDirection, boid.getSpeed()));
+									sumVector.mul(boid.getAverageSpeed());
 								}
 							}
 

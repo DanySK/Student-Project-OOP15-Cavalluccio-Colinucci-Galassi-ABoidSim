@@ -31,6 +31,7 @@ public enum RuleImpl implements Rule {
 				desiredDirection.norm();
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
+				steer.mul(theBoid.getAverageSpeed());
 				return steer;
 			} else {
 				return vectorSum;
@@ -53,6 +54,7 @@ public enum RuleImpl implements Rule {
 				vectorSum.norm();
 				final Vector steer = Vector.sub(vectorSum, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
+				steer.mul(theBoid.getAverageSpeed());
 				return steer;
 			} else {
 				return vectorSum;
@@ -74,9 +76,9 @@ public enum RuleImpl implements Rule {
 				vectorDiff.div(boids.size());
 				final Vector desiredDirection = Vector.sub(vectorDiff, theBoid.getPosition());
 				desiredDirection.norm();
-				desiredDirection.mul(theBoid.getAverageSpeed());
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
+				steer.mul(theBoid.getAverageSpeed());
 				return steer;
 			} else {
 				return vectorDiff;

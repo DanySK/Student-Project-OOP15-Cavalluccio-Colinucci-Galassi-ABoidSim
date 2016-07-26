@@ -1,5 +1,6 @@
 package aboidsim.view;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -18,14 +19,13 @@ public class MainWindow extends Application {
     private Stage mainStage = new Stage();
     private static final double HEIGHT = 800; 
     private static final double WIDTH = 800;
-    private final List<String> boids;
-    private final List<String> rules;
+    private List<String> boids;// = new ArrayList<>();
+    private List<String> rules; //= new ArrayList<>();
     
     
-    public MainWindow(List<String> boids, List<String> rules) throws Exception {
+    public MainWindow(List<String> boids, List<String> rules) {
         this.boids = boids;
         this.rules = rules;
-        this.start(mainStage);
     }
     
     /**
@@ -53,6 +53,10 @@ public class MainWindow extends Application {
         stage.show();
         
         
+    }
+    
+    void show() {
+        launch();
     }
 	
 

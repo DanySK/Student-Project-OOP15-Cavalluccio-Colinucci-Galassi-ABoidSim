@@ -40,8 +40,11 @@ public final class EnvironmentImpl implements Environment {
 
     @Override
     public void destroyBoid(final Vector pos) {
-        this.environment.remove(this.environment.stream()
-                .filter(boid -> boid.getPosition().dist(pos) < EnvironmentImpl.COLLISION_RADIUS).findFirst().get());
+        final Optional<Boid> b = this.environment.stream()
+                .filter(boid -> boid.getPosition().dist(pos) < EnvironmentImpl.COLLISION_RADIUS).findFirst();
+        if (b.isPresent()) {
+            this.environment.remove(b.get());
+        }
     }
 
     @Override

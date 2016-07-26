@@ -59,10 +59,22 @@ public class BoidImpl implements Boid {
     }
 
     @Override
+    public void incrementLife() {
+        if (this.isNotTree()) {
+            this.life = this.life + 1;
+        }
+    }
+
+    @Override
     public void decrementLife() {
         if (this.isNotTree()) {
             this.life = this.life - 1;
         }
+    }
+
+    @Override
+    public boolean isCollidingWith(final Boid boid) {
+        return this.position.dist(boid.getPosition()) < EnvironmentImpl.getCollisionRadius();
     }
 
     @Override
@@ -82,11 +94,6 @@ public class BoidImpl implements Boid {
     @Override
     public boolean isNotTree() {
         return this.level != Entities.TREE_L0.getId();
-    }
-
-    @Override
-    public void eating() {
-        this.life = this.life + 10;
     }
 
     @Override

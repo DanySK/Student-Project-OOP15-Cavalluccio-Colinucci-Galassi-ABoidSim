@@ -13,6 +13,11 @@ import aboidsim.util.Vector;
 public interface Boid {
 
     /**
+     * Increment boid life when eating.
+     */
+    void incrementLife();
+
+    /**
      * decrement life each loop iteration.
      */
     void decrementLife();
@@ -36,15 +41,18 @@ public interface Boid {
     boolean isNotTree();
 
     /**
-     * A boid eating from a tree or eating other boids if predator.
-     */
-    void eating();
-
-    /**
      *
      * @return Boid level
      */
     int getLevel();
+
+    /**
+     *
+     * @param boid
+     *            boid checked.
+     * @return if a boid is colliding with another one.
+     */
+    boolean isCollidingWith(final Boid boid);
 
     /**
      *

@@ -52,7 +52,7 @@ public interface Environment {
      *
      * @return all the entities of the environment with position and level.
      */
-    Set<Pair<Vector, Integer>> getEntities();
+    Set<Pair<Vector, Integer>> getSimulationComponents();
 
     /**
      * Getter for the environment.

@@ -28,6 +28,20 @@ public final class EnvironmentImpl implements Environment {
     EnvironmentImpl() {
     }
 
+<<<<<<< working copy
+								// TO DO TO DO TO DO
+							}
+						}
+					}
+					sumVector.mul(boid.getAverageSpeed());
+					// We add the combining movements to the boid position
+					boid.getSpeed().add(sumVector);
+					boid.getPosition().add(boid.getSpeed());
+				}
+			}
+		}
+	}
+=======
     static EnvironmentImpl getEnviromentImpl() {
         return EnvironmentImpl.ENVIRONMENT_IMPL;
     }
@@ -195,4 +209,5 @@ public final class EnvironmentImpl implements Environment {
     public static double getCollisionRadius() {
         return EnvironmentImpl.COLLISION_RADIUS;
     }
+>>>>>>> destination
 }

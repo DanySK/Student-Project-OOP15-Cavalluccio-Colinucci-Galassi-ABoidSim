@@ -49,15 +49,16 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				} else if (i.getInput().equals(Input.DESTROY_BOID)) {
 					FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
 				} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
-					// FixedTimestepMainLoop.this.model.toggleRule(inputInfo.getNumber());
-					return;
+					FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
 				} else if (i.getInput().equals(Input.PAUSE)) {
 					FixedTimestepMainLoop.this.pauseLoop();
 				} else if (i.getInput().equals(Input.CLOSE)) {
 					FixedTimestepMainLoop.this.abortLoop();
 				}
 			};
-			// inputResolver.resolveInputs(view.getInputs());
+			inputResolver.resolveInputList(this.view.getInputs());
+			this.model.getSimulation().updateEnvironment();
+			// this.view.getEntitiesToDraw(this.model.getSimulation().getEntities());
 
 			final long timePassed = System.currentTimeMillis() - lastTime;
 			if (timePassed < this.msPerFrame) {

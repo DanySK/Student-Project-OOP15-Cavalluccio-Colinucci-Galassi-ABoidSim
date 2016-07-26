@@ -1,7 +1,9 @@
 package aboidsim.controller;
 
 import aboidsim.model.Model;
+import aboidsim.model.ModelImpl;
 import aboidsim.view.View;
+import aboidsim.view.ViewImpl;
 
 /**
  * This class starts the program by declaring Controller and View
@@ -16,11 +18,9 @@ public final class Application {
 	 *            the arguments
 	 */
 	public static void main(final String[] args) {
-		final Model model = null; // TO DO: substitute with actual
-									// implementation
-		final View view = null; // TO DO: substitute with actual implementation
+		final Model model = new ModelImpl();
+		final View view = new ViewImpl();
 		final Controller controller = new ControllerImpl(model, view);
-
 		// view.setController(controller);
 		controller.start();
 	}

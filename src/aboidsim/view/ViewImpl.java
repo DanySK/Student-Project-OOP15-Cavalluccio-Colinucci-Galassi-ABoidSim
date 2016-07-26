@@ -15,4 +15,17 @@ public class ViewImpl implements View {
 		return list;
 	}
 
+    @Override
+    public void start(List<String> boids, List<String> rules)  {
+        try {
+            MainWindow window = new MainWindow(boids, rules);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+     
+       
+        
+    }
+
 }

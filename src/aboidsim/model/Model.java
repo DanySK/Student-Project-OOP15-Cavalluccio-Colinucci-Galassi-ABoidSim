@@ -20,7 +20,7 @@ public interface Model {
      *
      * @return get all possible levels.
      */
-    List<Integer> getLevels();
+    List<String> getEntitiesNames();
 
     /**
      *

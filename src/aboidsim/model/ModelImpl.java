@@ -20,8 +20,8 @@ public class ModelImpl implements Model {
     }
 
     @Override
-    public List<Integer> getLevels() {
-        return Arrays.stream(Entities.values()).map(values -> values.getId()).collect(Collectors.toList());
+    public List<String> getEntitiesNames() {
+        return Arrays.stream(Entities.values()).map(entity -> entity.getName()).collect(Collectors.toList());
     }
 
     @Override

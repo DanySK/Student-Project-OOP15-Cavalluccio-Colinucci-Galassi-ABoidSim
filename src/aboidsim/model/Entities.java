@@ -10,11 +10,14 @@ package aboidsim.model;
 
 enum Entities {
 
-    TREE_L0(0, 500, 0, 0, 0), HERBIVORE_L1(1, 10, 1.5, 10, 1.1), HERBIVORE_L2(2, 20, 2.5, 9, 1.2), HERBIVORE_L3(3, 30,
-            3.5, 8, 1.3), HERBIVORE_L4(4, 40, 4.5, 7, 1.4), HERBIVORE_L5(5, 50, 5.5, 6, 1.5), PREDATOR_L6(6, 60, 6.5, 5,
-                    1.6), PREDATOR_L7(7, 70, 7.5, 4, 1.7), PREDATOR_L8(8, 80, 8.5, 3,
-                            1.8), PREDATOR_L9(9, 90, 9.5, 2, 1.9), PREDATOR_L10(10, 100, 10.5, 1, 2.0);
+    TREE_L0("Tree", 0, 500, 0, 0, 0), HERBIVORE_L1("Herbivore1", 1, 10, 1.5, 10, 1.1), HERBIVORE_L2("Herbivore2", 2, 20,
+            2.5, 9, 1.2), HERBIVORE_L3("Herbivore3", 3, 30, 3.5, 8, 1.3), HERBIVORE_L4("Herbivore4", 4, 40, 4.5, 7,
+                    1.4), HERBIVORE_L5("Herbivore5", 5, 50, 5.5, 6, 1.5), PREDATOR_L6("Predator6", 6, 60, 6.5, 5,
+                            1.6), PREDATOR_L7("Predator7", 7, 70, 7.5, 4, 1.7), PREDATOR_L8("Predator8", 8, 80, 8.5, 3,
+                                    1.8), PREDATOR_L9("Predator9", 9, 90, 9.5, 2,
+                                            1.9), PREDATOR_L10("Predator10", 10, 100, 10.5, 1, 2.0);
 
+    private final String name;
     private final int id;
     private final int life;
     private final double influenceRadius;
@@ -34,12 +37,17 @@ enum Entities {
      * @param avSpeed
      *            Boid average speed
      */
-    Entities(final int iD, final int lif, final double rad, final int maxM, final double avSpeed) {
+    Entities(final String nam, final int iD, final int lif, final double rad, final int maxM, final double avSpeed) {
+        this.name = nam;
         this.id = iD;
         this.life = lif;
         this.influenceRadius = rad;
         this.maxMembers = maxM;
         this.averageSpeed = avSpeed;
+    }
+
+    public String getName() {
+        return this.name;
     }
 
     public int getId() {

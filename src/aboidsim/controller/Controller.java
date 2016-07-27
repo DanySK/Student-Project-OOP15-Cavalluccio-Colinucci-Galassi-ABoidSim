@@ -48,14 +48,14 @@ interface Controller {
 	 *            loop the main loop being set.
 	 *
 	 */
-	void setMainLoop(MainLoop mainLoop);
+	void setMainLoop(AbstractMainLoop mainLoop);
 
 	/**
 	 * Getter. The method return the MainLoop currently used.
 	 *
 	 * @return the MainLoop
 	 */
-	MainLoop getMainLoop();
+	AbstractMainLoop getMainLoop();
 
 	/**
 	 * The method that starts the loop.

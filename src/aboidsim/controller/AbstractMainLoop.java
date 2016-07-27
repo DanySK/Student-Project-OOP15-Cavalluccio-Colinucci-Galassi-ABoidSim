@@ -4,7 +4,15 @@ package aboidsim.controller;
  * Abstract class.
  *
  */
-abstract class AbstractMainLoop extends Thread implements MainLoop {
+abstract class AbstractMainLoop extends Thread {
+
+	/**
+	 * LoopStatus enumeration.
+	 */
+	enum LoopStatus {
+
+		RUNNING, PAUSED;
+	}
 
 	private LoopStatus status;
 	private long fps;
@@ -20,22 +28,18 @@ abstract class AbstractMainLoop extends Thread implements MainLoop {
 		this.fps = desiredFps;
 	}
 
-	@Override
 	public void setStatus(final LoopStatus newStatus) {
 		this.status = newStatus;
 	}
 
-	@Override
 	public LoopStatus getStatus() {
 		return this.status;
 	}
 
-	@Override
 	public void setFPS(final long newFps) {
 		this.fps = newFps;
 	}
 
-	@Override
 	public long getFPS() {
 		return this.fps;
 	}
@@ -43,12 +47,9 @@ abstract class AbstractMainLoop extends Thread implements MainLoop {
 	@Override
 	public abstract void run();
 
-	@Override
 	public abstract void pauseLoop();
 
-	@Override
 	public abstract void resumeLoop();
 
-	@Override
 	public abstract void abortLoop();
 }

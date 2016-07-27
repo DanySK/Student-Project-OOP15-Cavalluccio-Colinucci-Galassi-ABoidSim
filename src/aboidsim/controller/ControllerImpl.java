@@ -9,11 +9,11 @@ import aboidsim.view.View;
  */
 class ControllerImpl implements Controller {
 
-	private static final int FPS = 30;
+	private static final int FPS = 1;
 
 	private Model model;
 	private View view;
-	private MainLoop mainLoop;
+	private AbstractMainLoop mainLoop;
 
 	/**
 	 * Public constructor.
@@ -50,20 +50,19 @@ class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public void setMainLoop(final MainLoop newMainLoop) {
+	public void setMainLoop(final AbstractMainLoop newMainLoop) {
 		this.mainLoop = newMainLoop;
 	}
 
 	@Override
-	public MainLoop getMainLoop() {
+	public AbstractMainLoop getMainLoop() {
 		return this.mainLoop;
 	}
 
 	@Override
 	public void start() {
+		this.mainLoop.start();
 		this.view.start(this.model.getEntitiesNames(), this.model.getRules());
-		this.mainLoop.run();
-
 	}
 
 }

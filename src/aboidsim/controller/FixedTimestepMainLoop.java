@@ -31,6 +31,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	FixedTimestepMainLoop(final Model m, final View v, final Controller c, final long desiredFps) {
 		super(desiredFps);
 		this.msPerFrame = 1000 / this.getFPS();
+		System.out.println(this.msPerFrame + " " + this.getFPS());
 		this.model = m;
 		this.controller = c;
 		this.view = v;
@@ -38,31 +39,34 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 
 	@Override // TO DO
 	public void run() {
-		final long lastTime = System.currentTimeMillis();
-		while (this.getStatus().equals(LoopStatus.RUNNING)) {
-			// TO DO bisogna collegare il controller, la view e il model
+		final InputResolver inputResolver = i -> {
+			if (i.getInput().equals(Input.CREATE_BOID)) {
+				FixedTimestepMainLoop.this.model.getSimulation().createBoid(i.getPosition(), i.getNumber().intValue());
+			} else if (i.getInput().equals(Input.DESTROY_BOID)) {
+				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
+			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
+				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
+			} else if (i.getInput().equals(Input.PAUSE)) {
+				FixedTimestepMainLoop.this.pauseLoop();
+			} else if (i.getInput().equals(Input.CLOSE)) {
+				FixedTimestepMainLoop.this.abortLoop();
+			}
+		};
 
-			final InputResolver inputResolver = i -> {
-				if (i.getInput().equals(Input.CREATE_BOID)) {
-					FixedTimestepMainLoop.this.model.getSimulation().createBoid(i.getPosition(),
-							i.getNumber().intValue());
-				} else if (i.getInput().equals(Input.DESTROY_BOID)) {
-					FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
-				} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
-					FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
-				} else if (i.getInput().equals(Input.PAUSE)) {
-					FixedTimestepMainLoop.this.pauseLoop();
-				} else if (i.getInput().equals(Input.CLOSE)) {
-					FixedTimestepMainLoop.this.abortLoop();
-				}
-			};
+		while (this.getStatus().equals(LoopStatus.RUNNING)) {
+			final long lastTime = System.currentTimeMillis();
+			// TO DO bisogna collegare il controller, la view e il model
 			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
 			// this.view.getEntitiesToDraw(this.model.getSimulation().getEntities());
-
 			final long timePassed = System.currentTimeMillis() - lastTime;
+
+			// System.out.println("last time: " + lastTime); //DEBUG
+			// System.out.println("time passed: " + timePassed); //DEBUG
 			if (timePassed < this.msPerFrame) {
 				try {
+					// System.out.println("sleep for: " + (this.msPerFrame -
+					// timePassed)); //DEBUG
 					Thread.sleep(this.msPerFrame - timePassed);
 				} catch (final InterruptedException e) {
 					System.out.println("Sleep exception");

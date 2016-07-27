@@ -184,6 +184,7 @@ public final class EnvironmentImpl implements Environment {
 					}
 					sumVector.mul(boid.getAverageSpeed());
 					// We add the combining movements to the boid position
+					// sumVector.scaleTo(BoidImpl.MAX_FORCE);
 					boid.getSpeed().add(sumVector);
 					boid.getSpeed().scaleTo(BoidImpl.MAX_SPEED);
 					boid.getPosition().add(boid.getSpeed());

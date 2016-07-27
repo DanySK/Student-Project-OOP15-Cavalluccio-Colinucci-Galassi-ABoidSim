@@ -166,18 +166,36 @@ public class Vector {
 	/**
 	 * This method scale the magnitude of a Vector to maxValue.
 	 *
+	 * @param value
+	 *            the value of the desired magnitude
+	 * @throws IllegalArgumentException
+	 *             if value is 0
+	 */
+	public void scaleTo(final double value) throws IllegalArgumentException {
+		if (value == 0) {
+			throw new IllegalArgumentException();
+		}
+		final double divFactor = this.magnitude() / value;
+		this.x = this.x / divFactor;
+		this.y = this.y / divFactor;
+	}
+
+	/**
+	 * This method scale the magnitude of a Vector to maxValue. If the magnitude
+	 * of the vector is bigger than the input value the vector get reduced.
+	 *
 	 * @param maxValue
 	 *            the value of the desired magnitude
 	 * @throws IllegalArgumentException
 	 *             if maxValue is 0
 	 */
-	public void scaleTo(final double maxValue) throws IllegalArgumentException {
+	public void limitTo(final double maxValue) throws IllegalArgumentException {
 		if (maxValue == 0) {
 			throw new IllegalArgumentException();
 		}
-		final double divFactor = this.magnitude() / maxValue;
-		this.x = this.x / divFactor;
-		this.y = this.y / divFactor;
+		if (this.magnitude() > maxValue) {
+			this.scaleTo(maxValue);
+		}
 	}
 
 	/**

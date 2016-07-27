@@ -155,7 +155,6 @@ public final class EnvironmentImpl implements Environment {
 								 * We want the boid to steer towards the target
 								 */
 								sumVector.add(Vector.sub(desiredDirection, boid.getSpeed()));
-								sumVector.mul(boid.getAverageSpeed());
 							}
 						} else {
 							/*
@@ -188,9 +187,19 @@ public final class EnvironmentImpl implements Environment {
 								vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
 								// We set a random angle
 								final Random rng = new Random();
-								rng.doubles(0, 365);
+								rng.doubles(0, 2 * Math.PI);
+								// The angle is already in radians
 								final double angle = rng.nextDouble();
-								vec.
+								vec.setY(Math.sin(angle) * vec.magnitude());
+								vec.setX(Math.cos(angle) * vec.magnitude());
+								/*
+								 * We add the modified vector and we steer
+								 * towards it
+								 */
+								circleOrigin.add(vec);
+								final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
+								desiredDirection.norm();
+								sumVector.add(Vector.sub(desiredDirection, boid.getSpeed()));
 							}
 						}
 					}

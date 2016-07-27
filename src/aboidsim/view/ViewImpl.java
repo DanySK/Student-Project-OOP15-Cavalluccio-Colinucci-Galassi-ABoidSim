@@ -11,21 +11,26 @@ import javafx.application.Application;
  */
 public class ViewImpl implements View {
 
-	/**
-	 * return all the input of the interface as a list of IputInfo
-	 */
-	public List<InputInfo> getInputs() {
-		// TODO Auto-generated method stub
-	        List<InputInfo> list = InputHandler.getInputHandler().getInputs();
-	        InputHandler.getInputHandler().clearInputs();
-		return list;
-	}
 
-    @Override
-    public void start(List<String> boids, List<String> rules)  {
-       MainWindow window = new MainWindow(boids, rules);
-       window.show();
-        
+    
+    /**
+     * return all the input of the interface as a list of IputInfo
+     */
+    public List<InputInfo> getInputs() {
+        // TODO Auto-generated method stub
+        List<InputInfo> list = InputHandler.getInputHandler().getInputs();
+        InputHandler.getInputHandler().clearInputs();
+        return list;
     }
 
+    @Override
+    public void start(List<String> boids, List<String> rules) {
+        MainWindow.setBoids(boids);
+        MainWindow.setRules(rules);
+        Application.launch(MainWindow.class);
+
+    }
+    
+    
+ 
 }

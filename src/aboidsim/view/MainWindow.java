@@ -19,14 +19,15 @@ public class MainWindow extends Application {
     private Stage mainStage = new Stage();
     private static final double HEIGHT = 800; 
     private static final double WIDTH = 800;
-    private List<String> boids;// = new ArrayList<>();
-    private List<String> rules; //= new ArrayList<>();
+    private static List<String> boids; //= Arrays.asList("ciao", "hello", "yo");// = new ArrayList<>();
+    private static List<String> rules; //= Arrays.asList("dell", "hp", "asus"); //= new ArrayList<>();
     
     
-    public MainWindow(List<String> boids, List<String> rules) {
-        this.boids = boids;
-        this.rules = rules;
-    }
+ 
+    
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
     
     /**
      * 
@@ -55,9 +56,11 @@ public class MainWindow extends Application {
         
     }
     
-    void show() {
-        launch();
+    static void setBoids(List<String> boids) {
+        MainWindow.boids = boids;
     }
-	
-
+    
+    static void setRules(List<String> rules) {
+        MainWindow.rules = rules;
+    }
 }

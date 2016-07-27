@@ -3,6 +3,7 @@ package aboidsim.model;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Optional;
+import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -177,8 +178,19 @@ public final class EnvironmentImpl implements Environment {
 								 * random yet believable movement. There are no
 								 * rapid turns and it feels more "real"
 								 */
+								// We create a circle at the right distance
+								final Vector circleOrigin = boid.getSpeed();
+								circleOrigin.norm();
+								circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
+								// We create a normalized vector parallel to the
+								// y-axis and we scale it to the circle radius
+								final Vector vec = new Vector(0.0, -1.0);
+								vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
+								// We set a random angle
+								final Random rng = new Random();
+								rng.doubles(0, 365);
+								final double angle = rng.nextDouble();
 
-								// TO DO TO DO TO DO
 							}
 						}
 					}

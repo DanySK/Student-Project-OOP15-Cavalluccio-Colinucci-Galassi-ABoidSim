@@ -53,6 +53,26 @@ public class Vector {
 	}
 
 	/**
+	 * Setter.
+	 *
+	 * @param xVal
+	 *            the new value of the x coordinate
+	 */
+	public void getX(final double xVal) {
+		this.x = xVal;
+	}
+
+	/**
+	 * Setter.
+	 *
+	 * @param yVal
+	 *            the new value of the y coordinate
+	 */
+	public void getY(final double yVal) {
+		this.y = yVal;
+	}
+
+	/**
 	 * Basic addition.
 	 *
 	 * @param v

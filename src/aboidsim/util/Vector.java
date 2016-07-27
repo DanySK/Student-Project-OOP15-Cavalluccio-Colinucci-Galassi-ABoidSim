@@ -58,7 +58,7 @@ public class Vector {
 	 * @param xVal
 	 *            the new value of the x coordinate
 	 */
-	public void getX(final double xVal) {
+	public void setX(final double xVal) {
 		this.x = xVal;
 	}
 
@@ -68,7 +68,7 @@ public class Vector {
 	 * @param yVal
 	 *            the new value of the y coordinate
 	 */
-	public void getY(final double yVal) {
+	public void setY(final double yVal) {
 		this.y = yVal;
 	}
 

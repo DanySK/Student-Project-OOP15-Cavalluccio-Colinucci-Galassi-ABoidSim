@@ -190,7 +190,7 @@ public final class EnvironmentImpl implements Environment {
 								final Random rng = new Random();
 								rng.doubles(0, 365);
 								final double angle = rng.nextDouble();
-
+								vec.
 							}
 						}
 					}

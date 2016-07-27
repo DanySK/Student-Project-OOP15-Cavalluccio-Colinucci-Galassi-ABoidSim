@@ -41,6 +41,18 @@ public class BoidImpl implements Boid {
 	public static final double MAX_FORCE = 0.1;
 
 	/**
+	 * The distance of the circle from the boid used in the implementation of
+	 * "wandering movement".
+	 */
+	public static final double WANDER_CIRCLE_DISTANCE = 0.1;
+
+	/**
+	 * The radius of the circle used in the implementation of
+	 * "wandering movement".
+	 */
+	public static final double WANDER_CIRCLE_RADIUS = 0.1;
+
+	/**
 	 *
 	 * @param pos
 	 *            Boid position

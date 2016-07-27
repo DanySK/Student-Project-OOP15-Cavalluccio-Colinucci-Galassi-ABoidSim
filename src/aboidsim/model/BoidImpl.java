@@ -33,12 +33,12 @@ public class BoidImpl implements Boid {
 	/**
 	 * The speed must be limited at this value.
 	 */
-	public static final int MAX_SPEED = 10;
+	public static final double MAX_SPEED = 10;
 
 	/**
 	 * Any force must be limited at this value.
 	 */
-	public static final int MAX_FORCE = 10;
+	public static final double MAX_FORCE = 0.1;
 
 	/**
 	 *

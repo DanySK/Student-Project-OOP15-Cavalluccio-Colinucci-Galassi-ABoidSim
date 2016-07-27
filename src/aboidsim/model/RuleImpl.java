@@ -29,6 +29,8 @@ public enum RuleImpl implements Rule {
 				vectorSum.div(boids.size());
 				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
 				desiredDirection.norm();
+				// CHECK THIS
+				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.scaleTo(BoidImpl.MAX_FORCE);
@@ -51,8 +53,11 @@ public enum RuleImpl implements Rule {
 					vectorSum.add(boid.getSpeed());
 				}
 				vectorSum.div(boids.size());
-				vectorSum.norm();
-				final Vector steer = Vector.sub(vectorSum, theBoid.getSpeed());
+				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
+				desiredDirection.norm();
+				// CHECK THIS
+				desiredDirection.mul(BoidImpl.MAX_SPEED);
+				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.scaleTo(BoidImpl.MAX_FORCE);
 				return steer;
@@ -76,6 +81,8 @@ public enum RuleImpl implements Rule {
 				vectorDiff.div(boids.size());
 				final Vector desiredDirection = Vector.sub(vectorDiff, theBoid.getPosition());
 				desiredDirection.norm();
+				// CHECK THIS
+				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.scaleTo(BoidImpl.MAX_FORCE);

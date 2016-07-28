@@ -61,7 +61,13 @@ public class BoidSelection extends VBox {
 	}
 
 	static Optional<Integer> getSelectedBoid() {
-		return Optional.of(BoidSelection.boidList.indexOf(BoidSelection.selectedItem));
+		final Optional<String> item = BoidSelection.selectedItem;
+		if (item.isPresent()) {
+			return Optional.of(BoidSelection.boidList.indexOf(item.get()));
+		} else {
+			return Optional.empty();
+		}
+
 	}
 
 }

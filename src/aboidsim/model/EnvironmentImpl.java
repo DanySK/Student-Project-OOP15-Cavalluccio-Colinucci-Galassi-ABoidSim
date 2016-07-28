@@ -23,6 +23,13 @@ public final class EnvironmentImpl implements Environment {
 	private static final double COLLISION_RADIUS = 0.50;
 	private final RuleSet rules = new RuleSet();
 
+<<<<<<< working copy
+    /**
+     * Constructor.
+     */
+    EnvironmentImpl() {
+    }
+=======
 	// Width and height of the simulation.
 	private final static int WIDTH = 700;
 	private final static int HEIGHT = 700;
@@ -32,6 +39,7 @@ public final class EnvironmentImpl implements Environment {
 	 */
 	EnvironmentImpl() {
 	}
+>>>>>>> destination
 
 	static EnvironmentImpl getEnviromentImpl() {
 		return EnvironmentImpl.ENVIRONMENT_IMPL;
@@ -88,11 +96,21 @@ public final class EnvironmentImpl implements Environment {
 		}
 	}
 
+<<<<<<< working copy
+    @Override
+    public Set<Pair<Vector, String>> getSimulationComponents() {
+        return this.environment.stream()
+                .map(boid -> new Pair<>(boid.getPosition(), Arrays.stream(Entities.values())
+                        .filter(ent -> ent.getId() == boid.getLevel()).findFirst().get().getImage()))
+                .collect(Collectors.toSet());
+    }
+=======
 	@Override
 	public Set<Pair<Vector, Integer>> getSimulationComponents() {
 		return this.environment.stream().map(boid -> new Pair<>(boid.getPosition(), boid.getLevel()))
 				.collect(Collectors.toSet());
 	}
+>>>>>>> destination
 
 	@Override
 	public Set<Boid> getEnvironment() {

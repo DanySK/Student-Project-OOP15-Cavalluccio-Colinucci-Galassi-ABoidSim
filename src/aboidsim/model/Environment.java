@@ -50,9 +50,9 @@ public interface Environment {
 
     /**
      *
-     * @return all the entities of the environment with position and level.
+     * @return all the entities of the environment with position and image path.
      */
-    Set<Pair<Vector, Integer>> getSimulationComponents();
+    Set<Pair<Vector, String>> getSimulationComponents();
 
     /**
      * Getter for the environment.

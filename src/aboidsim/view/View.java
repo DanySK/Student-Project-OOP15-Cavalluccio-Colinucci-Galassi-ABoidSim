@@ -10,24 +10,37 @@ import aboidsim.util.Vector;
 public interface View {
 
 	/**
-	 * 
-	 * @return list of inputs and clears it
+	 * @return 
+	 * 		all the input of the interface as a list of IputInfo
 	 */
 	List<InputInfo> getInputs();
 	
 	/**
-	 * start the interface
-	 * @param boids list of the boids's names
-	 * @param rules list of the rules
+	 * start the interface.
+	 * @param boids 
+	 * 		list of the boids's names
+	 * @param rules 
+	 * 		list of the rules
 	 */
-	void start(List<String> boids, List<String> rules);
+	void start(final List<String> boids, final List<String> rules);
 	
 	
 	/**
-	 * draw all the entitities in the simulation screen
-	 * @param entities list of the position and level of all the entities to draw
+	 * draw all the entities in the simulation screen.
+	 * @param entities 
+	 * 		list of the position and level of all the entities to draw.
 	 */
-	void drawEntities(Set<Pair<Vector, String>> entities);
+	void drawEntities(final Set<Pair<Vector, String>> entities);
+	
+	
+	
+	/**
+     * used to pass to the controller the dimension of the simulation screen
+     * i did + height for and appealing reason, to avoid to show cut images
+     * @return 
+     * 		width and height of the screen that displays the entities
+     */
+     Pair<Integer, Integer> getScreenDimensions();
 	
 	
 	

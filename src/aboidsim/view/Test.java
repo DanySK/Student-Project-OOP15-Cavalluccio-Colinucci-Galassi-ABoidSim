@@ -1,5 +1,6 @@
 package aboidsim.view;
 
+import java.nio.file.FileSystem;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class Test /*extends Application */{
         MainWindow.setBoids(lista);
         MainWindow.setRules(lista);
         Application.launch(MainWindow.class);
+        //System.out.println("ciao"+System.getProperty("file.separator"));
        
     }
 

@@ -25,7 +25,7 @@ public final class InputHandler {
      * 
      * @return the inputHandler
      */
-    public static InputHandler getInputHandler() {
+    static InputHandler getInputHandler() {
         return INPUTHANDLER;
     }
 

@@ -22,6 +22,8 @@ public final class EnvironmentImpl implements Environment {
     private final Set<Boid> environment = new HashSet<>();
     private static final double COLLISION_RADIUS = 0.50;
     private final RuleSet rules = new RuleSet();
+    // Dimension will change when the application starts.
+    private Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);
 
     /**
      * Constructor.
@@ -82,6 +84,16 @@ public final class EnvironmentImpl implements Environment {
         } else {
             this.rules.addRule(rule);
         }
+    }
+
+    @Override
+    public void setScreenDimension(final aboidsim.util.Pair<Integer, Integer> dimension) {
+        this.simulationDimension = dimension;
+    }
+
+    @Override
+    public Pair<Integer, Integer> getSimulationDimension() {
+        return this.simulationDimension;
     }
 
     @Override
@@ -212,10 +224,30 @@ public final class EnvironmentImpl implements Environment {
                     boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
                     boid.getPosition().add(boid.getSpeed());
                     boid.getAcceleration().scaleTo(0);
+                    this.checkBorders(boid);
 
                 }
             }
 
+        }
+    }
+
+    /**
+     * This method fixes the position of a boid which has gone out of borders.
+     * 
+     * @param boid
+     *            a boid
+     */
+    private void checkBorders(final Boid boid) {
+        if (boid.getPosition().getX() <= 0) {
+            boid.getPosition().setX(this.simulationDimension.getX());
+        } else if (boid.getPosition().getX() >= this.simulationDimension.getX()) {
+            boid.getPosition().setX(0.0);
+        }
+        if (boid.getPosition().getY() <= 0) {
+            boid.getPosition().setY(this.simulationDimension.getY());
+        } else if (boid.getPosition().getY() >= this.simulationDimension.getY()) {
+            boid.getPosition().setY(0.0);
         }
     }
 
@@ -226,4 +258,5 @@ public final class EnvironmentImpl implements Environment {
     public static double getCollisionRadius() {
         return EnvironmentImpl.COLLISION_RADIUS;
     }
+
 }

@@ -1,15 +1,14 @@
 package aboidsim.view;
 
-import aboidsim.util.Pair;
+import aboidsim.util.Input;
+import aboidsim.util.InputInfo;
+import aboidsim.util.Vector;
 import javafx.scene.Group;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -42,34 +41,41 @@ public class SimulationScreen extends Group {
 		gc.setFont(theFont);
 
 		// print the coordinates of the clicked point
-		canvas.setOnMouseClicked(e -> System.out.println("x: " + e.getSceneX() + " y:  " + e.getSceneY()));
+		canvas.setOnMouseClicked(e -> {
+			System.out.println("x: " + e.getSceneX() + " y:  " + e.getSceneY());
+			this.addInputs(new Vector(e.getSceneX(), e.getSceneY()));
+		});
 
 		this.drawBoid(gc, 200, 200, 30);
 		this.drawBoid(gc, 0, 0, 160);
 	}
 
-	private void
+	/**
+	 * add input to InputHandler, with the pos and the type of the boid selected
+	 * in class BoidsSelection
+	 */
+	private void addInputs(final Vector pos) {
+		InputHandler.getInputHandler().addInput(new InputInfo(Input.CREATE_BOID, BoidSelection.getSelectedBoid(), pos));
+	}
 
-
-
-    /**
-     *
-     * @param url
-     *            boid's image
-     * @param x
-     *            x image's dimension
-     * @param y
-     *            y imege's dimension
-     * @return
-     */
-    private Image createBoid(final String url, final double x, final double y) {
-        final Image boid = new Image(url, x, y, false, false);
-        return boid;
-    }
+	/**
+	 *
+	 * @param url
+	 *            boid's image
+	 * @param x
+	 *            x image's dimension
+	 * @param y
+	 *            y imege's dimension
+	 * @return
+	 */
+	private Image createBoid(final String url, final double x, final double y) {
+		final Image boid = new Image(url, x, y, false, false);
+		return boid;
+	}
 
 	/**
 	 * it draws a boid in the given coords with the given rotation
-	 * 
+	 *
 	 * @param g
 	 *            graphicscontext
 	 * @param x

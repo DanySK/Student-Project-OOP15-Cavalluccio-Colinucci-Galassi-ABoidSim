@@ -3,6 +3,7 @@ package aboidsim.view;
 import java.util.List;
 import java.util.Set;
 
+import aboidsim.controller.Controller;
 import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
 import aboidsim.util.Vector;
@@ -14,13 +15,22 @@ import javafx.application.Application;
  */
 public class ViewImpl implements View {
 
+	Controller controller;
+
+	@Override
+	public void setController(final Controller controller) {
+		this.controller = controller;
+	}
+
+	@Override
 	public List<InputInfo> getInputs() {
 		// TODO Auto-generated method stub
-		List<InputInfo> list = InputHandler.getInputHandler().getInputs();
+		final List<InputInfo> list = InputHandler.getInputHandler().getInputs();
 		InputHandler.getInputHandler().clearInputs();
 		return list;
 	}
 
+	@Override
 	public void start(final List<String> boids, final List<String> rules) {
 		System.out.println(rules.toString()); // debug
 		MainWindow.setBoids(boids);
@@ -29,11 +39,13 @@ public class ViewImpl implements View {
 
 	}
 
+	@Override
 	public void drawEntities(final Set<Pair<Vector, String>> entities) {
 		// TODO Auto-generated method stub
 
 	}
 
+	@Override
 	public Pair<Integer, Integer> getScreenDimensions() {
 		return new Pair<Integer, Integer>(SimulationScreen.WIDTH + SimulationScreen.BOID_HEIGHT,
 				SimulationScreen.HEIGHT + SimulationScreen.BOID_HEIGHT);

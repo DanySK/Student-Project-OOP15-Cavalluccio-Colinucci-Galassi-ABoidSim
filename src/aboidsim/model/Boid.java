@@ -10,7 +10,7 @@ import aboidsim.util.Vector;
  *
  */
 
-public interface Boid {
+interface Boid {
 
     /**
      * Increment boid life when eating.

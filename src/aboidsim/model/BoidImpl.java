@@ -12,7 +12,7 @@ import aboidsim.util.Vector;
  * This class shows the basic features of a boid.
  *
  */
-public class BoidImpl implements Boid {
+class BoidImpl implements Boid {
 
     private final Vector position;
     private final Vector acceleration;
@@ -60,7 +60,7 @@ public class BoidImpl implements Boid {
      *            Boid level
      */
 
-    public BoidImpl(final Vector pos, final int liv) {
+    BoidImpl(final Vector pos, final int liv) {
 
         final Random r = new Random();
 

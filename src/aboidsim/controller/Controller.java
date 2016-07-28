@@ -7,7 +7,7 @@ import aboidsim.view.View;
  * Controller interface.
  *
  */
-interface Controller {
+public interface Controller {
 
 	/**
 	 * Setter. The method sets the view

@@ -4,10 +4,10 @@ import aboidsim.model.Model;
 import aboidsim.view.View;
 
 /**
- * Implementation of the Controller inteface.
+ * Implementation of the Controller interface.
  *
  */
-class ControllerImpl implements Controller {
+public class ControllerImpl implements Controller {
 
 	private static final int FPS = 1;
 

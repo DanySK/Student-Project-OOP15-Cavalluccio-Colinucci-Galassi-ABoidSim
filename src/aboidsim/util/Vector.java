@@ -188,16 +188,16 @@ public class Vector {
 	 *
 	 * @param value
 	 *            the value of the desired magnitude
-	 * @throws IllegalArgumentException
-	 *             if value is 0
 	 */
-	public void scaleTo(final double value) throws IllegalArgumentException {
+	public void scaleTo(final double value) {
 		if (value == 0) {
-			throw new IllegalArgumentException();
+			this.x = 0;
+			this.y = 0;
+		} else {
+			final double divFactor = this.magnitude() / value;
+			this.x = this.x / divFactor;
+			this.y = this.y / divFactor;
 		}
-		final double divFactor = this.magnitude() / value;
-		this.x = this.x / divFactor;
-		this.y = this.y / divFactor;
 	}
 
 	/**
@@ -206,13 +206,8 @@ public class Vector {
 	 *
 	 * @param maxValue
 	 *            the value of the desired magnitude
-	 * @throws IllegalArgumentException
-	 *             if maxValue is 0
 	 */
-	public void limitTo(final double maxValue) throws IllegalArgumentException {
-		if (maxValue == 0) {
-			throw new IllegalArgumentException();
-		}
+	public void limitTo(final double maxValue) {
 		if (this.magnitude() > maxValue) {
 			this.scaleTo(maxValue);
 		}

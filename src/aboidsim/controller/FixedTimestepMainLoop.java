@@ -46,8 +46,6 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
 			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
 				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
-			} else if (i.getInput().equals(Input.PAUSE)) {
-				FixedTimestepMainLoop.this.pauseLoop();
 			} else if (i.getInput().equals(Input.CLOSE)) {
 				FixedTimestepMainLoop.this.abortLoop();
 			}
@@ -73,20 +71,6 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 					this.abortLoop();
 				}
 			}
-		}
-	}
-
-	@Override
-	public void pauseLoop() {
-		if (this.getStatus().equals(LoopStatus.RUNNING)) {
-			this.setStatus(LoopStatus.PAUSED);
-		}
-	}
-
-	@Override
-	public void resumeLoop() {
-		if (this.getStatus().equals(LoopStatus.PAUSED)) {
-			this.setStatus(LoopStatus.RUNNING);
 		}
 	}
 

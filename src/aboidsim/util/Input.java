@@ -22,10 +22,6 @@ public enum Input {
 	 */
 	TOGGLE_RULE,
 	/**
-	 * This input is used when the user wants to pause the application.
-	 */
-	PAUSE,
-	/**
 	 * This input is used when the user wants to close the application.
 	 */
 	CLOSE;

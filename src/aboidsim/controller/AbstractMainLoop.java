@@ -11,7 +11,7 @@ abstract class AbstractMainLoop extends Thread {
 	 */
 	enum LoopStatus {
 
-		RUNNING, PAUSED;
+		RUNNING;
 	}
 
 	private LoopStatus status;
@@ -46,10 +46,6 @@ abstract class AbstractMainLoop extends Thread {
 
 	@Override
 	public abstract void run();
-
-	public abstract void pauseLoop();
-
-	public abstract void resumeLoop();
 
 	public abstract void abortLoop();
 }

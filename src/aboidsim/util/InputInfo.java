@@ -79,7 +79,7 @@ public class InputInfo {
 	 *             if the wrong input has been used
 	 */
 	public InputInfo(final Input in) throws IllegalArgumentException {
-		if (!in.equals(Input.PAUSE) || !in.equals(Input.CLOSE)) {
+		if (!in.equals(Input.CLOSE)) {
 			throw new IllegalArgumentException("Wrong constructor for the selected input");
 		}
 		this.input = in;

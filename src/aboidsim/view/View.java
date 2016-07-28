@@ -1,6 +1,7 @@
 package aboidsim.view;
 
 import java.util.List;
+import java.util.Set;
 
 import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
@@ -26,7 +27,7 @@ public interface View {
 	 * draw all the entitities in the simulation screen
 	 * @param entities list of the position and level of all the entities to draw
 	 */
-	void drawEntities(List<Pair<Vector, Integer>> entities);
+	void drawEntities(Set<Pair<Vector, String>> entities);
 	
 	
 	

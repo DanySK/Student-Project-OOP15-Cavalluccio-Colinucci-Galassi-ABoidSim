@@ -1,6 +1,7 @@
 package aboidsim.view;
 
 import java.util.List;
+import java.util.Set;
 
 import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
@@ -34,7 +35,7 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public void drawEntities(List<Pair<Vector, Integer>> entities) {
+    public void drawEntities(Set<Pair<Vector, String>> entities) {
         // TODO Auto-generated method stub
         
     }

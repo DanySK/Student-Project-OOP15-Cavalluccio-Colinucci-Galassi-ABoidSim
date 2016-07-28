@@ -49,6 +49,20 @@ public interface Environment {
     void toggleRule(final int ruleId);
 
     /**
+     * Set simulation dimension.
+     *
+     * @param dimension
+     *            simulation dimension.
+     */
+    void setScreenDimension(final Pair<Integer, Integer> dimension);
+
+    /**
+     *
+     * @return simulation dimension.
+     */
+    Pair<Integer, Integer> getSimulationDimension();
+
+    /**
      *
      * @return all the entities of the environment with position and image path.
      */

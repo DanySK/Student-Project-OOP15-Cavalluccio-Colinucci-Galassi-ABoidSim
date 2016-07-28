@@ -22,6 +22,8 @@ public final class EnvironmentImpl implements Environment {
     private final Set<Boid> environment = new HashSet<>();
     private static final double COLLISION_RADIUS = 0.50;
     private final RuleSet rules = new RuleSet();
+    // Dimension will change when the application starts.
+    private Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);
 
     /**
      * Constructor.
@@ -82,6 +84,16 @@ public final class EnvironmentImpl implements Environment {
         } else {
             this.rules.addRule(rule);
         }
+    }
+
+    @Override
+    public void setScreenDimension(final aboidsim.util.Pair<Integer, Integer> dimension) {
+        this.simulationDimension = dimension;
+    }
+
+    @Override
+    public Pair<Integer, Integer> getSimulationDimension() {
+        return this.simulationDimension;
     }
 
     @Override

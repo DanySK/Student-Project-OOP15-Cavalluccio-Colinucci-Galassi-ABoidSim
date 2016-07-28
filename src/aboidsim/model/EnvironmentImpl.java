@@ -213,7 +213,8 @@ public final class EnvironmentImpl implements Environment {
 					boid.getSpeed().add(sumVector);
 					boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
 					boid.getPosition().add(boid.getSpeed());
-					boid.getAcceleration().sub(boid.getAcceleration());
+					boid.getAcceleration().scaleTo(0);
+
 				}
 			}
 

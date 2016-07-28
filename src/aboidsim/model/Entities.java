@@ -10,13 +10,26 @@ package aboidsim.model;
 
 enum Entities {
 
-    TREE_L0("Tree", 0, 500, 0, 0, 0), HERBIVORE_L1("Herbivore1", 1, 10, 1.5, 10, 1.1), HERBIVORE_L2("Herbivore2", 2, 20,
-            2.5, 9, 1.2), HERBIVORE_L3("Herbivore3", 3, 30, 3.5, 8, 1.3), HERBIVORE_L4("Herbivore4", 4, 40, 4.5, 7,
-                    1.4), HERBIVORE_L5("Herbivore5", 5, 50, 5.5, 6, 1.5), PREDATOR_L6("Predator6", 6, 60, 6.5, 5,
-                            1.6), PREDATOR_L7("Predator7", 7, 70, 7.5, 4, 1.7), PREDATOR_L8("Predator8", 8, 80, 8.5, 3,
-                                    1.8), PREDATOR_L9("Predator9", 9, 90, 9.5, 2,
-                                            1.9), PREDATOR_L10("Predator10", 10, 100, 10.5, 1, 2.0);
+    TREE_L0("TREE", Entities.PATH + "tree.png", 0, 500, 0, 0, 0), HERBIVORE_L1("HERBIVORE - LEVEL 1",
+            Entities.PATH + "herbivore0.png", 1, 10, 1.5, 10, 1.1), HERBIVORE_L2("HERBIVORE - LEVEL 2",
+                    Entities.PATH + "herbivore1.png", 2, 20, 2.5, 9, 1.2), HERBIVORE_L3("HERBIVORE - LEVEL 3",
+                            Entities.PATH + "herbivore2.png", 3, 30, 3.5, 8, 1.3), HERBIVORE_L4("HERBIVORE - LEVEL 4",
+                                    Entities.PATH + "herbivore3.png", 4, 40, 4.5, 7, 1.4), HERBIVORE_L5(
+                                            "HERBIVORE - LEVEL 5", Entities.PATH + "herbivore4.png", 5, 50, 5.5, 6,
+                                            1.5), PREDATOR_L6("PREDATOR - LEVEL 6", Entities.PATH + "predator0.png", 6,
+                                                    60, 6.5, 5, 1.6), PREDATOR_L7("PREDATOR - LEVEL 7",
+                                                            Entities.PATH + "predator1.png", 7, 70, 7.5, 4,
+                                                            1.7), PREDATOR_L8("PREDATOR - LEVEL 8",
+                                                                    Entities.PATH + "predator2.png", 8, 80, 8.5, 3,
+                                                                    1.8), PREDATOR_L9("PREDATOR - LEVEL 9",
+                                                                            Entities.PATH + "predator3.png", 9, 90, 9.5,
+                                                                            2, 1.9), PREDATOR_L10("PREDATOR - LEVEL 10",
+                                                                                    Entities.PATH + "predator4.png", 10,
+                                                                                    100, 10.5, 1, 2.0);
 
+    private static final String PATH = "res" + System.getProperty("file.separator") + "boids"
+            + System.getProperty("file.separator");
+    private final String image;
     private final String name;
     private final int id;
     private final int life;
@@ -37,8 +50,10 @@ enum Entities {
      * @param avSpeed
      *            Boid average speed
      */
-    Entities(final String nam, final int iD, final int lif, final double rad, final int maxM, final double avSpeed) {
+    Entities(final String nam, final String img, final int iD, final int lif, final double rad, final int maxM,
+            final double avSpeed) {
         this.name = nam;
+        this.image = img;
         this.id = iD;
         this.life = lif;
         this.influenceRadius = rad;
@@ -48,6 +63,10 @@ enum Entities {
 
     public String getName() {
         return this.name;
+    }
+
+    public String getImage() {
+        return this.image;
     }
 
     public int getId() {

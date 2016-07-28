@@ -76,7 +76,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 
 	@Override // TO DO
 	public void abortLoop() {
-		System.exit(0);
+		this.controller.close();
 	}
 
 }

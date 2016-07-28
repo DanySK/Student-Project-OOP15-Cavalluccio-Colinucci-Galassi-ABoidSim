@@ -61,4 +61,9 @@ public interface Controller {
 	 * The method that starts the loop.
 	 */
 	void start();
+
+	/**
+	 * The method that stops the loop and closes the application.
+	 */
+	void close();
 }

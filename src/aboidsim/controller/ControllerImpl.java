@@ -66,4 +66,9 @@ public class ControllerImpl implements Controller {
 		this.view.start(this.model.getEntitiesNames(), this.model.getRules());
 	}
 
+	@Override
+	public void close() {
+		System.exit(0);
+	}
+
 }

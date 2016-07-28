@@ -54,8 +54,6 @@ public class SimulationScreen extends Group {
 			this.addInputs(new Vector(e.getSceneX(), e.getSceneY()));
 		});
 
-		this.drawBoid(gc, 200, 200, 30);
-		this.drawBoid(gc, 0, 0, 160);
 	}
 
 	/**

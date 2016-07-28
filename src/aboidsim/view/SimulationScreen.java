@@ -23,6 +23,10 @@ public class SimulationScreen extends Group {
 	static final int BOID_WIDTH = 10;
 	static final int HEIGHT = 800;
 	static final int WIDTH = 800;
+	private final String url = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
+			+ System.getProperty("file.separator") + System.getProperty("user.dir")
+			+ System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "boids"
+			+ System.getProperty("file.separator") + "herbivore0.png";
 
 	/**
 	 * constructor
@@ -31,6 +35,7 @@ public class SimulationScreen extends Group {
 		super();
 
 		final Canvas canvas = new Canvas(SimulationScreen.WIDTH, SimulationScreen.HEIGHT);
+		// this.getStylesheets().
 		this.getChildren().add(canvas);
 
 		final GraphicsContext gc = canvas.getGraphicsContext2D();
@@ -40,7 +45,8 @@ public class SimulationScreen extends Group {
 		final Font theFont = Font.font("Times New Roman", FontWeight.BOLD, 48);
 		gc.setFont(theFont);
 
-		// print the coordinates of the clicked point
+		// print the coordinates of the clicked point and calls addInputs method
+		// passing scene's coordinates
 		canvas.setOnMouseClicked(e -> {
 			System.out.println("x: " + e.getSceneX() + " y:  " + e.getSceneY());
 			this.addInputs(new Vector(e.getSceneX(), e.getSceneY()));
@@ -55,7 +61,11 @@ public class SimulationScreen extends Group {
 	 * in class BoidsSelection
 	 */
 	private void addInputs(final Vector pos) {
-		InputHandler.getInputHandler().addInput(new InputInfo(Input.CREATE_BOID, BoidSelection.getSelectedBoid(), pos));
+		final Integer item = BoidSelection.getSelectedBoid();
+		if (item != null) {
+			InputHandler.getInputHandler().addInput(new InputInfo(Input.CREATE_BOID, item, pos));
+		}
+
 	}
 
 	/**
@@ -65,7 +75,7 @@ public class SimulationScreen extends Group {
 	 * @param x
 	 *            x image's dimension
 	 * @param y
-	 *            y imege's dimension
+	 *            y imege's dimensiony
 	 * @return
 	 */
 	private Image createBoid(final String url, final double x, final double y) {

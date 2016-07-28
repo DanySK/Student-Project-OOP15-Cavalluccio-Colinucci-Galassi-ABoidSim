@@ -27,6 +27,8 @@ interface InputResolver {
 	 *            A list of inputs
 	 */
 	default void resolveInputList(final List<InputInfo> inputList) {
-		inputList.forEach(i -> this.resolveInput(i));
+		if (!inputList.isEmpty()) {
+			inputList.forEach(i -> this.resolveInput(i));
+		}
 	}
 }

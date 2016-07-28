@@ -14,7 +14,7 @@ import aboidsim.util.Vector;
  * Each rule describes a different behavior.
  *
  */
-public enum RuleImpl implements Rule {
+enum RuleImpl implements Rule {
 	/**
 	 * Cohesion. This rule keep the boids of the same group close to each other.
 	 */
@@ -98,17 +98,15 @@ public enum RuleImpl implements Rule {
 	 * enemies/predators.
 	 */
 	EVASION("Evasion", 3, 1.2) {
-
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> closeBoids) {
 			return RuleImpl.SEPARATION.apply(theBoid, closeBoids);
 		}
-
 	};
 
-	private String name;
-	private Integer id;
-	private Double defaultModifier;
+	private final String name;
+	private final Integer id;
+	private final Double defaultModifier;
 
 	/**
 	 * Private constructor.
@@ -117,6 +115,9 @@ public enum RuleImpl implements Rule {
 	 * @param idNumber
 	 */
 	RuleImpl(final String n, final Integer idNumber, final Double dM) {
+		this.name = n;
+		this.id = idNumber;
+		this.defaultModifier = dM;
 	}
 
 	/**

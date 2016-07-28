@@ -4,10 +4,10 @@ import aboidsim.model.Model;
 import aboidsim.view.View;
 
 /**
- * Implementation of the Controller inteface.
+ * Implementation of the Controller interface.
  *
  */
-class ControllerImpl implements Controller {
+public class ControllerImpl implements Controller {
 
 	private static final int FPS = 1;
 
@@ -61,6 +61,7 @@ class ControllerImpl implements Controller {
 
 	@Override
 	public void start() {
+		this.model.setScreenDimension(this.view.getScreenDimensions());
 		this.mainLoop.start();
 		this.view.start(this.model.getEntitiesNames(), this.model.getRules());
 	}

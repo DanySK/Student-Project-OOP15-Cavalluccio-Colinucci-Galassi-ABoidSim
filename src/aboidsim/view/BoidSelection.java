@@ -60,8 +60,8 @@ public class BoidSelection extends VBox {
 		}
 	}
 
-	static Integer getSelectedBoid() {
-		return BoidSelection.boidList.indexOf(BoidSelection.selectedItem.get());
+	static Optional<Integer> getSelectedBoid() {
+		return Optional.of(BoidSelection.boidList.indexOf(BoidSelection.selectedItem));
 	}
 
 }

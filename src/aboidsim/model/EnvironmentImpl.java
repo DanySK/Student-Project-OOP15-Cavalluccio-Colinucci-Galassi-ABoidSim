@@ -119,10 +119,9 @@ public final class EnvironmentImpl implements Environment {
 		this.checkBoidOtherLevel();
 		this.checkBoidSameLevel();
 		for (final Boid boid : this.environment) {
-			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife() + " pox: "
-					+ boid.getPosition().getX() + " posy: " + boid.getPosition().getY() + " speedx: "
-					+ boid.getSpeed().getX() + " speedy: " + boid.getSpeed().getY() + " accx: "
-					+ boid.getAcceleration().getX() + " accy: " + boid.getAcceleration().getY());
+			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife());
+			System.out.println("POS: ");
+			boid.getPosition().print();
 			final Vector sumVector = new Vector(0.0, 0.0);
 			boid.decrementLife(); // Life is decremented here
 			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
@@ -197,6 +196,7 @@ public final class EnvironmentImpl implements Environment {
 								 * rapid turns and it feels more "real"
 								 */
 								// We create a circle at the right distance
+								System.out.println("The boid is wandering"); // DEBUG
 								final Vector circleOrigin = boid.getSpeed();
 								circleOrigin.norm();
 								circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
@@ -223,7 +223,6 @@ public final class EnvironmentImpl implements Environment {
 						}
 					}
 					sumVector.mul(boid.getAverageSpeed());
-					System.out.println("EEEEEEEEEEEEEEE");
 					// We add the combining movements to the boid position
 					// sumVector.limitTo(BoidImpl.MAX_FORCE);
 					boid.getSpeed().add(sumVector);

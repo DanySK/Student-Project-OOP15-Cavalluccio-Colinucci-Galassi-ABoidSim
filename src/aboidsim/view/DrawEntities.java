@@ -35,7 +35,6 @@ public class DrawEntities {
 
         entities.stream().forEach(e -> g.drawImage(prova, e.getX().getX(), e.getX().getY()));
 
-        // g.drawImage(prova, v.getX(), v.getY());
     }
 
 }

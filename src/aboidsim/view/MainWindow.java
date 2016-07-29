@@ -43,7 +43,6 @@ public class MainWindow extends Application {
         selections.getChildren().addAll(rulesSelection, boidSelection);
 
         totalLayout.getChildren().addAll(boidsScreen, selections);
-
         stage.setScene(new Scene(totalLayout));
         stage.show();
 

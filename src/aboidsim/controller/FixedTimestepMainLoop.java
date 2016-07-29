@@ -52,10 +52,10 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			}
 		};
 		try {
-			System.out.println("Aspetto " + 5 + " secondi per settare la view");
+			System.out.println("Aspetto " + 55 + " secondi per settare la view");
 			/* sleep per far settare la view */
 
-			Thread.sleep(5);
+			Thread.sleep(5000);
 		} catch (final InterruptedException e) {
 			System.out.println("Sleep exception");
 			this.abortLoop();

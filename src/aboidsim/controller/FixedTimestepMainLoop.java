@@ -2,6 +2,7 @@ package aboidsim.controller;
 
 import aboidsim.model.Model;
 import aboidsim.util.Input;
+import aboidsim.util.Vector;
 import aboidsim.view.View;
 
 /**
@@ -50,21 +51,32 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				FixedTimestepMainLoop.this.abortLoop();
 			}
 		};
+		try {
+			System.out.println("Aspetto " + 5 + " secondi per settare la view");
+			/* sleep per far settare la view */
 
+			Thread.sleep(5);
+		} catch (final InterruptedException e) {
+			System.out.println("Sleep exception");
+			this.abortLoop();
+		}
+
+		this.model.getSimulation().createBoid(new Vector(50.50, 50.50), 5);
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 			// TO DO bisogna collegare il controller, la view e il model
+			System.out.println("inputs: " + this.view.getInputs());
 			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
+			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
 			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());
 			final long timePassed = System.currentTimeMillis() - lastTime;
 
-			// System.out.println("last time: " + lastTime); //DEBUG
-			// System.out.println("time passed: " + timePassed); //DEBUG
+			System.out.println("last time: " + lastTime); // DEBUG
+			System.out.println("time passed: " + timePassed); // DEBUG
 			if (timePassed < this.msPerFrame) {
 				try {
-					// System.out.println("sleep for: " + (this.msPerFrame -
-					// timePassed)); //DEBUG
+					System.out.println("sleep for: " + (this.msPerFrame - timePassed)); // DEBUG
 					Thread.sleep(this.msPerFrame - timePassed);
 				} catch (final InterruptedException e) {
 					System.out.println("Sleep exception");

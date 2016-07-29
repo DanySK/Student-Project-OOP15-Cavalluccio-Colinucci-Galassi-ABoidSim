@@ -15,7 +15,7 @@ enum Entities {
 					"HERBIVORE - LEVEL 3", "herbivore2.png", 3, 30, 3.5, 8,
 					1.3), HERBIVORE_L4("HERBIVORE - LEVEL 4", "herbivore3.png", 4, 40, 4.5, 7, 1.4), HERBIVORE_L5(
 							"HERBIVORE - LEVEL 5", "herbivore4.png", 5, 500, 5.5, 6,
-							1.5), PREDATOR_L6("PREDATOR - LEVEL 6", "predator0.png", 6, 60, 6.5, 5, 1.6), PREDATOR_L7(
+							5), PREDATOR_L6("PREDATOR - LEVEL 6", "predator0.png", 6, 60, 6.5, 5, 1.6), PREDATOR_L7(
 									"PREDATOR - LEVEL 7", "predator1.png", 7, 70, 7.5, 4,
 									1.7), PREDATOR_L8("PREDATOR - LEVEL 8", "predator2.png", 8, 80, 8.5, 3,
 											1.8), PREDATOR_L9("PREDATOR - LEVEL 9", "predator3.png", 9, 90, 9.5, 2,

@@ -123,6 +123,10 @@ public final class EnvironmentImpl implements Environment {
 			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife());
 			System.out.println("POS: ");
 			boid.getPosition().print();
+			System.out.println("SPD: ");
+			boid.getSpeed().print();
+			System.out.println("ACC: ");
+			boid.getAcceleration().print();
 			final Vector sumVector = new Vector(0.0, 0.0);
 			boid.decrementLife(); // Life is decremented here
 			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
@@ -215,9 +219,9 @@ public final class EnvironmentImpl implements Environment {
 								vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
 								// We set a random angle
 								final Random rng = new Random();
-								rng.doubles(0, 2 * Math.PI);
 								// The angle is already in radians
-								final double angle = rng.nextDouble();
+								final double angle = rng.doubles(0, 360).findAny().getAsDouble();
+								System.out.println("Wandering angle: " + angle);
 								vec.setY(Math.sin(angle) * vec.magnitude());
 								vec.setX(Math.cos(angle) * vec.magnitude());
 								/*
@@ -237,6 +241,7 @@ public final class EnvironmentImpl implements Environment {
 					boid.getSpeed().add(sumVector);
 					boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
 					boid.getPosition().add(boid.getSpeed());
+					boid.getSpeed().scaleTo(boid.getAverageSpeed());
 					boid.getAcceleration().scaleTo(0);
 					this.checkBorders(boid);
 

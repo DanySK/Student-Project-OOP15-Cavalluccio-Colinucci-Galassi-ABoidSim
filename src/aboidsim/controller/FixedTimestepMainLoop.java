@@ -51,10 +51,10 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				FixedTimestepMainLoop.this.abortLoop();
 			}
 		};
-		try {
-			System.out.println("Aspetto " + 55 + " secondi per settare la view");
-			/* sleep per far settare la view */
 
+		try {
+			System.out.println("Aspetto " + 5 + " secondi per settare la view");
+			// sleep per far settare la view
 			Thread.sleep(5000);
 		} catch (final InterruptedException e) {
 			System.out.println("Sleep exception");
@@ -69,6 +69,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
 			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
+
 			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());
 			final long timePassed = System.currentTimeMillis() - lastTime;
 

@@ -69,7 +69,6 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
 			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
-
 			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());
 			final long timePassed = System.currentTimeMillis() - lastTime;
 

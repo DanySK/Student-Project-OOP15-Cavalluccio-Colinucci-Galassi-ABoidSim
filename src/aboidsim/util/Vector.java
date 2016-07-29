@@ -254,4 +254,11 @@ public class Vector {
 		return diff;
 	}
 
+	/**
+	 * Utility method that prints the value of the coordinates.
+	 */
+	public void print() {
+		System.out.println("X: " + this.x + " Y: " + this.y);
+	}
+
 }

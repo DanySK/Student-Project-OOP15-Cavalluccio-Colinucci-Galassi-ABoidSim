@@ -1,6 +1,5 @@
 package aboidsim.view;
 
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -17,7 +16,6 @@ import javafx.scene.text.FontWeight;
 
 /**
  * section of the interface containing the moving boids.
- *
  */
 public class SimulationScreen extends Group {
 
@@ -63,9 +61,9 @@ public class SimulationScreen extends Group {
         });
 
         // prova disegnare boids direttamente da qua
-        final Set<Pair<Vector, String>> set = new HashSet<>();
-        set.add(new Pair<Vector, String>(new Vector(10, 10), "ciao"));
-        this.drawOnScreen(set);
+        // final Set<Pair<Vector, String>> set = new HashSet<>();
+        // set.add(new Pair<Vector, String>(new Vector(10, 10), "ciao"));
+        // this.drawOnScreen(set);
 
     }
 

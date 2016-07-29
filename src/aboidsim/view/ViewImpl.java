@@ -15,40 +15,45 @@ import javafx.application.Application;
  */
 public class ViewImpl implements View {
 
-	Controller controller;
+    private Controller controller;
+    private static SimulationScreen simulationScreen;
 
-	@Override
-	public void setController(final Controller controller) {
-		this.controller = controller;
-	}
+    @Override
+    public void setController(final Controller controller) {
+        this.controller = controller;
+    }
 
-	@Override
-	public List<InputInfo> getInputs() {
-		// TODO Auto-generated method stub
-		final List<InputInfo> list = InputHandler.getInputHandler().getInputs();
-		InputHandler.getInputHandler().clearInputs();
-		return list;
-	}
+    @Override
+    public List<InputInfo> getInputs() {
+        // TODO Auto-generated method stub
+        final List<InputInfo> list = InputHandler.getInputHandler().getInputs();
+        InputHandler.getInputHandler().clearInputs();
+        return list;
+    }
 
-	@Override
-	public void start(final List<String> boids, final List<String> rules) {
-		System.out.println(rules.toString()); // debug
-		MainWindow.setBoids(boids);
-		MainWindow.setRules(rules);
-		Application.launch(MainWindow.class);
+    @Override
+    public void start(final List<String> boids, final List<String> rules) {
+        System.out.println(rules.toString()); // debug
+        MainWindow.setBoids(boids);
+        MainWindow.setRules(rules);
+        Application.launch(MainWindow.class);
 
-	}
+    }
 
-	@Override
-	public void drawEntities(final Set<Pair<Vector, String>> entities) {
-		// TODO Auto-generated method stub
+    @Override
+    public void drawEntities(final Set<Pair<Vector, String>> entities) {
+        ViewImpl.simulationScreen.drawOnScreen(entities);
 
-	}
+    }
 
-	@Override
-	public Pair<Integer, Integer> getScreenDimensions() {
-		return new Pair<Integer, Integer>(SimulationScreen.WIDTH + SimulationScreen.BOID_HEIGHT,
-				SimulationScreen.HEIGHT + SimulationScreen.BOID_HEIGHT);
-	}
+    @Override
+    public Pair<Integer, Integer> getScreenDimensions() {
+        return new Pair<Integer, Integer>(SimulationScreen.WIDTH + SimulationScreen.BOID_HEIGHT,
+                SimulationScreen.HEIGHT + SimulationScreen.BOID_HEIGHT);
+    }
+
+    static void setSimulationScreen(final SimulationScreen screen) {
+        ViewImpl.simulationScreen = screen;
+    }
 
 }

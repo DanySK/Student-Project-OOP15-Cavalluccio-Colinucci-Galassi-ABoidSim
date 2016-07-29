@@ -35,6 +35,7 @@ public class MainWindow extends Application {
 
         final HBox totalLayout = new HBox(8);
         final SimulationScreen boidsScreen = new SimulationScreen();
+        ViewImpl.setSimulationScreen(boidsScreen);
 
         final VBox selections = new VBox(5);
         final RulesSelection rulesSelection = new RulesSelection(MainWindow.rules);

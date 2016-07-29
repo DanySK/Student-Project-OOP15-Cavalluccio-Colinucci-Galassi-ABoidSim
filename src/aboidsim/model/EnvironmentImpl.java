@@ -57,6 +57,7 @@ public final class EnvironmentImpl implements Environment {
 				boid.getSameLevelNearBoids().clear();
 				boid.getSameLevelNearBoids()
 						.addAll(this.environment.stream().filter(b -> boid.getLevel() == b.getLevel())
+								.filter(b -> !b.equals(boid))
 								.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
 								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
 			}
@@ -140,14 +141,20 @@ public final class EnvironmentImpl implements Environment {
 						pred.incrementLife();
 					}
 				}
-				if (boid.isNotTree()) { // If the boid is a Tree Boid, there is
-										// nothing left to do
+				if (boid.isNotTree()) {
+					/*
+					 * If the boid is a Tree Boid, there is nothing left to do
+					 */
+					System.out.println("The boid is not a tree"); // DEBUG
 					if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
+						System.out.println("The boid is escaping"); // DEBUG
 						// Safety has the bigger priority
 						sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
 					} else {
 						// The boid seeks a target to eat
+						System.out.println("The boid is not in danger"); // DEBUG
 						if (!closeOtherLevelBoids.isEmpty() && closePredators.isEmpty() && boid.isHungry()) {
+							System.out.println("The boid is seeking a boid to eat"); // DEBUG
 							// If there are no predators around
 							Optional<Boid> prey = Optional.empty();
 							if (boid.isPredator()) {
@@ -179,7 +186,9 @@ public final class EnvironmentImpl implements Environment {
 							 * If there are some same level boids around and the
 							 * boid is not seeking food
 							 */
+							System.out.println("The boid is not hungry"); // DEBUG
 							if (!closeSameLevelBoids.isEmpty()) {
+								System.out.println("The boid follows a flock"); // DEBUG
 								if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
 									sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
 								}

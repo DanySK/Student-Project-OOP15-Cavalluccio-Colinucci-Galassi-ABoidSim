@@ -1,5 +1,6 @@
 package aboidsim.view;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -31,19 +32,15 @@ public class SimulationScreen extends Group {
 			+ System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "boids"
 			+ System.getProperty("file.separator") + "herbivore0.png";
 
-<<<<<<< working copy
 	final String background = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
 			+ System.getProperty("file.separator") + System.getProperty("user.dir")
 			+ System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "images"
 			+ System.getProperty("file.separator") + "simulationBackground.png";
-=======
-        // prova disegnare boids direttamente da qua
-        // final Set<Pair<Vector, String>> set = new HashSet<>();
-        // set.add(new Pair<Vector, String>(new Vector(10, 10), "ciao"));
-        // this.drawOnScreen(set);
 
-    }
->>>>>>> destination
+	// prova disegnare boids direttamente da qua
+	// final Set<Pair<Vector, String>> set = new HashSet<>();
+	// set.add(new Pair<Vector, String>(new Vector(10, 10), "ciao"));
+	// this.drawOnScreen(set);
 
 	/**
 	 * constructor

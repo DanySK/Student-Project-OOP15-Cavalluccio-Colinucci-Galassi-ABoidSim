@@ -194,12 +194,15 @@ public final class EnvironmentImpl implements Environment {
 							if (!closeSameLevelBoids.isEmpty()) {
 								System.out.println("The boid follows a flock"); // DEBUG
 								if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
+									System.out.println("The boid is following the ALIGNMENT rule");
 									sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
 								}
 								if (this.rules.getRules().contains(RuleImpl.COHESION)) {
+									System.out.println("The boid is following the COHESION rule");
 									sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
 								}
 								if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
+									System.out.println("The boid is following the SEPARATION rule");
 									sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
 								}
 							} else {

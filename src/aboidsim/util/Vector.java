@@ -180,7 +180,9 @@ public class Vector {
 	 */
 	public void norm() {
 		final double magnitude = this.magnitude();
-		this.div(magnitude);
+		if (magnitude != 0) {
+			this.div(magnitude);
+		}
 	}
 
 	/**

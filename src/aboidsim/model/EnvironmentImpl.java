@@ -215,12 +215,12 @@ public final class EnvironmentImpl implements Environment {
 								circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
 								// We create a normalized vector parallel to the
 								// y-axis and we scale it to the circle radius
-								final Vector vec = new Vector(0.0, -1.0);
+								final Vector vec = new Vector(0.0, 1.0);
 								vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
 								// We set a random angle
 								final Random rng = new Random();
 								// The angle is already in radians
-								final double angle = rng.doubles(0, 360).findAny().getAsDouble();
+								final double angle = rng.doubles(0, 180).findAny().getAsDouble();
 								System.out.println("Wandering angle: " + angle);
 								vec.setY(Math.sin(angle) * vec.magnitude());
 								vec.setX(Math.cos(angle) * vec.magnitude());
@@ -237,8 +237,9 @@ public final class EnvironmentImpl implements Environment {
 					}
 					sumVector.mul(boid.getAverageSpeed());
 					// We add the combining movements to the boid position
-					// sumVector.limitTo(BoidImpl.MAX_FORCE);
-					boid.getSpeed().add(sumVector);
+					boid.getAcceleration().add(sumVector);
+					boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
+					boid.getSpeed().add(boid.getSpeed());
 					boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
 					boid.getPosition().add(boid.getSpeed());
 					boid.getSpeed().scaleTo(boid.getAverageSpeed());

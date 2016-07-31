@@ -230,7 +230,7 @@ public final class EnvironmentImpl implements Environment {
 								// We set a random angle
 								final Random rng = new Random();
 								// The angle is already in radians
-								final double angle = rng.doubles(0, 180).findAny().getAsDouble();
+								final double angle = rng.doubles(0, Math.PI * 2).findAny().getAsDouble();
 								System.out.println("Wandering angle: " + angle);
 								vec.setY(Math.sin(angle) * vec.magnitude());
 								vec.setX(Math.cos(angle) * vec.magnitude());

@@ -27,13 +27,17 @@ enum RuleImpl implements Rule {
 					vectorSum.add(boid.getPosition());
 				}
 				vectorSum.div(boids.size());
+				vectorSum.print();
 				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
+				desiredDirection.print();
 				desiredDirection.norm();
-				// CHECK THIS
-				desiredDirection.mul(BoidImpl.MAX_SPEED);
+				desiredDirection.print();
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
+				steer.print();
 				steer.mul(this.getDefaultModifier());
+				steer.print();
 				steer.limitTo(BoidImpl.MAX_FORCE);
+				steer.print();
 				return steer;
 			} else {
 				return vectorSum;
@@ -44,7 +48,7 @@ enum RuleImpl implements Rule {
 	 * Alignment. This rule keep the boids of the same group going towards the
 	 * same direction.
 	 */
-	ALIGNMENT("Alignment", 1, 1.0) {
+	ALIGNMENT("Alignment", 1, 2.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);
@@ -55,8 +59,6 @@ enum RuleImpl implements Rule {
 				vectorSum.div(boids.size());
 				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
 				desiredDirection.norm();
-				// CHECK THIS
-				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.limitTo(BoidImpl.MAX_FORCE);
@@ -81,8 +83,6 @@ enum RuleImpl implements Rule {
 				vectorDiff.div(boids.size());
 				final Vector desiredDirection = Vector.sub(vectorDiff, theBoid.getPosition());
 				desiredDirection.norm();
-				// CHECK THIS
-				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.limitTo(BoidImpl.MAX_FORCE);

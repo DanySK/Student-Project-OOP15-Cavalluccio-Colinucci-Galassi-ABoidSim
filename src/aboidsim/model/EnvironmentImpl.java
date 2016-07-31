@@ -116,6 +116,7 @@ public final class EnvironmentImpl implements Environment {
 	 */
 	@Override
 	public void updateEnvironment() {
+
 		System.out.println("Chiamata all'update"); // DEBUG
 		this.checkBoidOtherLevel();
 		this.checkBoidSameLevel();
@@ -196,14 +197,20 @@ public final class EnvironmentImpl implements Environment {
 								if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
 									System.out.println("The boid is following the ALIGNMENT rule");
 									sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+									System.out.println("sumVector after ALIGNMENT");
+									sumVector.print();
 								}
 								if (this.rules.getRules().contains(RuleImpl.COHESION)) {
 									System.out.println("The boid is following the COHESION rule");
 									sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
+									System.out.println("sumVector after COHESION");
+									sumVector.print();
 								}
 								if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
 									System.out.println("The boid is following the SEPARATION rule");
 									sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
+									System.out.println("sumVector after SEPARATION");
+									sumVector.print();
 								}
 							} else {
 								/*
@@ -234,19 +241,23 @@ public final class EnvironmentImpl implements Environment {
 								circleOrigin.add(vec);
 								final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
 								desiredDirection.norm();
-								sumVector.add(Vector.sub(desiredDirection, boid.getSpeed()));
+								final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
+								steer.limitTo(BoidImpl.MAX_FORCE);
+								sumVector.add(steer);
 							}
 						}
 					}
 					sumVector.mul(boid.getAverageSpeed());
 					// We add the combining movements to the boid position
+					sumVector.print();
 					boid.getAcceleration().add(sumVector);
 					boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
-					boid.getSpeed().add(boid.getSpeed());
+					boid.getSpeed().add(boid.getAcceleration());
 					boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
+					boid.getSpeed().print();
 					boid.getPosition().add(boid.getSpeed());
-					boid.getSpeed().scaleTo(boid.getAverageSpeed());
-					boid.getAcceleration().scaleTo(0);
+					// boid.getSpeed().scaleTo(boid.getAverageSpeed());
+					boid.getAcceleration().mul(0);
 					this.checkBorders(boid);
 
 				}

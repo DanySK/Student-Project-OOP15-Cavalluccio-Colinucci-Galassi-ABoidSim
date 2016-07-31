@@ -38,7 +38,7 @@ class BoidImpl implements Boid {
 	/**
 	 * Any force must be limited at this value.
 	 */
-	public static final double MAX_FORCE = 0.3;
+	public static final double MAX_FORCE = 3;
 
 	/**
 	 * The distance of the circle from the boid used in the implementation of

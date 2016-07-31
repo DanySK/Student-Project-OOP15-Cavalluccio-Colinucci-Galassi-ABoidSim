@@ -18,7 +18,7 @@ enum RuleImpl implements Rule {
 	/**
 	 * Cohesion. This rule keep the boids of the same group close to each other.
 	 */
-	COHESION("Cohesion", 0, 1.0) {
+	COHESION("Cohesion", 0, 0.5) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);
@@ -67,7 +67,7 @@ enum RuleImpl implements Rule {
 	 * Separation. This rule keep the boids of the same group separated (the
 	 * opposite of Cohesion).
 	 */
-	SEPARATION("Separation", 2, 1.5) {
+	SEPARATION("Separation", 2, 2.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector desiredDirection = new Vector(0.0, 0.0);

@@ -52,17 +52,18 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			}
 		};
 
+		final int wait = 5;
 		try {
-			System.out.println("Aspetto " + 5 + " secondi per settare la view");
+			System.out.println("Aspetto " + wait + " secondi per settare la view");
 			// sleep per far settare la view
-			Thread.sleep(5000);
+			Thread.sleep(wait * 1000);
 		} catch (final InterruptedException e) {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
-		this.model.getSimulation().createBoid(new Vector(63, 51), 5);
-		this.model.getSimulation().createBoid(new Vector(30, 50.50), 5);
-		this.model.getSimulation().createBoid(new Vector(50.50, 50.50), 5);
+		// this.model.getSimulation().createBoid(new Vector(200, 200), 5);
+		this.model.getSimulation().createBoid(new Vector(210, 210), 5);
+		this.model.getSimulation().createBoid(new Vector(190, 190), 5);
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 			// TO DO bisogna collegare il controller, la view e il model

@@ -27,17 +27,12 @@ enum RuleImpl implements Rule {
 					vectorSum.add(boid.getPosition());
 				}
 				vectorSum.div(boids.size());
-				vectorSum.print();
 				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
-				desiredDirection.print();
 				desiredDirection.norm();
-				desiredDirection.print();
+				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
-				steer.print();
 				steer.mul(this.getDefaultModifier());
-				steer.print();
 				steer.limitTo(BoidImpl.MAX_FORCE);
-				steer.print();
 				return steer;
 			} else {
 				return vectorSum;
@@ -48,23 +43,23 @@ enum RuleImpl implements Rule {
 	 * Alignment. This rule keep the boids of the same group going towards the
 	 * same direction.
 	 */
-	ALIGNMENT("Alignment", 1, 2.0) {
+	ALIGNMENT("Alignment", 1, 1.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
-			final Vector vectorSum = new Vector(0.0, 0.0);
+			final Vector desiredDirection = new Vector(0.0, 0.0);
 			if (!boids.isEmpty()) {
 				for (final Boid boid : boids) {
-					vectorSum.add(boid.getSpeed());
+					desiredDirection.add(boid.getSpeed());
 				}
-				vectorSum.div(boids.size());
-				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
+				desiredDirection.div(boids.size());
 				desiredDirection.norm();
+				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.limitTo(BoidImpl.MAX_FORCE);
 				return steer;
 			} else {
-				return vectorSum;
+				return desiredDirection;
 			}
 		}
 	},
@@ -72,23 +67,29 @@ enum RuleImpl implements Rule {
 	 * Separation. This rule keep the boids of the same group separated (the
 	 * opposite of Cohesion).
 	 */
-	SEPARATION("Separation", 2, 1.0) {
+	SEPARATION("Separation", 2, 1.5) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
-			final Vector vectorDiff = new Vector(0.0, 0.0);
+			final Vector desiredDirection = new Vector(0.0, 0.0);
 			if (!boids.isEmpty()) {
 				for (final Boid boid : boids) {
-					vectorDiff.sub(boid.getPosition());
+					/*
+					 * We take the normalized distances and sum them up in
+					 * vectorDiff
+					 */
+					final Vector difference = Vector.sub(theBoid.getPosition(), boid.getPosition());
+					difference.norm();
+					desiredDirection.add(difference);
 				}
-				vectorDiff.div(boids.size());
-				final Vector desiredDirection = Vector.sub(vectorDiff, theBoid.getPosition());
+				desiredDirection.div(boids.size());
 				desiredDirection.norm();
+				desiredDirection.mul(BoidImpl.MAX_SPEED);
 				final Vector steer = Vector.sub(desiredDirection, theBoid.getSpeed());
 				steer.mul(this.getDefaultModifier());
 				steer.limitTo(BoidImpl.MAX_FORCE);
 				return steer;
 			} else {
-				return vectorDiff;
+				return desiredDirection;
 			}
 		}
 	},

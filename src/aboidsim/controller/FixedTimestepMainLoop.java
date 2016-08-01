@@ -62,7 +62,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			this.abortLoop();
 		}
 		// this.model.getSimulation().createBoid(new Vector(200, 200), 5);
-		this.model.getSimulation().createBoid(new Vector(210, 210), 5);
+		// this.model.getSimulation().createBoid(new Vector(210, 210), 5);
 		this.model.getSimulation().createBoid(new Vector(190, 190), 5);
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();

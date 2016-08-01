@@ -120,6 +120,10 @@ public final class EnvironmentImpl implements Environment {
 		System.out.println("Chiamata all'update"); // DEBUG
 		this.checkBoidOtherLevel();
 		this.checkBoidSameLevel();
+		final Set<Boid> toRemove = new HashSet<>(); /*
+													 * This set will prevent any
+													 * ConcurrentModificationException
+													 */
 		for (final Boid boid : this.environment) {
 			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife());
 			System.out.println("POS: ");
@@ -132,7 +136,7 @@ public final class EnvironmentImpl implements Environment {
 			boid.decrementLife(); // Life is decremented here
 			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
 										// the simulation
-				this.environment.remove(boid);
+				toRemove.add(boid);
 			} else {
 				// If the boid is still alive
 				final Set<Boid> closeSameLevelBoids = boid.getSameLevelNearBoids();
@@ -266,6 +270,8 @@ public final class EnvironmentImpl implements Environment {
 			}
 
 		}
+		// Dead boids will be removed
+		this.environment.removeAll(toRemove);
 	}
 
 	/**

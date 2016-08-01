@@ -22,9 +22,14 @@ abstract class AbstractMainLoop extends Thread {
 	 *
 	 * @param desiredFps
 	 *            the desired fps.
+	 * @throws IllegalArgumentException
+	 *             if fps < 1
 	 */
-	AbstractMainLoop(final long desiredFps) {
+	AbstractMainLoop(final long desiredFps) throws IllegalArgumentException {
 		this.status = LoopStatus.RUNNING;
+		if (this.fps <= 0) {
+			throw new IllegalArgumentException("FPS must be >0");
+		}
 		this.fps = desiredFps;
 	}
 

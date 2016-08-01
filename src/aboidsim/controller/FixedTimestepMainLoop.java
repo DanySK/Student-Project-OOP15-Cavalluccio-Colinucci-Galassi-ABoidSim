@@ -2,6 +2,7 @@ package aboidsim.controller;
 
 import aboidsim.model.Model;
 import aboidsim.util.Input;
+import aboidsim.util.Vector;
 import aboidsim.view.View;
 
 /**
@@ -41,6 +42,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	public void run() {
 		final InputResolver inputResolver = i -> {
 			if (i.getInput().equals(Input.CREATE_BOID)) {
+				System.out.println("A boid has been created");
 				FixedTimestepMainLoop.this.model.getSimulation().createBoid(i.getPosition(), i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.DESTROY_BOID)) {
 				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
@@ -60,14 +62,15 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
-
+		this.model.getSimulation().createBoid(new Vector(200.0, 200.0), 5);
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
-			this.view.drawEntities(FixedTimestepMainLoop.this.model.getSimulation().getSimulationComponents());
-			System.out.println("inputs: " + this.view.getInputs());
+
+			// System.out.println("inputs: " + this.view.getInputs());
 			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
 			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
+			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());
 			final long timePassed = System.currentTimeMillis() - lastTime;
 			System.out.println("last time: " + lastTime); // DEBUG
 			System.out.println("time passed: " + timePassed); // DEBUG

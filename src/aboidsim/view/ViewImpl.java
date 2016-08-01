@@ -28,8 +28,8 @@ public class ViewImpl implements View {
     public List<InputInfo> getInputs() {
         // TODO Auto-generated method stub
         final List<InputInfo> list = InputHandler.getInputHandler().getInputs();
-        InputHandler.getInputHandler().clearInputs();
-        System.out.println(list.toString());
+        System.out.println("ECCO LA LISTAAAA: " + list.toString());
+        // InputHandler.getInputHandler().clearInputs();
         return list;
     }
 

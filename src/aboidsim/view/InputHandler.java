@@ -22,11 +22,11 @@ public final class InputHandler {
     }
 
     /**
-     * 
+     *
      * @return the inputHandler
      */
     static InputHandler getInputHandler() {
-        return INPUTHANDLER;
+        return InputHandler.INPUTHANDLER;
     }
 
     /**
@@ -38,16 +38,19 @@ public final class InputHandler {
 
     /**
      * return the list of all inputs of the interface
-     * 
+     *
      * @return
      */
     List<InputInfo> getInputs() {
-        return this.inputs;
+        final List<InputInfo> list = this.inputs;
+        return list;
     }
 
     /**
-     *  add the input to the list.
-     * @param input  InputInfo object
+     * add the input to the list.
+     * 
+     * @param input
+     *            InputInfo object
      */
     public void addInput(final InputInfo input) {
         this.inputs.add(input);

@@ -40,12 +40,15 @@ public class DrawEntities {
     void drawBoid(final GraphicsContext g,
             final Set<Pair<Vector, String>> entities/* , final int rotation */) {
 
-        final ImageView background = new ImageView(new Image(this.backgroundImage, 820, 820, false, false));
-        final Image sfondo = background.snapshot(new SnapshotParameters(), null);
+        // final ImageView background = new ImageView(new
+        // Image(this.backgroundImage, 820, 820, false, false));
+        // final Image sfondo = background.snapshot(new SnapshotParameters(),
+        // null);
 
         // image.setRotate(rotation);
 
-        g.drawImage(sfondo, 0, 0);
+        // g.drawImage(sfondo, 0, 0);
+        g.clearRect(0, 0, 820, 820);
         entities.stream().forEach(e -> {
             final ImageView image = this.createBoid(this.boidImages + e.getY());
             // image.setRotate(45);

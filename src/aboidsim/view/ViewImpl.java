@@ -16,12 +16,12 @@ import javafx.application.Platform;
  */
 public class ViewImpl implements View {
 
-    private Controller controller;
+    private static Controller controller;
     private static SimulationScreen simulationScreen;
 
     @Override
     public void setController(final Controller controller) {
-        this.controller = controller;
+        ViewImpl.controller = controller;
     }
 
     @Override
@@ -29,6 +29,7 @@ public class ViewImpl implements View {
         // TODO Auto-generated method stub
         final List<InputInfo> list = InputHandler.getInputHandler().getInputs();
         InputHandler.getInputHandler().clearInputs();
+        System.out.println(list.toString());
         return list;
     }
 
@@ -61,6 +62,10 @@ public class ViewImpl implements View {
 
     static SimulationScreen getSimulationSceen() {
         return ViewImpl.simulationScreen;
+    }
+
+    static Controller getController() {
+        return ViewImpl.controller;
     }
 
 }

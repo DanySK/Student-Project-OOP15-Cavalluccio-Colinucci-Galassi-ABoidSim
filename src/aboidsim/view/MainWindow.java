@@ -46,7 +46,10 @@ public class MainWindow extends Application {
         stage.setScene(new Scene(totalLayout));
 
         // da modificare
-        stage.setOnCloseRequest(e -> System.exit(0));
+        stage.setOnCloseRequest(e -> {
+            // ViewImpl.getController().close();
+            System.exit(0);
+        });
 
         stage.show();
 

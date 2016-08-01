@@ -15,9 +15,10 @@ import aboidsim.util.Vector;
 public class Test /* extends Application */ {
 
     /**
+     * @throws InterruptedException
      *
-     * */
-    public static void main(final String[] args) {
+     */
+    public static void main(final String[] args) throws InterruptedException {
         // MainWindow ciao = new MainWindow(Arrays.asList("ciao", "hello",
         // "yo"), Arrays.asList("dell", "hp", "asus"));
         // window.show();

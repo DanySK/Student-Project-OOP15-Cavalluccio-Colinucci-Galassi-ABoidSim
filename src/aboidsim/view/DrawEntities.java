@@ -11,6 +11,16 @@ import javafx.scene.image.ImageView;
 
 public class DrawEntities {
 
+    final String backgroundImage = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
+            + System.getProperty("file.separator") + System.getProperty("user.dir")
+            + System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "images"
+            + System.getProperty("file.separator") + "simulationBackground.jpg";
+
+    final String boidImages = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
+            + System.getProperty("file.separator") + System.getProperty("user.dir")
+            + System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "boids"
+            + System.getProperty("file.separator");
+
     /**
      *
      * @param url
@@ -29,11 +39,18 @@ public class DrawEntities {
      */
     void drawBoid(final GraphicsContext g,
             final Set<Pair<Vector, String>> entities/* , final int rotation */) {
-        final ImageView image = this.createBoid("triangle.png");
-        // image.setRotate(rotation);
-        final Image prova = image.snapshot(new SnapshotParameters(), null);
 
-        entities.stream().forEach(e -> g.drawImage(prova, e.getX().getX(), e.getX().getY()));
+        final ImageView background = new ImageView(new Image(this.backgroundImage, 820, 820, false, false));
+        final Image sfondo = background.snapshot(new SnapshotParameters(), null);
+
+        // image.setRotate(rotation);
+
+        g.drawImage(sfondo, 0, 0);
+        entities.stream().forEach(e -> {
+            final ImageView image = this.createBoid(this.boidImages + e.getY());
+            final Image prova = image.snapshot(new SnapshotParameters(), null);
+            g.drawImage(prova, e.getX().getX(), e.getX().getY());
+        });
 
     }
 

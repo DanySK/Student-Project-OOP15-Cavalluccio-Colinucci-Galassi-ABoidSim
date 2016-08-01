@@ -63,14 +63,12 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
-			// TO DO bisogna collegare il controller, la view e il model
+			this.view.drawEntities(FixedTimestepMainLoop.this.model.getSimulation().getSimulationComponents());
 			System.out.println("inputs: " + this.view.getInputs());
 			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
 			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
-			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());
 			final long timePassed = System.currentTimeMillis() - lastTime;
-
 			System.out.println("last time: " + lastTime); // DEBUG
 			System.out.println("time passed: " + timePassed); // DEBUG
 			if (timePassed < this.msPerFrame) {

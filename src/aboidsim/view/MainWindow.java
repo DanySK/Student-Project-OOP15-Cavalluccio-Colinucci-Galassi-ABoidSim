@@ -44,6 +44,10 @@ public class MainWindow extends Application {
 
         totalLayout.getChildren().addAll(boidsScreen, selections);
         stage.setScene(new Scene(totalLayout));
+
+        // da modificare
+        stage.setOnCloseRequest(e -> System.exit(0));
+
         stage.show();
 
     }
@@ -56,7 +60,4 @@ public class MainWindow extends Application {
         MainWindow.rules = rules;
     }
 
-    // static SimulationScreen getSimulation() {
-    // return MainWindow.boidsScreen;
-    // }
 }

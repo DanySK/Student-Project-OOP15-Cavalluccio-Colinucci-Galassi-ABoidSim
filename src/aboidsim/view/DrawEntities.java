@@ -47,11 +47,13 @@ public class DrawEntities {
 
         g.drawImage(sfondo, 0, 0);
         entities.stream().forEach(e -> {
-            // final ImageView image = this
-            // .createBoid(this.boidImages + e.getY());
-            // final Image prova = image.snapshot(new SnapshotParameters(),
-            // null);
-            final Image prova = new Image(this.boidImages + e.getY(), 10, 20, false, false);
+            final ImageView image = this.createBoid(this.boidImages + e.getY());
+            // image.setRotate(45);
+            final SnapshotParameters param = new SnapshotParameters();
+            param.setFill(javafx.scene.paint.Color.TRANSPARENT);
+            final Image prova = image.snapshot(param, null);
+            // final Image prova = new Image(this.boidImages + e.getY(), 10, 20,
+            // false, false);
             g.drawImage(prova, e.getX().getX(), e.getX().getY());
         });
 

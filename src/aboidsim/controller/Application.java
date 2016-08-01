@@ -21,7 +21,7 @@ public final class Application {
 		final Model model = new ModelImpl();
 		final View view = new ViewImpl();
 		final Controller controller = new ControllerImpl(model, view);
-		// view.setController(controller);
+		view.setController(controller);
 		controller.start();
 
 	}

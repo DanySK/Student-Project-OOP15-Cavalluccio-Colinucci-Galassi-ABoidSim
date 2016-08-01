@@ -2,7 +2,6 @@ package aboidsim.controller;
 
 import aboidsim.model.Model;
 import aboidsim.util.Input;
-import aboidsim.util.Vector;
 import aboidsim.view.View;
 
 /**
@@ -38,7 +37,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		this.view = v;
 	}
 
-	@Override // TO DO
+	@Override
 	public void run() {
 		final InputResolver inputResolver = i -> {
 			if (i.getInput().equals(Input.CREATE_BOID)) {
@@ -52,7 +51,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			}
 		};
 
-		final int wait = 5;
+		final int wait = 3;
 		try {
 			System.out.println("Aspetto " + wait + " secondi per settare la view");
 			// sleep per far settare la view
@@ -61,9 +60,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
-		// this.model.getSimulation().createBoid(new Vector(200, 200), 5);
-		// this.model.getSimulation().createBoid(new Vector(210, 210), 5);
-		this.model.getSimulation().createBoid(new Vector(190, 190), 5);
+
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 			// TO DO bisogna collegare il controller, la view e il model
@@ -88,7 +85,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		}
 	}
 
-	@Override // TO DO
+	@Override
 	public void abortLoop() {
 		this.controller.close();
 	}

@@ -126,7 +126,7 @@ public final class EnvironmentImpl implements Environment {
 		final Set<Boid> toRemove = new HashSet<>();
 		for (final Boid boid : this.environment) {
 			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife());
-			final Vector sumVector = new Vector(0.0, 0.0);
+			final Vector sumVector = boid.getPosition();
 			boid.decrementLife(); // Life is decremented here
 			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
 										// the simulation

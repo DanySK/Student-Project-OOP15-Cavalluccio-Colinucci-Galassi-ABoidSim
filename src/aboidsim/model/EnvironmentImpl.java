@@ -181,6 +181,7 @@ public final class EnvironmentImpl implements Environment {
 								final Vector desiredDirection = Vector.sub(prey.get().getPosition(),
 										boid.getPosition());
 								desiredDirection.norm();
+								desiredDirection.mul(BoidImpl.MAX_SPEED);
 								/*
 								 * We want the boid to steer towards the target
 								 */
@@ -241,6 +242,7 @@ public final class EnvironmentImpl implements Environment {
 								circleOrigin.add(vec);
 								final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
 								desiredDirection.norm();
+								desiredDirection.mul(BoidImpl.MAX_SPEED);
 								final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
 								steer.limitTo(BoidImpl.MAX_FORCE);
 								sumVector.add(steer);

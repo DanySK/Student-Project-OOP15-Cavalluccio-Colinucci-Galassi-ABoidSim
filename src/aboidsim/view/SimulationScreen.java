@@ -26,21 +26,6 @@ public class SimulationScreen extends Group {
     private final DrawEntities drawEntities = new DrawEntities();
     private final GraphicsContext gc;
 
-    private final String url = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
-            + System.getProperty("file.separator") + System.getProperty("user.dir")
-            + System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "boids"
-            + System.getProperty("file.separator") + "herbivore0.png";
-
-    final String background = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
-            + System.getProperty("file.separator") + System.getProperty("user.dir")
-            + System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "images"
-            + System.getProperty("file.separator") + "simulationBackground.png";
-
-    // prova disegnare boids direttamente da qua
-    // final Set<Pair<Vector, String>> set = new HashSet<>();
-    // set.add(new Pair<Vector, String>(new Vector(10, 10), "ciao"));
-    // this.drawOnScreen(set);
-
     /**
      * constructor
      */
@@ -64,11 +49,6 @@ public class SimulationScreen extends Group {
             System.out.println("x: " + e.getSceneX() + " y:  " + e.getSceneY());
             this.addInputs(new Vector(e.getSceneX(), e.getSceneY()));
         });
-
-        // prova disegnare boids direttamente da qua
-        // final Set<Pair<Vector, String>> set = new HashSet<>();
-        // set.add(new Pair<Vector, String>(new Vector(10, 10), "ciao"));
-        // this.drawOnScreen(set);
 
     }
 

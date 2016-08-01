@@ -39,16 +39,17 @@ public final class InputHandler {
     /**
      * return the list of all inputs of the interface
      *
-     * @return
+     * @return list of input info used by controller
      */
     List<InputInfo> getInputs() {
-        final List<InputInfo> list = this.inputs;
+        final List<InputInfo> list = new ArrayList<>(this.inputs);
+        list.addAll(RulesSelection.getInputs());
         return list;
     }
 
     /**
      * add the input to the list.
-     * 
+     *
      * @param input
      *            InputInfo object
      */

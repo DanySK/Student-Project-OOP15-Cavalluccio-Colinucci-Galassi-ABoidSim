@@ -26,10 +26,9 @@ public class ViewImpl implements View {
 
     @Override
     public List<InputInfo> getInputs() {
-        // TODO Auto-generated method stub
         final List<InputInfo> list = InputHandler.getInputHandler().getInputs();
         System.out.println("ECCO LA LISTAAAA: " + list.toString());
-        // InputHandler.getInputHandler().clearInputs();
+        InputHandler.getInputHandler().clearInputs();
         return list;
     }
 

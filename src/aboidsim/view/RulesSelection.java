@@ -1,7 +1,9 @@
 package aboidsim.view;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import aboidsim.util.Input;
 import aboidsim.util.InputInfo;
@@ -11,12 +13,17 @@ import javafx.scene.control.CheckBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+/**
+ * contains the checkbox for choose the rules to apply to the simulation.
+ *
+ */
 public class RulesSelection extends VBox {
 
     private final List<String> rules;
     private final List<CheckBox> boxes = new ArrayList<>();
     // private static VBox layout = new VBox(10);
     private final Button conferma = new Button("Conferma");
+    private static Set<Integer> selectedRules = new HashSet<>();
 
     /**
      *
@@ -33,10 +40,12 @@ public class RulesSelection extends VBox {
         this.getChildren().add(titolo);
         this.getChildren().addAll(this.boxes);
         this.getChildren().add(this.conferma);
+        this.setSelectedRules();
 
         this.conferma.setOnAction(e -> {
-            this.addInputs();
-            this.printSelectedRules();
+            RulesSelection.selectedRules.clear();
+            this.setSelectedRules();
+            // this.printSelectedRules();
         });
 
     }
@@ -45,29 +54,30 @@ public class RulesSelection extends VBox {
      *
      * @return a list of the selected rules
      */
-    public List<Integer> returnSelectedRules() {
-        final List<Integer> list = new ArrayList<>();
+    public void setSelectedRules() {
+
         this.boxes.stream().forEach(e -> {
             if (e.isSelected()) {
-                list.add(this.rules.indexOf(e.getText()));
+                RulesSelection.selectedRules.add(this.rules.indexOf(e.getText()));
             }
         });
-        return list;
+
     }
 
     /**
      * test method
      */
     private void printSelectedRules() {
-        System.out.println(this.returnSelectedRules().toString());
+        System.out.println(RulesSelection.selectedRules.toString());
     }
 
     /**
      * add rules to the list in class InputHandler
      */
-    private void addInputs() {
-        this.returnSelectedRules().stream()
-                .forEach(e -> InputHandler.getInputHandler().addInput(new InputInfo(Input.TOGGLE_RULE, e)));
+    static Set<InputInfo> getInputs() {
+        final Set<InputInfo> set = new HashSet<>();
+        RulesSelection.selectedRules.stream().forEach(e -> set.add(new InputInfo(Input.TOGGLE_RULE, e)));
+        return set;
 
     }
 

@@ -263,4 +263,10 @@ public class Vector {
 		System.out.println("X: " + this.x + " Y: " + this.y);
 	}
 
+	@Override
+	public String toString() {
+		final String str = new String("X: " + this.x + " | " + "Y: " + this.y);
+		return str;
+	}
+
 }

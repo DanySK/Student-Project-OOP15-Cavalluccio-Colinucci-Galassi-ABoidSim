@@ -18,7 +18,7 @@ enum RuleImpl implements Rule {
 	/**
 	 * Cohesion. This rule keep the boids of the same group close to each other.
 	 */
-	COHESION("Cohesion", 0, 1.0) {
+	COHESION("Cohesion", 0, 2.0) {
 		@Override
 		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
 			final Vector vectorSum = new Vector(0.0, 0.0);

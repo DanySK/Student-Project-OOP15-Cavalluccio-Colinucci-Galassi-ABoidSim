@@ -203,12 +203,15 @@ public final class EnvironmentImpl implements Environment {
 							System.out.println("The boid follows a flock"); // DEBUG
 							if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
 								sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+								System.out.println("After ALIGNMENT: " + sumVector.toString()); // DEBUG
 							}
 							if (this.rules.getRules().contains(RuleImpl.COHESION)) {
 								sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
+								System.out.println("After COHESION: " + sumVector.toString()); // DEBUG
 							}
 							if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
 								sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
+								System.out.println("After SEPARATION: " + sumVector.toString()); // DEBUG
 							}
 						} else {
 							/*
@@ -250,16 +253,14 @@ public final class EnvironmentImpl implements Environment {
 
 				// sumVector.mul(boid.getAverageSpeed());
 				// We add the combining movements to the boid position
-				sumVector.print();
+				System.out.println("sumVrctor: " + sumVector.toString());
 				boid.getAcceleration().add(sumVector);
 				boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
-				System.out.println("ACC: ");
-				boid.getAcceleration().print();
+				System.out.println("ACC: " + boid.getAcceleration().toString());
 				boid.getSpeed().add(boid.getAcceleration());
 				boid.getSpeed().mul(boid.getAverageSpeed());
 				boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
-				System.out.println("SPD: ");
-				boid.getSpeed().print();
+				System.out.println("SPD: " + boid.getSpeed().toString());
 				boid.getPosition().add(boid.getSpeed());
 				System.out.println("POS: ");
 				boid.getPosition().print();

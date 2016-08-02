@@ -2,7 +2,6 @@ package aboidsim.controller;
 
 import aboidsim.model.Model;
 import aboidsim.util.Input;
-import aboidsim.util.Vector;
 import aboidsim.view.View;
 
 /**
@@ -62,7 +61,6 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
-		this.model.getSimulation().createBoid(new Vector(200.0, 200.0), 5);
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 

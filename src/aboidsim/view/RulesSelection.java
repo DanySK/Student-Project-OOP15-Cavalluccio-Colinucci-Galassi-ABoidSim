@@ -31,7 +31,10 @@ public class RulesSelection extends VBox {
         this.rules.stream().forEach(e -> {
             final CheckBox c = new CheckBox(e);
             this.boxes.add(c);
-            c.setOnAction(r -> this.addInput(this.boxes.indexOf(r)));
+            c.setOnAction(r -> {
+                System.out.println("regola " + c.getText() + "cambiata");
+                this.addInput(this.boxes.indexOf(c));
+            });
         });
         this.boxes.stream().forEach(e -> e.setSelected(true));
         final Text titolo = new Text("Seleziona regole da abilitare: ");

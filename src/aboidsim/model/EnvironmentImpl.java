@@ -218,7 +218,7 @@ public final class EnvironmentImpl implements Environment {
 							 */
 							// We create a circle at the right distance
 							System.out.println("The boid is wandering"); // DEBUG
-							final Vector circleOrigin = boid.getSpeed();
+							final Vector circleOrigin = new Vector(boid.getSpeed().getX(), boid.getSpeed().getY());
 							circleOrigin.norm();
 							circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
 							// We create a normalized vector parallel to the
@@ -229,7 +229,6 @@ public final class EnvironmentImpl implements Environment {
 							final Random rng = new Random();
 							// The angle is already in radians
 							final double angle = rng.doubles(0, Math.PI * 2).findAny().getAsDouble();
-							System.out.println("Wandering angle: " + angle);
 							vec.setY(Math.sin(angle) * vec.magnitude());
 							vec.setX(Math.cos(angle) * vec.magnitude());
 							/*
@@ -256,14 +255,16 @@ public final class EnvironmentImpl implements Environment {
 				// boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
 				System.out.println("ACC: ");
 				boid.getAcceleration().print();
+				boid.getSpeed().print();
 				boid.getSpeed().add(boid.getAcceleration());
+				boid.getSpeed().print();
 				boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
 				System.out.println("SPD: ");
 				boid.getSpeed().print();
 				boid.getPosition().add(boid.getSpeed());
 				System.out.println("POS: ");
 				boid.getPosition().print();
-				boid.getSpeed().scaleTo(boid.getAverageSpeed());
+				// boid.getSpeed().scaleTo(boid.getAverageSpeed());
 				boid.getAcceleration().mul(0.0);
 				this.checkBorders(boid);
 

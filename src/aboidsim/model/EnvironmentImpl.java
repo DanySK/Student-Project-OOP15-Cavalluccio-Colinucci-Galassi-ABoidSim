@@ -252,12 +252,11 @@ public final class EnvironmentImpl implements Environment {
 				// We add the combining movements to the boid position
 				sumVector.print();
 				boid.getAcceleration().add(sumVector);
-				// boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
+				boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
 				System.out.println("ACC: ");
 				boid.getAcceleration().print();
-				boid.getSpeed().print();
 				boid.getSpeed().add(boid.getAcceleration());
-				boid.getSpeed().print();
+				boid.getSpeed().mul(boid.getAverageSpeed());
 				boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
 				System.out.println("SPD: ");
 				boid.getSpeed().print();

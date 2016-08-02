@@ -127,7 +127,9 @@ public final class EnvironmentImpl implements Environment {
 		for (final Boid boid : this.environment) {
 			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife());
 			final Vector sumVector = boid.getPosition();
-			boid.decrementLife(); // Life is decremented here
+			if (boid.isNotTree()) {
+				boid.decrementLife(); // Life is decremented here
+			}
 			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
 										// the simulation
 				toRemove.add(boid);
@@ -183,7 +185,9 @@ public final class EnvironmentImpl implements Environment {
 								/*
 								 * We want the boid to steer towards the target
 								 */
-								sumVector.add(Vector.sub(desiredDirection, boid.getSpeed()));
+								final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
+								steer.limitTo(BoidImpl.MAX_FORCE);
+								sumVector.add(steer);
 							}
 						} else {
 							/*

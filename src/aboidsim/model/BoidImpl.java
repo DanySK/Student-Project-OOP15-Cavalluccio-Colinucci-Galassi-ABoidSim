@@ -27,8 +27,8 @@ class BoidImpl implements Boid {
 	private final Set<Boid> otherLevelNearBoids;
 	private final Set<Boid> sameLevelNearBoids;
 
-	private static final int PREDATOR_HUNGER = 20;
-	private static final int HERBIVORE_HUNGER = 10;
+	private static final int PREDATOR_HUNGER = 100;
+	private static final int HERBIVORE_HUNGER = 50;
 
 	/**
 	 * The speed must be limited at this value.
@@ -102,7 +102,7 @@ class BoidImpl implements Boid {
 	@Override
 	public boolean isHungry() {
 		if (this.isPredator()) {
-			return this.level < BoidImpl.PREDATOR_HUNGER; // isPredator
+			return this.life < BoidImpl.PREDATOR_HUNGER; // isPredator
 		} else {
 			return this.life < BoidImpl.HERBIVORE_HUNGER; // isHerbivore
 		}

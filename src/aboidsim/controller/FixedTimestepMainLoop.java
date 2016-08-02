@@ -1,10 +1,7 @@
 package aboidsim.controller;
 
-import java.util.List;
-
 import aboidsim.model.Model;
 import aboidsim.util.Input;
-import aboidsim.util.InputInfo;
 import aboidsim.view.View;
 
 /**
@@ -66,11 +63,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		}
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
-
-			// System.out.println("inputs: " + this.view.getInputs());
-			final List<InputInfo> inputs = this.view.getInputs();
-			inputs.forEach(i -> System.out.println(i.getInput().name()));
-			inputResolver.resolveInputList(inputs);
+			inputResolver.resolveInputList(this.view.getInputs());
 			this.model.getSimulation().updateEnvironment();
 			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
 			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());

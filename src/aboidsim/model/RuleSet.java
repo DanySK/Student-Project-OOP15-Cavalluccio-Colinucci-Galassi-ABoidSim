@@ -19,10 +19,10 @@ class RuleSet {
 	RuleSet() {
 		this.rules = new HashSet<>();
 		// this.rules.addAll(Arrays.asList(RuleImpl.values()));
-		// this.rules.add(RuleImpl.ALIGNMENT);
+		this.rules.add(RuleImpl.ALIGNMENT);
 		this.rules.add(RuleImpl.COHESION);
-		// this.rules.add(RuleImpl.SEPARATION);
-		// this.rules.add(RuleImpl.EVASION);
+		this.rules.add(RuleImpl.SEPARATION);
+		this.rules.add(RuleImpl.EVASION);
 	}
 
 	/**

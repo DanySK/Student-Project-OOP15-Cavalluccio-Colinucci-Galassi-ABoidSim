@@ -253,18 +253,17 @@ public final class EnvironmentImpl implements Environment {
 
 				// sumVector.mul(boid.getAverageSpeed());
 				// We add the combining movements to the boid position
-				System.out.println("sumVector: " + sumVector.toString());
+				System.out.println("sumVector: " + sumVector.toString()); // DEBUG
 				boid.getAcceleration().add(sumVector);
-				boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
-				System.out.println("ACC: " + boid.getAcceleration().toString());
+				// boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
+				System.out.println("ACC: " + boid.getAcceleration().toString()); // DEBUG
 				boid.getSpeed().add(boid.getAcceleration());
 				boid.getSpeed().mul(boid.getAverageSpeed());
 				boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
-				System.out.println("SPD: " + boid.getSpeed().toString());
+				System.out.println("SPD: " + boid.getSpeed().toString()); // DEBUG
 				boid.getPosition().add(boid.getSpeed());
-				System.out.println("POS: ");
-				System.out.println("SPD: " + boid.getPosition().toString());
-				// boid.getSpeed().scaleTo(boid.getAverageSpeed());
+				System.out.println("POS: " + boid.getPosition().toString()); // DEBUG
+				// Acceleration must be reset to 0
 				boid.getAcceleration().mul(0.0);
 				this.checkBorders(boid);
 

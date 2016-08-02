@@ -31,14 +31,16 @@ class BoidImpl implements Boid {
 	private static final int HERBIVORE_HUNGER = 50;
 
 	/**
-	 * The speed must be limited at this value.
+	 * The speed must be limited at this value. Tip: keep this value between 3.0
+	 * and 7.0
 	 */
-	public static final double MAX_SPEED = 7;
+	public static final double MAX_SPEED = 4.0;
 
 	/**
-	 * Any force must be limited at this value.
+	 * Any force must be limited at this value. Tip: keep this value between 0.1
+	 * and 0.5
 	 */
-	public static final double MAX_FORCE = 3;
+	public static final double MAX_FORCE = 0.3;
 
 	/**
 	 * The distance of the circle from the boid used in the implementation of

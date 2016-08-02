@@ -43,7 +43,6 @@ public final class InputHandler {
      */
     List<InputInfo> getInputs() {
         final List<InputInfo> list = new ArrayList<>(this.inputs);
-        list.addAll(RulesSelection.getInputs());
         return list;
     }
 

@@ -193,8 +193,8 @@ public class Vector {
 	 */
 	public void scaleTo(final double value) {
 		if (value == 0) {
-			this.x = 0;
-			this.y = 0;
+			this.x = 0.0;
+			this.y = 0.0;
 		} else {
 			final double divFactor = this.magnitude() / value;
 			this.x = this.x / divFactor;

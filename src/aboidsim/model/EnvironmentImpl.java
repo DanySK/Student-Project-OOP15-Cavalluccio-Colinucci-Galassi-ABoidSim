@@ -125,7 +125,7 @@ public final class EnvironmentImpl implements Environment {
 		 */
 		final Set<Boid> toRemove = new HashSet<>();
 		for (final Boid boid : this.environment) {
-			final Vector sumVector = boid.getPosition();
+			final Vector sumVector = new Vector(0.0, 0.0);
 			if (boid.isNotTree()) {
 				boid.decrementLife(); // Life is decremented here
 			}
@@ -237,9 +237,11 @@ public final class EnvironmentImpl implements Environment {
 							 * it
 							 */
 							circleOrigin.add(vec);
+							circleOrigin.add(boid.getPosition());
 							final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
 							desiredDirection.norm();
-							desiredDirection.mul(BoidImpl.MAX_SPEED);
+							// CHECK THIS
+							desiredDirection.mul(boid.getAverageSpeed());
 							final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
 							steer.limitTo(BoidImpl.MAX_FORCE);
 							sumVector.add(steer);
@@ -251,7 +253,7 @@ public final class EnvironmentImpl implements Environment {
 				// We add the combining movements to the boid position
 				sumVector.print();
 				boid.getAcceleration().add(sumVector);
-				boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
+				// boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
 				System.out.println("ACC: ");
 				boid.getAcceleration().print();
 				boid.getSpeed().add(boid.getAcceleration());
@@ -261,8 +263,8 @@ public final class EnvironmentImpl implements Environment {
 				boid.getPosition().add(boid.getSpeed());
 				System.out.println("POS: ");
 				boid.getPosition().print();
-				// boid.getSpeed().scaleTo(boid.getAverageSpeed());
-				boid.getAcceleration().mul(0);
+				boid.getSpeed().scaleTo(boid.getAverageSpeed());
+				boid.getAcceleration().mul(0.0);
 				this.checkBorders(boid);
 
 			}

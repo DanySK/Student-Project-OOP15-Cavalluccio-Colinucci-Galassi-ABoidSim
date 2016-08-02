@@ -62,7 +62,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
-		this.model.getSimulation().createBoid(new Vector(200.0, 200.0), 5);
+		this.model.getSimulation().createBoid(new Vector(200.0, 200.0), 4);
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 

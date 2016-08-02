@@ -65,8 +65,9 @@ class BoidImpl implements Boid {
 		final Random r = new Random();
 
 		this.position = pos;
-		this.acceleration = new Vector(0.1, 0.1);
-		this.speed = new Vector(r.nextDouble(), r.nextDouble());
+		this.acceleration = new Vector(0, 0);
+		final double angleOfSpeed = r.doubles(0, Math.PI * 2).findAny().getAsDouble();
+		this.speed = new Vector(Math.cos(angleOfSpeed), Math.sin(angleOfSpeed));
 
 		final Entities lev = this.getInfo(liv);
 

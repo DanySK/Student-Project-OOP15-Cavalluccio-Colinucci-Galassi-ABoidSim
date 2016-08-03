@@ -107,4 +107,11 @@ interface Boid {
      * @return Boid influence radius
      */
     double getInfluenceRadius();
+
+    /**
+     * Calculate rotation angle of a boid.
+     *
+     * @return Rotation angle.
+     */
+    double getRotationAngle();
 }

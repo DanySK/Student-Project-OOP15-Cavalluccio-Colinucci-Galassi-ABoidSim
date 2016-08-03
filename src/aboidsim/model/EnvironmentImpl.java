@@ -199,7 +199,7 @@ public final class EnvironmentImpl implements Environment {
 						 * boid is not seeking food
 						 */
 						System.out.println("The boid is not hunting"); // DEBUG
-						if (!closeSameLevelBoids.isEmpty()) {
+						if (!closeSameLevelBoids.isEmpty() && !this.rules.getRules().isEmpty()) {
 							System.out.println("The boid follows a flock"); // DEBUG
 							if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
 								sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));

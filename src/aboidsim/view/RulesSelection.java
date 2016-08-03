@@ -32,7 +32,7 @@ public class RulesSelection extends VBox {
             final CheckBox c = new CheckBox(e);
             this.boxes.add(c);
             c.setOnAction(r -> {
-                System.out.println("regola " + c.getText() + "cambiata");
+                System.out.println("regola " + c.getText() + " cambiata");
                 this.addInput(this.boxes.indexOf(c));
             });
         });

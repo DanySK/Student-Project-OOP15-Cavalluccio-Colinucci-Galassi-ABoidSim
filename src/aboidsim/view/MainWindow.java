@@ -33,6 +33,8 @@ public class MainWindow extends Application {
         this.mainStage.setWidth(MainWindow.WIDTH);
         this.mainStage.setHeight(MainWindow.HEIGHT);
 
+        Application.setUserAgentStylesheet(Application.STYLESHEET_CASPIAN);
+
         final HBox totalLayout = new HBox(8);
         final SimulationScreen boidsScreen = new SimulationScreen();
         ViewImpl.setSimulationScreen(boidsScreen);

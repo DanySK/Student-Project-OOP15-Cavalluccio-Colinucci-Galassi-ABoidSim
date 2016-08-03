@@ -7,15 +7,21 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.RadioButton;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 public class BoidSelection extends VBox {
 
-    // private static VBox layout = new VBox(8);
+    private final GridPane grid;
     private final ComboBox<String> box;
     private static Optional<String> selectedItem = Optional.empty();
     private static List<String> boidList;
+
+    private final RadioButton create = new RadioButton("Create");
+    private final RadioButton delete = new RadioButton("Delete");
+    private boolean action;
 
     /**
      * constructor of the class.
@@ -25,6 +31,8 @@ public class BoidSelection extends VBox {
      */
     public BoidSelection(final List<String> elements) {
         super(5);
+        this.grid = new GridPane();
+
         BoidSelection.boidList = elements;
         this.box = new ComboBox<>();
         this.box.setPromptText("seleziona elemento da inserire");

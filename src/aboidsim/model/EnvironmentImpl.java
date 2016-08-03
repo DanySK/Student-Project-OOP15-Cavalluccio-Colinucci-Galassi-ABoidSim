@@ -20,7 +20,7 @@ public final class EnvironmentImpl implements Environment {
 
     private static final EnvironmentImpl ENVIRONMENT_IMPL = new EnvironmentImpl();
     private final Set<Boid> environment = new HashSet<>();
-    private static final double COLLISION_RADIUS = 0.50;
+    private static final double COLLISION_RADIUS = 2.00;
     private final RuleSet rules = new RuleSet();
     // Dimension will change when the application starts.
     private Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);

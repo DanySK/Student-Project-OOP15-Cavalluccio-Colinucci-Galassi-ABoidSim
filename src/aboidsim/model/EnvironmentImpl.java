@@ -118,6 +118,7 @@ public final class EnvironmentImpl implements Environment {
     @Override
     public void updateEnvironment() {
 
+<<<<<<< local
         System.out.println("Chiamata all'update"); // DEBUG
         this.checkBoidOtherLevel();
         this.checkBoidSameLevel();
@@ -251,6 +252,141 @@ public final class EnvironmentImpl implements Environment {
                         }
                     }
                 }
+=======
+		System.out.println("Chiamata all'update"); // DEBUG
+		this.checkBoidOtherLevel();
+		this.checkBoidSameLevel();
+		/*
+		 * This set will prevent any ConcurrentModificationException
+		 */
+		final Set<Boid> toRemove = new HashSet<>();
+		for (final Boid boid : this.environment) {
+			final Vector sumVector = new Vector(0.0, 0.0);
+			if (boid.isNotTree()) {
+				boid.decrementLife(); // Life is decremented here
+			}
+			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
+										// the simulation
+				toRemove.add(boid);
+			}
+			if (boid.isNotTree()) {
+				System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife()); // DEBUG
+				/*
+				 * If the boid is a Tree Boid, there is nothing left to do
+				 */
+				System.out.println("The boid is not a tree"); // DEBUG
+				// If the boid is still alive
+				final Set<Boid> closeSameLevelBoids = boid.getSameLevelNearBoids();
+				final Set<Boid> closeOtherLevelBoids = boid.getOtherLevelNearBoids();
+				System.out.println("closeOtherLevelBoids" + closeOtherLevelBoids);
+				final Set<Boid> closePredators = closeOtherLevelBoids.stream()
+						.filter(pred -> (pred.isPredator() && (boid.getLevel() < pred.getLevel())))
+						.collect(Collectors.toSet());
+				for (final Boid pred : closePredators) {
+					if (boid.isCollidingWith(pred)) {
+						boid.decrementLife();
+						pred.incrementLife();
+					}
+				}
+				if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
+					System.out.println("The boid is escaping"); // DEBUG
+					// Safety has the bigger priority
+					sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
+				} else {
+					// The boid seeks a target to eat
+					System.out.println("The boid is not in danger"); // DEBUG
+					if (boid.isHungry()) {
+						System.out.println("The boid is hungry");
+					}
+					if (!closeOtherLevelBoids.isEmpty() && closePredators.isEmpty() && boid.isHungry()) {
+						// If there are no predators around
+						Optional<Boid> prey = Optional.empty();
+						if (boid.isPredator()) {
+							/*
+							 * The predator boid will look for any lower level
+							 * (except the tree) in his radius. HE MAY WANT TO
+							 * CHANGE TARGET
+							 */
+							prey = closeOtherLevelBoids.stream().filter(b -> b.isNotTree()).findFirst();
+						} else {
+							// This boid in an herbivore
+							prey = closeOtherLevelBoids.stream().filter(b -> !b.isNotTree()).findFirst();
+						}
+						if (prey.isPresent()) {
+							System.out.println("The boid is hunting another boid"); // DEBUG
+							/*
+							 * If there is an available prey, we want to boid to
+							 * approach it
+							 */
+							System.out.println(prey.get());
+							final Vector desiredDirection = Vector.sub(prey.get().getPosition(), boid.getPosition());
+							desiredDirection.norm();
+							desiredDirection.mul(BoidImpl.MAX_SPEED);
+							/*
+							 * We want the boid to steer towards the target
+							 */
+							final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
+							steer.limitTo(BoidImpl.MAX_FORCE);
+							sumVector.add(steer);
+						}
+					} else {
+						/*
+						 * If there are some same level boids around and the
+						 * boid is not seeking food
+						 */
+						System.out.println("The boid is not hunting"); // DEBUG
+						if (!closeSameLevelBoids.isEmpty() && !this.rules.getRules().isEmpty()) {
+							System.out.println("The boid follows a flock"); // DEBUG
+							if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
+								sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
+								System.out.println("After ALIGNMENT: " + sumVector.toString()); // DEBUG
+							}
+							if (this.rules.getRules().contains(RuleImpl.COHESION)) {
+								sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
+								System.out.println("After COHESION: " + sumVector.toString()); // DEBUG
+							}
+							if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
+								sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
+								System.out.println("After SEPARATION: " + sumVector.toString()); // DEBUG
+							}
+						} else {
+							/*
+							 * Wander. This movement is described as a random
+							 * yet believable movement. There are no rapid turns
+							 * and it feels more "real"
+							 */
+							// We create a circle at the right distance
+							System.out.println("The boid is wandering"); // DEBUG
+							final Vector circleOrigin = new Vector(boid.getSpeed().getX(), boid.getSpeed().getY());
+							circleOrigin.norm();
+							circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
+							// We create a normalized vector parallel to the
+							// y-axis and we scale it to the circle radius
+							final Vector vec = new Vector(0.0, 1.0);
+							vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
+							// We set a random angle
+							final Random rng = new Random();
+							// The angle is already in radians
+							final double angle = rng.doubles(0, Math.PI * 2).findAny().getAsDouble();
+							vec.setY(Math.sin(angle) * vec.magnitude());
+							vec.setX(Math.cos(angle) * vec.magnitude());
+							/*
+							 * We add the modified vector and we steer towards
+							 * it
+							 */
+							circleOrigin.add(vec);
+							circleOrigin.add(boid.getPosition());
+							final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
+							desiredDirection.norm();
+							// CHECK THIS
+							desiredDirection.mul(boid.getAverageSpeed());
+							final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
+							steer.limitTo(BoidImpl.MAX_FORCE);
+							sumVector.add(steer);
+						}
+					}
+				}
+>>>>>>> other
 
                 // sumVector.mul(boid.getAverageSpeed());
                 // We add the combining movements to the boid position

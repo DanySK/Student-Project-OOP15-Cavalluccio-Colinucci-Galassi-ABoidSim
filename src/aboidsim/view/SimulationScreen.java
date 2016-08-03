@@ -11,8 +11,6 @@ import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 
 /**
  * section of the interface containing the moving boids.
@@ -40,8 +38,6 @@ public class SimulationScreen extends Group {
         this.gc.setFill(Color.RED);
         this.gc.setStroke(Color.BLACK);
         this.gc.setLineWidth(2);
-        final Font theFont = Font.font("Times New Roman", FontWeight.BOLD, 48);
-        this.gc.setFont(theFont);
 
         // print the coordinates of the clicked point and calls addInputs method
         // passing scene's coordinates

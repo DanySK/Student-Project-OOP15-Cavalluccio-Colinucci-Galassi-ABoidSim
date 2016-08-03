@@ -11,15 +11,14 @@ import javafx.scene.image.ImageView;
 
 public class DrawEntities {
 
-    final String backgroundImage = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
-            + System.getProperty("file.separator") + System.getProperty("user.dir")
-            + System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "images"
-            + System.getProperty("file.separator") + "simulationBackground.jpg";
+    private static final String SEP = System.getProperty("file.separator");
 
-    final String boidImages = "file:" + System.getProperty("file.separator") + System.getProperty("file.separator")
-            + System.getProperty("file.separator") + System.getProperty("user.dir")
-            + System.getProperty("file.separator") + "res" + System.getProperty("file.separator") + "boids"
-            + System.getProperty("file.separator");
+    private static final String backgroundImage = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
+            + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "images" + DrawEntities.SEP
+            + "simulationBackground.jpg";
+
+    private static final String boidImages = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
+            + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "boids" + DrawEntities.SEP;
 
     /**
      *
@@ -50,7 +49,7 @@ public class DrawEntities {
         // g.drawImage(sfondo, 0, 0);
         g.clearRect(0, 0, 820, 820);
         entities.stream().forEach(e -> {
-            final ImageView image = this.createBoid(this.boidImages + e.getY());
+            final ImageView image = this.createBoid(DrawEntities.boidImages + e.getY());
             // image.setRotate(45);
             final SnapshotParameters param = new SnapshotParameters();
             param.setFill(javafx.scene.paint.Color.TRANSPARENT);

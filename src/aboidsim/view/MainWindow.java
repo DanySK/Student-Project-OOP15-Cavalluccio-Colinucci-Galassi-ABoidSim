@@ -3,7 +3,9 @@ package aboidsim.view;
 import java.util.List;
 
 import javafx.application.Application;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -16,9 +18,6 @@ import javafx.stage.Stage;
 public class MainWindow extends Application {
 
     private Stage mainStage = new Stage();
-    // final static SimulationScreen boidsScreen = new SimulationScreen();
-    private static final double HEIGHT = 800;
-    private static final double WIDTH = 1200;
     private static List<String> boids;
     private static List<String> rules;
 
@@ -30,22 +29,24 @@ public class MainWindow extends Application {
 
         this.mainStage = stage;
         this.mainStage.setTitle("BOIDS");
-        this.mainStage.setWidth(MainWindow.WIDTH);
-        this.mainStage.setHeight(MainWindow.HEIGHT);
 
-        Application.setUserAgentStylesheet(Application.STYLESHEET_CASPIAN);
-
+        stage.setResizable(false);
         final HBox totalLayout = new HBox(8);
         final SimulationScreen boidsScreen = new SimulationScreen();
         ViewImpl.setSimulationScreen(boidsScreen);
 
+        final Separator vSeparator = new Separator(Orientation.VERTICAL);
+
         final VBox selections = new VBox(5);
         final RulesSelection rulesSelection = new RulesSelection(MainWindow.rules);
         final BoidSelection boidSelection = new BoidSelection(MainWindow.boids);
-        selections.getChildren().addAll(rulesSelection, boidSelection);
+        selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator());
+        selections.getStylesheets().add("aboidsim/view/prova.css");
 
-        totalLayout.getChildren().addAll(boidsScreen, selections);
-        stage.setScene(new Scene(totalLayout));
+        totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
+        totalLayout.setStyle("-fx-background-color: WHITE;");
+        final Scene scene = new Scene(totalLayout);
+        stage.setScene(scene);
 
         // da modificare
         stage.setOnCloseRequest(e -> {
@@ -57,12 +58,12 @@ public class MainWindow extends Application {
 
     }
 
-    static void setBoids(final List<String> boids) {
-        MainWindow.boids = boids;
+    static void setBoids(final List<String> boidsList) {
+        MainWindow.boids = boidsList;
     }
 
-    static void setRules(final List<String> rules) {
-        MainWindow.rules = rules;
+    static void setRules(final List<String> rulesList) {
+        MainWindow.rules = rulesList;
     }
 
 }

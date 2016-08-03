@@ -10,7 +10,6 @@ import aboidsim.util.Vector;
 /**
  *
  * This class shows the basic features of a boid.
- *
  */
 class BoidImpl implements Boid {
 

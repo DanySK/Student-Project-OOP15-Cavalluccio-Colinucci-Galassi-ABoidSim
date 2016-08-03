@@ -267,7 +267,6 @@ public final class EnvironmentImpl implements Environment {
 				// Acceleration must be reset to 0
 				boid.getAcceleration().mul(0.0);
 				this.checkBorders(boid);
-
 			}
 		}
 

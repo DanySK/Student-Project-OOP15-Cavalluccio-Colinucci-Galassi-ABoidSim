@@ -280,7 +280,6 @@ public final class EnvironmentImpl implements Environment {
      * This method fixes the position of a boid which has gone out of borders.
      *
      * @param boid
-     *            a boid
      */
     private void checkBorders(final Boid boid) {
         if (boid.getPosition().getX() <= 0) {

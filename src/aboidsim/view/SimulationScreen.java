@@ -1,10 +1,7 @@
 package aboidsim.view;
 
-import java.util.Optional;
 import java.util.Set;
 
-import aboidsim.util.Input;
-import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
 import aboidsim.util.Vector;
 import javafx.scene.Group;
@@ -53,10 +50,7 @@ public class SimulationScreen extends Group {
      * in class BoidsSelection
      */
     private void addInputs(final Vector pos) {
-        final Optional<Integer> item = BoidSelection.getSelectedBoid();
-        if (item.isPresent()) {
-            InputHandler.getInputHandler().addInput(new InputInfo(Input.CREATE_BOID, item.get(), pos));
-        }
+        InputHandler.getInputHandler().addInput(BoidSelection.getInput(pos));
 
     }
 

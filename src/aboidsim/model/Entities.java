@@ -19,7 +19,7 @@ enum Entities {
 									"PREDATOR - LEVEL 7", "predator1.png", 7, 700, 75, 4,
 									17), PREDATOR_L8("PREDATOR - LEVEL 8", "predator2.png", 8, 800, 85, 3,
 											19), PREDATOR_L9("PREDATOR - LEVEL 9", "predator3.png", 9, 900, 95, 2,
-													21), PREDATOR_L10("PREDATOR - LEVEL 10", "predator4.png", 10, 1000,
+													21), PREDATOR_L10("PREDATOR - LEVEL 10", "predator4.png", 10, 100,
 															105, 1, 23);
 
 	private final String image;

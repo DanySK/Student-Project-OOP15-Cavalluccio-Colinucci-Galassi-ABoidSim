@@ -9,7 +9,7 @@ import aboidsim.view.View;
  */
 public class ControllerImpl implements Controller {
 
-	private static final int FPS = 5;
+	private static final int FPS = 15;
 
 	private Model model;
 	private View view;

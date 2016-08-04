@@ -189,7 +189,7 @@ public final class EnvironmentImpl implements Environment {
 							 */
 							prey = closeOtherLevelBoids.stream().filter(b -> b.isNotTree()).findFirst();
 						} else {
-							// This boid in an herbivore
+							// This boid is an herbivore
 							prey = closeOtherLevelBoids.stream().filter(b -> !b.isNotTree()).findFirst();
 						}
 						if (prey.isPresent()) {

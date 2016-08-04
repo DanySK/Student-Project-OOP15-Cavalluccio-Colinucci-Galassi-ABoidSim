@@ -135,6 +135,7 @@ public final class EnvironmentImpl implements Environment {
 			}
 
 			final Set<Boid> closeOtherLevelBoids = boid.getOtherLevelNearBoids();
+			System.out.println("closeOtherLevelBoids" + closeOtherLevelBoids); // DEBUG
 			Set<Boid> closePredators;
 			/*
 			 * We have to find the boid possible predators. If the boid is a
@@ -202,7 +203,7 @@ public final class EnvironmentImpl implements Environment {
 							desiredDirection.norm();
 							desiredDirection.mul(boid.getAverageSpeed());
 							final double distance = boid.getPosition().dist(prey.get().getPosition());
-							System.out.println("DISTANCE: " + distance);
+							System.out.println("DISTANCE: " + distance); // DEBUG
 							desiredDirection.limitTo(distance);
 							/*
 							 * We want the boid to steer towards the target

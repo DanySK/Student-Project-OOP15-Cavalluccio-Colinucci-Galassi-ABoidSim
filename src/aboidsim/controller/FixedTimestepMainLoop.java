@@ -44,8 +44,10 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				System.out.println("A boid has been created");
 				FixedTimestepMainLoop.this.model.getSimulation().createBoid(i.getPosition(), i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.DESTROY_BOID)) {
+				System.out.println("A boid has been destroyed");
 				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
 			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
+				System.out.println("A rule has been changed");
 				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.CLOSE)) {
 				FixedTimestepMainLoop.this.abortLoop();

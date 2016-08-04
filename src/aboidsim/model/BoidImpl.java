@@ -95,9 +95,7 @@ class BoidImpl implements Boid {
 
 	@Override
 	public void decrementLife() {
-		if (this.isNotTree()) {
-			this.life = this.life - 1;
-		}
+		this.life = this.life - 1;
 	}
 
 	@Override

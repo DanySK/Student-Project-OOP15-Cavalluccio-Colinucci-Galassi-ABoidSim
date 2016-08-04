@@ -10,8 +10,8 @@ package aboidsim.model;
 
 enum Entities {
 
-	TREE_L0("TREE", "tree.png", 0, 500, 0, 50, 0), HERBIVORE_L1("HERBIVORE - LEVEL 1", "herbivore0.png", 1, 100, 15, 10,
-			5), HERBIVORE_L2("HERBIVORE - LEVEL 2", "herbivore1.png", 2, 200, 25, 9, 7), HERBIVORE_L3(
+	TREE_L0("TREE", "tree.png", 0, 500, 30, 50, 0), HERBIVORE_L1("HERBIVORE - LEVEL 1", "herbivore0.png", 1, 100,
+			55/**/, 10, 5), HERBIVORE_L2("HERBIVORE - LEVEL 2", "herbivore1.png", 2, 200, 25, 9, 7), HERBIVORE_L3(
 					"HERBIVORE - LEVEL 3", "herbivore2.png", 3, 300, 35, 8,
 					9), HERBIVORE_L4("HERBIVORE - LEVEL 4", "herbivore3.png", 4, 400, 45, 7, 11), HERBIVORE_L5(
 							"HERBIVORE - LEVEL 5", "herbivore4.png", 5, 500, 55, 6,

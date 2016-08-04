@@ -20,7 +20,7 @@ public final class EnvironmentImpl implements Environment {
 
 	private static final EnvironmentImpl ENVIRONMENT_IMPL = new EnvironmentImpl();
 	private final Set<Boid> environment = new HashSet<>();
-	private static final double COLLISION_RADIUS = 10.0;
+	private static final double COLLISION_RADIUS = 30.0; // DEBUG
 	private final RuleSet rules = new RuleSet();
 	// Dimension will change when the application starts.
 	private Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);
@@ -67,13 +67,11 @@ public final class EnvironmentImpl implements Environment {
 	@Override
 	public void checkBoidOtherLevel() {
 		for (final Boid boid : this.environment) {
-			if (boid.isNotTree()) {
-				boid.getOtherLevelNearBoids().clear();
-				boid.getOtherLevelNearBoids()
-						.addAll(this.environment.stream().filter(b -> boid.getLevel() != b.getLevel())
-								.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
-								.collect(Collectors.toSet()));
-			}
+			boid.getOtherLevelNearBoids().clear();
+			boid.getOtherLevelNearBoids()
+					.addAll(this.environment.stream().filter(b -> boid.getLevel() != b.getLevel())
+							.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
+							.collect(Collectors.toSet()));
 		}
 	}
 
@@ -126,6 +124,7 @@ public final class EnvironmentImpl implements Environment {
 		 */
 		final Set<Boid> toRemove = new HashSet<>();
 		for (final Boid boid : this.environment) {
+			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife()); // DEBUG
 			final Vector sumVector = new Vector(0.0, 0.0);
 			if (boid.isNotTree()) {
 				boid.decrementLife(); // Life is decremented here
@@ -134,25 +133,40 @@ public final class EnvironmentImpl implements Environment {
 										// the simulation
 				toRemove.add(boid);
 			}
+
+			final Set<Boid> closeOtherLevelBoids = boid.getOtherLevelNearBoids();
+			Set<Boid> closePredators;
+			/*
+			 * We have to find the boid possible predators. If the boid is a
+			 * tree, its predators are those boids whose level is between 1 and
+			 * 5. If the boid is not a tree, its predators are those boids whose
+			 * level is bigger than 5 and bigger than the boid's level.
+			 */
 			if (boid.isNotTree()) {
-				System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife()); // DEBUG
-				/*
-				 * If the boid is a Tree Boid, there is nothing left to do
-				 */
+				closePredators = closeOtherLevelBoids.stream().filter(pred -> pred.isHungry())
+						.filter(pred -> (pred.isPredator() && (boid.getLevel() < pred.getLevel())))
+						.collect(Collectors.toSet());
+			} else {
+				closePredators = closeOtherLevelBoids.stream().filter(pred -> pred.isHungry())
+						.filter(pred -> pred.getLevel() > 0 && pred.getLevel() <= Entities.HERBIVORE_L5.getId())
+						.collect(Collectors.toSet());
+			}
+			System.out.println("closePredators" + closePredators); // DEBUG
+			for (final Boid pred : closePredators) {
+				if (boid.isCollidingWith(pred)) {
+					System.out.println("the boid is being eaten"); // DEBUG
+					boid.decrementLife();
+					pred.incrementLife();
+				}
+			}
+			/*
+			 * If the boid is a Tree Boid, there is nothing left to do
+			 */
+			if (boid.isNotTree()) {
 				System.out.println("The boid is not a tree"); // DEBUG
 				// If the boid is still alive
 				final Set<Boid> closeSameLevelBoids = boid.getSameLevelNearBoids();
-				final Set<Boid> closeOtherLevelBoids = boid.getOtherLevelNearBoids();
-				System.out.println("closeOtherLevelBoids" + closeOtherLevelBoids);
-				final Set<Boid> closePredators = closeOtherLevelBoids.stream()
-						.filter(pred -> (pred.isPredator() && (boid.getLevel() < pred.getLevel())))
-						.collect(Collectors.toSet());
-				for (final Boid pred : closePredators) {
-					if (boid.isCollidingWith(pred)) {
-						boid.decrementLife();
-						pred.incrementLife();
-					}
-				}
+
 				if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
 					System.out.println("The boid is escaping"); // DEBUG
 					// Safety has the bigger priority
@@ -187,6 +201,9 @@ public final class EnvironmentImpl implements Environment {
 							final Vector desiredDirection = Vector.sub(prey.get().getPosition(), boid.getPosition());
 							desiredDirection.norm();
 							desiredDirection.mul(boid.getAverageSpeed());
+							final double distance = boid.getPosition().dist(prey.get().getPosition());
+							System.out.println("DISTANCE: " + distance);
+							desiredDirection.limitTo(distance);
 							/*
 							 * We want the boid to steer towards the target
 							 */

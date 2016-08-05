@@ -43,7 +43,7 @@ public class MainWindow extends Application {
         final InfoBox infoBox = new InfoBox();
         selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
                 new Separator());
-        selections.getStylesheets().add("aboidsim/view/prova.css");
+        // selections.getStylesheets().add("aboidsim/view/prova.css");
 
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
         totalLayout.setStyle("-fx-background-color: WHITE;");

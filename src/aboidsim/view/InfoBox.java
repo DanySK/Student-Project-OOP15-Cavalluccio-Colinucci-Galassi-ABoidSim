@@ -27,7 +27,7 @@ public class InfoBox extends GridPane {
         final Label totLabel = new Label("Total boids: ");
         final Label herbLabel = new Label("Total herbivores: ");
         final Label predLabel = new Label("Total predators: ");
-        final Label treesLabel = new Label("Total predators: ");
+        final Label treesLabel = new Label("Total trees: ");
 
         GridPane.setConstraints(this.title, 0, 0, 2, 1);
         GridPane.setConstraints(totLabel, 0, 1);

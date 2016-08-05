@@ -44,7 +44,7 @@ public class ViewImpl implements View {
     public void drawEntities(final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities) {
         final List<Integer> levels = new ArrayList<>();
         entities.stream().forEach(e -> levels.add(e.getY().getX()));
-        InfoBox.updateInfo(levels);
+        Platform.runLater(() -> InfoBox.updateInfo(levels));
         System.out.println("simulation screen: " + ViewImpl.simulationScreen);
         Platform.runLater(() -> ViewImpl.simulationScreen.drawOnScreen(entities));
 

@@ -100,8 +100,7 @@ public final class EnvironmentImpl implements Environment {
 		return this.environment.stream()
 				.map(boid -> new Pair<>(new Pair<>(boid.getPosition(), boid.getRotationAngle()),
 						new Pair<>(boid.getLevel(), Arrays.stream(Entities.values())
-								.filter(ent -> ent.getId() == boid.getLevel()).findFirst().get()
-								.getImage())))
+								.filter(ent -> ent.getId() == boid.getLevel()).findFirst().get().getImage())))
 				.collect(Collectors.toSet());
 	}
 
@@ -278,8 +277,8 @@ public final class EnvironmentImpl implements Environment {
 				// boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
 				System.out.println("ACC: " + boid.getAcceleration().toString()); // DEBUG
 				boid.getSpeed().add(boid.getAcceleration());
-				boid.getSpeed().mul(boid.getAverageSpeed());
-				boid.getSpeed().limitTo(BoidImpl.MAX_SPEED);
+				// boid.getSpeed().mul(boid.getAverageSpeed());
+				boid.getSpeed().limitTo(boid.getAverageSpeed());
 				System.out.println("SPD: " + boid.getSpeed().toString()); // DEBUG
 				boid.getPosition().add(boid.getSpeed());
 				System.out.println("POS: " + boid.getPosition().toString()); // DEBUG

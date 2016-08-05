@@ -57,7 +57,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		final int wait = 3;
 		try {
 			System.out.println("Aspetto " + wait + " secondi per settare la view");
-			// sleep per far settare la view
+			// We wait a couple of seconds
 			Thread.sleep(wait * 1000);
 		} catch (final InterruptedException e) {
 			System.out.println("Sleep exception");
@@ -66,6 +66,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 			inputResolver.resolveInputList(this.view.getInputs());
+			// This thread will be used to speed up the application
 			final Thread viewThread = new Thread() {
 				@Override
 				public void run() {

@@ -96,11 +96,12 @@ public final class EnvironmentImpl implements Environment {
 	}
 
 	@Override
-	public Set<Pair<Pair<Vector, Double>, String>> getSimulationComponents() {
+	public Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> getSimulationComponents() {
 		return this.environment.stream()
 				.map(boid -> new Pair<>(new Pair<>(boid.getPosition(), boid.getRotationAngle()),
-						Arrays.stream(Entities.values()).filter(ent -> ent.getId() == boid.getLevel()).findFirst().get()
-								.getImage()))
+						new Pair<>(boid.getLevel(), Arrays.stream(Entities.values())
+								.filter(ent -> ent.getId() == boid.getLevel()).findFirst().get()
+								.getImage())))
 				.collect(Collectors.toSet());
 	}
 

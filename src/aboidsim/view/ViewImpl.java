@@ -1,5 +1,6 @@
 package aboidsim.view;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -40,8 +41,10 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public void drawEntities(final Set<Pair<Pair<Vector, Double>, String>> entities) {
-        System.out.println(entities.toString());
+    public void drawEntities(final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities) {
+        final List<Integer> levels = new ArrayList<>();
+        entities.stream().forEach(e -> levels.add(e.getY().getX()));
+        InfoBox.updateInfo(levels);
         System.out.println("simulation screen: " + ViewImpl.simulationScreen);
         Platform.runLater(() -> ViewImpl.simulationScreen.drawOnScreen(entities));
 
@@ -49,8 +52,8 @@ public class ViewImpl implements View {
 
     @Override
     public Pair<Integer, Integer> getScreenDimensions() {
-        return new Pair<Integer, Integer>(SimulationScreen.WIDTH + SimulationScreen.BOID_HEIGHT,
-                SimulationScreen.HEIGHT + SimulationScreen.BOID_HEIGHT);
+        return new Pair<>(SimulationScreen.WIDTH - SimulationScreen.BOID_HEIGHT,
+                SimulationScreen.HEIGHT - SimulationScreen.BOID_HEIGHT);
     }
 
     static void setSimulationScreen(final SimulationScreen screen) {

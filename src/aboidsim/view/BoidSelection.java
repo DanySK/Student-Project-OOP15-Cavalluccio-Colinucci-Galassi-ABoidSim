@@ -16,14 +16,13 @@ import javafx.scene.text.Text;
 
 public class BoidSelection extends GridPane {
 
-    // private final GridPane grid;
     private final ChoiceBox<String> box;
     private static Optional<String> selectedItem = Optional.empty();
     private static List<String> boidList;
 
     private final RadioButton create = new RadioButton("Create");
     private final RadioButton delete = new RadioButton("Delete");
-    private static boolean action = true; // create
+    private static boolean action = true; // create action
 
     /**
      * constructor of the class.
@@ -33,8 +32,6 @@ public class BoidSelection extends GridPane {
      */
     public BoidSelection(final List<String> elements) {
         super();
-        // this.grid = new GridPane();
-
         BoidSelection.boidList = elements;
         this.box = new ChoiceBox<>();
         final Text title = new Text("Seleziona tipo di elemento da inserire");
@@ -103,7 +100,7 @@ public class BoidSelection extends GridPane {
 
     /**
      *
-     * @return the level of the selected boid (if there is one)
+     * @return the selected boid in the choise box
      */
     static Optional<Integer> getSelectedBoid() {
         final Optional<String> item = BoidSelection.selectedItem;
@@ -115,6 +112,12 @@ public class BoidSelection extends GridPane {
 
     }
 
+    /**
+     *
+     * @param v
+     *            position clicked
+     * @return the input to add to InputHandler
+     */
     static InputInfo getInput(final Vector v) {
         if (BoidSelection.action) {
             return new InputInfo(Input.CREATE_BOID, BoidSelection.getSelectedBoid().get(), v);

@@ -40,7 +40,9 @@ public class MainWindow extends Application {
         final VBox selections = new VBox(5);
         final RulesSelection rulesSelection = new RulesSelection(MainWindow.rules);
         final BoidSelection boidSelection = new BoidSelection(MainWindow.boids);
-        selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator());
+        final InfoBox infoBox = new InfoBox();
+        selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
+                new Separator());
         selections.getStylesheets().add("aboidsim/view/prova.css");
 
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);

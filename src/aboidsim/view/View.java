@@ -38,7 +38,7 @@ public interface View {
      * @param entities
      *            list of the position and level of all the entities to draw.
      */
-    void drawEntities(final Set<Pair<Pair<Vector, Double>, String>> entities);
+    void drawEntities(final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities);
 
     /**
      * used to pass to the controller the dimension of the simulation screen i

@@ -66,9 +66,20 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 			inputResolver.resolveInputList(this.view.getInputs());
+			final Thread viewThread = new Thread() {
+				@Override
+				public void run() {
+					FixedTimestepMainLoop.this.view
+							.drawEntities(FixedTimestepMainLoop.this.model.getSimulation().getSimulationComponents());
+				}
+			};
+			viewThread.start();
 			this.model.getSimulation().updateEnvironment();
-			System.out.println("entities: " + this.model.getSimulation().getSimulationComponents()); // DEBUG
-			this.view.drawEntities(this.model.getSimulation().getSimulationComponents());
+			try {
+				viewThread.join();
+			} catch (final InterruptedException e) {
+				System.out.println("Error in viewThread join");
+			}
 			final long timePassed = System.currentTimeMillis() - lastTime;
 			System.out.println("last time: " + lastTime); // DEBUG
 			System.out.println("time passed: " + timePassed); // DEBUG

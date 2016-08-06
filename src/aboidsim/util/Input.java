@@ -22,6 +22,10 @@ public enum Input {
 	 */
 	TOGGLE_RULE,
 	/**
+	 * This input is used when the user wants to load a default environment.
+	 */
+	LOAD_ENV,
+	/**
 	 * This input is used when the user wants to close the application.
 	 */
 	CLOSE;

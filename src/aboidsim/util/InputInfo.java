@@ -56,17 +56,18 @@ public class InputInfo {
 	 *
 	 * @param in
 	 *            the input
-	 * @param rule
-	 *            the integer. It represents a rule.
+	 * @param id
+	 *            the integer. It represents the id of a rule or a default
+	 *            environment.
 	 * @throws IllegalArgumentException
 	 *             if the wrong input has been used
 	 */
-	public InputInfo(final Input in, final Integer rule) throws IllegalArgumentException {
-		if (!in.equals(Input.TOGGLE_RULE)) {
+	public InputInfo(final Input in, final Integer id) throws IllegalArgumentException {
+		if (!in.equals(Input.TOGGLE_RULE) && !in.equals(Input.LOAD_ENV)) {
 			throw new IllegalArgumentException("Wrong constructor for the selected input");
 		}
 		this.input = in;
-		this.number = Optional.of(rule);
+		this.number = Optional.of(id);
 		this.position = Optional.empty();
 	}
 

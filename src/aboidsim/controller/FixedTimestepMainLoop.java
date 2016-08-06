@@ -49,6 +49,10 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
 				System.out.println("A rule has been changed");
 				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
+			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
+				System.out.println("A rule has been changed");
+				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
+
 			} else if (i.getInput().equals(Input.CLOSE)) {
 				FixedTimestepMainLoop.this.abortLoop();
 			}

@@ -10,17 +10,17 @@ package aboidsim.model;
 
 enum Entities {
 
-	TREE_L0("TREE", "tree.png", 0, 500, 30, 50, 0), HERBIVORE_L1("HERBIVORE - LEVEL 1", "herbivore0.png", 1, 100, 90,
-			10, 5), HERBIVORE_L2("HERBIVORE - LEVEL 2", "herbivore1.png", 2, 200, 95, 9, 6), HERBIVORE_L3(
-					"HERBIVORE - LEVEL 3", "herbivore2.png", 3, 300, 100, 7,
-					9), HERBIVORE_L4("HERBIVORE - LEVEL 4", "herbivore3.png", 4, 400, 105, 7, 8), HERBIVORE_L5(
-							"HERBIVORE - LEVEL 5", "herbivore4.png", 5, 500, 110, 6,
-							9), PREDATOR_L6("PREDATOR - LEVEL 6", "predator0.png", 6, 70, 115, 5, 11), PREDATOR_L7(
-									"PREDATOR - LEVEL 7", "predator1.png", 7, 700, 120, 4,
-									12), PREDATOR_L8("PREDATOR - LEVEL 8", "predator2.png", 8, 800, 125, 3,
-											13), PREDATOR_L9("PREDATOR - LEVEL 9", "predator3.png", 9, 900, 130, 2,
+	TREE_L0("TREE", "tree.png", 0, 500, 30, 50, 0), HERBIVORE_L1("HERBIVORE - LEVEL 1", "herbivore0.png", 1, 100, 50,
+			10, 5), HERBIVORE_L2("HERBIVORE - LEVEL 2", "herbivore1.png", 2, 200, 55, 9, 6), HERBIVORE_L3(
+					"HERBIVORE - LEVEL 3", "herbivore2.png", 3, 300, 60, 7,
+					9), HERBIVORE_L4("HERBIVORE - LEVEL 4", "herbivore3.png", 4, 400, 65, 7, 8), HERBIVORE_L5(
+							"HERBIVORE - LEVEL 5", "herbivore4.png", 5, 500, 70, 6,
+							9), PREDATOR_L6("PREDATOR - LEVEL 6", "predator0.png", 6, 70, 75, 5, 11), PREDATOR_L7(
+									"PREDATOR - LEVEL 7", "predator1.png", 7, 700, 80, 4,
+									12), PREDATOR_L8("PREDATOR - LEVEL 8", "predator2.png", 8, 800, 85, 3,
+											13), PREDATOR_L9("PREDATOR - LEVEL 9", "predator3.png", 9, 900, 90, 2,
 													14), PREDATOR_L10("PREDATOR - LEVEL 10", "predator4.png", 10, 100,
-															135, 1, 15);
+															95, 1, 15);
 
 	private final String image;
 	private final String name;

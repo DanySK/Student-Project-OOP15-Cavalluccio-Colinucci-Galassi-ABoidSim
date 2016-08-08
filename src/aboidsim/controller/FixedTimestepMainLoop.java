@@ -51,7 +51,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.LOAD_ENV)) {
 				System.out.println("A default environment has been loaded");
-				// FixedTimestepMainLoop.this.model.getSimulation().loadDefaultEnvironment(i.getNumber().intValue());
+				FixedTimestepMainLoop.this.model.getSimulation().loadDefaultEnvironment(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.CLOSE)) {
 				FixedTimestepMainLoop.this.abortLoop();
 			}

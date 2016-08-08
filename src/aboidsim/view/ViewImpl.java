@@ -34,7 +34,7 @@ public class ViewImpl implements View {
 
     @Override
     public void start(final List<String> boids, final List<String> rules,
-            final List<Pair<Integer, String>> listForImages) {
+            final List<Pair<Integer, String>> listForImages, final List<String> envs) {
         System.out.println(rules.toString()); // debug
         MainWindow.setBoids(boids);
         MainWindow.setRules(rules);

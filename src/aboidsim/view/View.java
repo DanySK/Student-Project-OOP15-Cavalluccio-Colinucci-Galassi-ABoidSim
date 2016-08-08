@@ -37,7 +37,8 @@ public interface View {
      * @param listForImages
      *            list used to create the images of the entities to draw
      */
-    void start(final List<String> boids, final List<String> rules, final List<Pair<Integer, String>> listForImages);
+    void start(final List<String> boids, final List<String> rules, final List<Pair<Integer, String>> listForImages,
+            final List<String> envs);
 
     /**
      * draw all the entities in the simulation screen.

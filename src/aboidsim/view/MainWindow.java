@@ -2,6 +2,7 @@ package aboidsim.view;
 
 import java.util.List;
 
+import aboidsim.util.Pair;
 import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -21,6 +22,7 @@ public class MainWindow extends Application {
     private static List<String> boids;
     private static List<String> rules;
     private static List<String> envs;
+    private static List<Pair<Integer, String>> list;
 
     /**
      *
@@ -30,6 +32,8 @@ public class MainWindow extends Application {
 
         this.mainStage = stage;
         this.mainStage.setTitle("BOIDS");
+
+        DrawEntities.setImages(MainWindow.list);
 
         stage.setResizable(false);
         final HBox totalLayout = new HBox(8);
@@ -73,6 +77,10 @@ public class MainWindow extends Application {
 
     static void setEnvs(final List<String> envsList) {
         MainWindow.envs = envsList;
+    }
+
+    static void setImages(final List<Pair<Integer, String>> l) {
+        MainWindow.list = l;
     }
 
 }

@@ -36,7 +36,7 @@ public class DrawEntities {
                         SimulationScreen.BOID_HEIGHT, SimulationScreen.BOID_HEIGHT));
             } else {
                 DrawEntities.images.add(DrawEntities.createEntity(DrawEntities.BOID_IMG + p.getY(),
-                        SimulationScreen.BOID_WIDTH, SimulationScreen.WIDTH));
+                        SimulationScreen.BOID_WIDTH, SimulationScreen.BOID_HEIGHT));
             }
         }
     }

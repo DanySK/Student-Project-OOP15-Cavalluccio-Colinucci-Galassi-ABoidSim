@@ -31,7 +31,7 @@ public class DrawEntities {
     static void setImages(final List<Pair<Integer, String>> list) {
         DrawEntities.images = new ArrayList<>();
         for (final Pair<Integer, String> p : list) {
-            if (p.getX() == 0) {
+            if (p.getX().intValue() == 0) {
                 DrawEntities.images.add(DrawEntities.createEntity(DrawEntities.BOID_IMG + p.getY(),
                         SimulationScreen.BOID_HEIGHT, SimulationScreen.BOID_HEIGHT));
             } else {

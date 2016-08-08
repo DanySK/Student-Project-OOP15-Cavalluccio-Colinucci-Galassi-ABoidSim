@@ -36,9 +36,11 @@ public class ViewImpl implements View {
     public void start(final List<String> boids, final List<String> rules,
             final List<Pair<Integer, String>> listForImages, final List<String> envs) {
         System.out.println(rules.toString()); // debug
+        DrawEntities.setImages(listForImages);
         MainWindow.setBoids(boids);
         MainWindow.setRules(rules);
         MainWindow.setEnvs(envs);
+
         Application.launch(MainWindow.class);
     }
 

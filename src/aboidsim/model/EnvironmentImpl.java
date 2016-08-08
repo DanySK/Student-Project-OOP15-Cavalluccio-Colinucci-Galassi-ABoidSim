@@ -1,8 +1,8 @@
 package aboidsim.model;
 
 import java.util.Arrays;
+
 import java.util.HashSet;
-import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -99,13 +99,6 @@ public final class EnvironmentImpl implements Environment {
 						boid.getLevel()))
 				.collect(Collectors.toSet());
 	}
-	
-	@Override
-	public List<Pair<Integer,String>> getLevelAndImages() {
-		return this.environment.stream().map(boid -> new Pair<>(boid.getLevel(),
-				Arrays.stream(Entities.values()).filter(e -> e.getId() == boid.getLevel()).findFirst().get().getImage()))
-				.collect(Collectors.toList());
-	};
 	
 	@Override
 	public Set<Boid> getEnvironment() {

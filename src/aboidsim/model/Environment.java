@@ -1,6 +1,5 @@
 package aboidsim.model;
 
-import java.util.List;
 import java.util.Set;
 
 import aboidsim.util.Pair;
@@ -62,12 +61,6 @@ public interface Environment {
      * @return all the entities of the environment with position and image path.
      */
     Set<Pair<Pair<Vector, Double>, Integer>> getSimulationComponents();
-    
-    /**
-     * 
-     * @return for each boid all the levels and images.
-     */
-    List<Pair<Integer, String>> getLevelAndImages();
 
     /**
      * Getter for the environment.

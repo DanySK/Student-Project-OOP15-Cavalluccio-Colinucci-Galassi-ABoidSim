@@ -7,7 +7,7 @@ import java.util.Set;
  *
  */
 @FunctionalInterface
-public interface DefaultEnvironments {
+public interface DefaultEnvironment {
 	
 	/**
 	 * 

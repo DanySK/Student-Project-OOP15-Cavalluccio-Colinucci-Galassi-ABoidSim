@@ -1,16 +1,13 @@
 package aboidsim.model;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * This is an enumeration that shows all the available environments.
  * A user can set one of this environment.
  *
  */
-public enum DefaultEnvironmentImpl implements DefaultEnvironments {
+public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 	
 	/**
 	 * Environment with just predator boids.
@@ -72,13 +69,5 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironments {
 	 */
 	public int getIdEnv() {
 		return this.idEnv;
-	}
-	
-	/**
-	 * 
-	 * @return All the environment names
-	 */
-	public List<String> getEnvironmentNames() {
-		return Arrays.stream(DefaultEnvironmentImpl.values()).map(e -> e.getEnvironmentName()).collect(Collectors.toList());
 	}
 }

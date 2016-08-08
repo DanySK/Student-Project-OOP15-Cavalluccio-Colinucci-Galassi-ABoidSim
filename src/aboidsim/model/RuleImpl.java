@@ -1,9 +1,6 @@
 package aboidsim.model;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import aboidsim.util.Vector;
 
@@ -150,14 +147,5 @@ enum RuleImpl implements Rule {
 	 */
 	public Double getDefaultModifier() {
 		return this.defaultModifier;
-	}
-
-	/**
-	 * Static method. This methods return a list of the names of the rules.
-	 *
-	 * @return the list of the names of the rules.
-	 */
-	public static List<String> getRuleNames() {
-		return Arrays.stream(RuleImpl.values()).map(r -> r.getName()).collect(Collectors.toList());
 	}
 }

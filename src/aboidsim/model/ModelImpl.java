@@ -26,6 +26,11 @@ public class ModelImpl implements Model {
 
 	@Override
 	public List<String> getRules() {
-		return RuleImpl.getRuleNames();
+		return Arrays.stream(RuleImpl.values()).map(r -> r.getName()).collect(Collectors.toList());
+	}
+
+	@Override
+	public List<String> getAllEnvironmentsNames() {
+		return Arrays.stream(DefaultEnvironmentImpl.values()).map(e -> e.getEnvironmentName()).collect(Collectors.toList());
 	}
 }

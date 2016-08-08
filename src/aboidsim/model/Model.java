@@ -27,4 +27,10 @@ public interface Model {
      * @return a list of active rules.
      */
     List<String> getRules();
+    
+    /**
+     * 
+     * @return all the environment names.
+     */
+    List<String> getAllEnvironmentsNames();
 }

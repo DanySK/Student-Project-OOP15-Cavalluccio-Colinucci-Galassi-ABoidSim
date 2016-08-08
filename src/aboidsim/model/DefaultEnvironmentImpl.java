@@ -1,6 +1,9 @@
 package aboidsim.model;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * This is an enumeration that shows all the available environments.
@@ -54,12 +57,28 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironments {
 		this.environmentName = envName;
 		this.idEnv = id;
 	}
-
+	
+	/**
+	 * 
+	 * @return Environment name
+	 */
 	public String getEnvironmentName() {
 		return this.environmentName;
 	}
-
+	
+	/**
+	 * 
+	 * @return Environment ID
+	 */
 	public int getIdEnv() {
 		return this.idEnv;
+	}
+	
+	/**
+	 * 
+	 * @return All the environment names
+	 */
+	public List<String> getEnvironmentNames() {
+		return Arrays.stream(DefaultEnvironmentImpl.values()).map(e -> e.getEnvironmentName()).collect(Collectors.toList());
 	}
 }

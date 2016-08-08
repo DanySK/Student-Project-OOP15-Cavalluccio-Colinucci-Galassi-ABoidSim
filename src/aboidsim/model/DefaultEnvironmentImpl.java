@@ -1,5 +1,6 @@
 package aboidsim.model;
 
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,8 +16,8 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 	JURASSIC_WORLD("JURASSIC WORLD", 0) {
 		@Override
 		public Set<Boid> getDefaultEnvironment() {
-			
-			return null;
+			final Set<Boid> environment = new HashSet<>();
+			return environment;
 		}
 	},
 	
@@ -26,19 +27,19 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 	PACIFIC_WORLD("PACIFIC WORLD", 1)	{
 		@Override
 		public Set<Boid> getDefaultEnvironment() {
-			
-			return null;
+			final Set<Boid> environment = new HashSet<>();
+			return environment;
 		}
 	}, 
 	
 	/**
 	 * Environment with trees.
 	 */
-	FOREST("Forest", 2) {
+	FOREST("FOREST", 2) {
 		@Override
 		public Set<Boid> getDefaultEnvironment() {
-			
-			return null;
+			final Set<Boid> environment = new HashSet<>();
+			return environment;
 		}
 	};
 	

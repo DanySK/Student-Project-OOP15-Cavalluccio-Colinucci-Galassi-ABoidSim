@@ -24,10 +24,10 @@ public class RulesSelection extends VBox {
      * @param rules
      *            list of the rules
      */
-    RulesSelection(final List<String> rules) {
-        super(5);
+    RulesSelection(final List<String> theRules) {
+        super();
         this.setPadding(new Insets(10));
-        this.rules = rules;
+        this.rules = theRules;
         this.rules.stream().forEach(e -> {
             final CheckBox c = new CheckBox(e);
             this.boxes.add(c);

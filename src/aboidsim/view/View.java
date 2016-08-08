@@ -8,12 +8,17 @@ import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
 import aboidsim.util.Vector;
 
+/**
+ * interface of the view.
+ *
+ */
 public interface View {
 
     /**
-     * set the controller
+     * set the controller.
      *
      * @param controller
+     *            controller of the program
      */
     void setController(final Controller controller);
 
@@ -29,8 +34,10 @@ public interface View {
      *            list of the boids's names
      * @param rules
      *            list of the rules
+     * @param listForImages
+     *            list used to create the images of the entities to draw
      */
-    void start(final List<String> boids, final List<String> rules);
+    void start(final List<String> boids, final List<String> rules, final List<Pair<Integer, String>> listForImages);
 
     /**
      * draw all the entities in the simulation screen.
@@ -38,11 +45,11 @@ public interface View {
      * @param entities
      *            list of the position and level of all the entities to draw.
      */
-    void drawEntities(final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities);
+    void drawEntities(final Set<Pair<Pair<Vector, Double>, Integer>> entities);
 
     /**
      * used to pass to the controller the dimension of the simulation screen i
-     * did + height for and appealing reason, to avoid to show cut images
+     * did + height for and appealing reason, to avoid to show cut images.
      *
      * @return width and height of the screen that displays the entities
      */

@@ -14,10 +14,10 @@ import javafx.scene.layout.GridPane;
 public class InfoBox extends GridPane {
 
     private final Label title;
-    private static final Label numTotBoids = new Label("0");
-    private static final Label numHerbivores = new Label("0");
-    private static final Label numPredator = new Label("0");
-    private static final Label numTrees = new Label("0");
+    private static Label numTotBoids = new Label("0");
+    private static Label numHerbivores = new Label("0");
+    private static Label numPredator = new Label("0");
+    private static Label numTrees = new Label("0");
 
     InfoBox() {
         super();

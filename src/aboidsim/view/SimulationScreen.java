@@ -61,7 +61,7 @@ public class SimulationScreen extends Group {
      *            set containing all the entities, with the rotation angle and
      *            the string representing the image
      */
-    void drawOnScreen(final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities) {
+    void drawOnScreen(final Set<Pair<Pair<Vector, Double>, Integer>> entities) {
         this.drawEntities.drawEntities(this.gc, entities);
     }
 

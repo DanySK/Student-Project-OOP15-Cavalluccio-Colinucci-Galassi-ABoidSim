@@ -14,6 +14,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
+/**
+ * element of the interface used to select the boid to add to the screen with a
+ * mouse click.
+ *
+ */
 public class BoidSelection extends GridPane {
 
     private final ChoiceBox<String> box;
@@ -30,7 +35,7 @@ public class BoidSelection extends GridPane {
      * @param elements
      *            the list of the rules's names
      */
-    public BoidSelection(final List<String> elements) {
+    BoidSelection(final List<String> elements) {
         super();
         BoidSelection.boidList = elements;
         this.box = new ChoiceBox<>();
@@ -88,17 +93,6 @@ public class BoidSelection extends GridPane {
     }
 
     /**
-     * test method
-     */
-    private void printSelectedItem() {
-        if (BoidSelection.selectedItem.isPresent()) {
-            System.out.println(BoidSelection.boidList.indexOf(BoidSelection.selectedItem.get()));
-        } else {
-            System.out.println("nessun elemento selezionato");
-        }
-    }
-
-    /**
      *
      * @return the selected boid in the choise box
      */
@@ -113,6 +107,8 @@ public class BoidSelection extends GridPane {
     }
 
     /**
+     * create the input info to pass to InputHandler using the vector passed
+     * with the click in the simulation screen.
      *
      * @param v
      *            position clicked

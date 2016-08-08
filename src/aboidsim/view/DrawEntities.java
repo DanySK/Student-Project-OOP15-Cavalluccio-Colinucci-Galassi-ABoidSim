@@ -1,5 +1,7 @@
 package aboidsim.view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import aboidsim.util.Pair;
@@ -9,16 +11,35 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+/**
+ * class used to draw all the entities in the simulation screen.
+ *
+ */
 public class DrawEntities {
 
     private static final String SEP = System.getProperty("file.separator");
 
-    private static final String backgroundImage = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
+    private static final String BACKGROUND_IMG = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
             + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "images" + DrawEntities.SEP
             + "simulationBackground.jpg";
 
-    private static final String boidImages = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
+    private static final String BOID_IMG = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
             + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "boids" + DrawEntities.SEP;
+
+    private static List<ImageView> images;
+
+    static void setImages(final List<Pair<Integer, String>> list) {
+        DrawEntities.images = new ArrayList<>();
+        for (final Pair<Integer, String> p : list) {
+            if (p.getX() == 0) {
+                DrawEntities.images.add(DrawEntities.createEntity(DrawEntities.BOID_IMG + p.getY(),
+                        SimulationScreen.BOID_HEIGHT, SimulationScreen.BOID_HEIGHT));
+            } else {
+                DrawEntities.images.add(DrawEntities.createEntity(DrawEntities.BOID_IMG + p.getY(),
+                        SimulationScreen.BOID_WIDTH, SimulationScreen.WIDTH));
+            }
+        }
+    }
 
     /**
      *
@@ -30,7 +51,7 @@ public class DrawEntities {
      *            height of the image
      * @return
      */
-    private ImageView createEntity(final String url, final double width, final double height) {
+    private static ImageView createEntity(final String url, final double width, final double height) {
         final ImageView boid = new ImageView(new Image(url, width, height, false, false));
         return boid;
     }
@@ -43,25 +64,12 @@ public class DrawEntities {
      *            set of the position and the url of the image of each entity to
      *            draw
      */
-    void drawEntities(final GraphicsContext g,
-            final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities/*
-                                                                                  * ,
-                                                                                  * final
-                                                                                  * int
-                                                                                  * rotation
-                                                                                  */) {
+    void drawEntities(final GraphicsContext g, final Set<Pair<Pair<Vector, Double>, Integer>> entities) {
 
         g.clearRect(0, 0, SimulationScreen.WIDTH, SimulationScreen.HEIGHT);
 
         entities.stream().forEach(e -> {
-            final ImageView image;
-            if (e.getY().getX() == 0) {
-                image = this.createEntity(DrawEntities.boidImages + e.getY().getY(), SimulationScreen.BOID_HEIGHT,
-                        SimulationScreen.BOID_HEIGHT);
-            } else {
-                image = this.createEntity(DrawEntities.boidImages + e.getY().getY(), SimulationScreen.BOID_WIDTH,
-                        SimulationScreen.BOID_HEIGHT);
-            }
+            final ImageView image = DrawEntities.images.get(e.getY());
             image.setRotate(e.getX().getY());
             final SnapshotParameters param = new SnapshotParameters();
             param.setFill(javafx.scene.paint.Color.TRANSPARENT);

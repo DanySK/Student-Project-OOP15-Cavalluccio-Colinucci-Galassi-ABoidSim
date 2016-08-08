@@ -12,7 +12,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 
 /**
- * used to comunicate with the controller.
+ * used to communicate with the controller.
  *
  */
 public class ViewImpl implements View {
@@ -21,8 +21,8 @@ public class ViewImpl implements View {
     private static SimulationScreen simulationScreen;
 
     @Override
-    public void setController(final Controller controller) {
-        ViewImpl.controller = controller;
+    public void setController(final Controller control) {
+        ViewImpl.controller = control;
     }
 
     @Override
@@ -33,7 +33,8 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public void start(final List<String> boids, final List<String> rules) {
+    public void start(final List<String> boids, final List<String> rules,
+            final List<Pair<Integer, String>> listForImages) {
         System.out.println(rules.toString()); // debug
         MainWindow.setBoids(boids);
         MainWindow.setRules(rules);
@@ -41,9 +42,9 @@ public class ViewImpl implements View {
     }
 
     @Override
-    public void drawEntities(final Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> entities) {
+    public void drawEntities(final Set<Pair<Pair<Vector, Double>, Integer>> entities) {
         final List<Integer> levels = new ArrayList<>();
-        entities.stream().forEach(e -> levels.add(e.getY().getX()));
+        entities.stream().forEach(e -> levels.add(e.getY()));
         Platform.runLater(() -> InfoBox.updateInfo(levels));
         System.out.println("simulation screen: " + ViewImpl.simulationScreen);
         Platform.runLater(() -> ViewImpl.simulationScreen.drawOnScreen(entities));

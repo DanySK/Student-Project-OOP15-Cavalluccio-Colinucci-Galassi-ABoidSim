@@ -66,6 +66,9 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
+		// The following flag controls how many times we have to check the
+		// flocks
+		int checkFlockFlag = 0;
 		while (this.getStatus().equals(LoopStatus.RUNNING)) {
 			final long lastTime = System.currentTimeMillis();
 			inputResolver.resolveInputList(this.view.getInputs());
@@ -78,7 +81,12 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				}
 			};
 			viewThread.start();
+			if (checkFlockFlag % 3 == 0) {
+				this.model.getSimulation().checkBoidSameLevel();
+				this.model.getSimulation().checkBoidOtherLevel();
+			}
 			this.model.getSimulation().updateEnvironment();
+			checkFlockFlag++;
 			try {
 				viewThread.join();
 			} catch (final InterruptedException e) {

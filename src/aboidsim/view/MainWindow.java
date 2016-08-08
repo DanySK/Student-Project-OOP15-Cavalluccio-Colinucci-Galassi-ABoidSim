@@ -20,6 +20,7 @@ public class MainWindow extends Application {
     private Stage mainStage = new Stage();
     private static List<String> boids;
     private static List<String> rules;
+    private static List<String> envs;
 
     /**
      *
@@ -40,9 +41,11 @@ public class MainWindow extends Application {
         final VBox selections = new VBox(5);
         final RulesSelection rulesSelection = new RulesSelection(MainWindow.rules);
         final BoidSelection boidSelection = new BoidSelection(MainWindow.boids);
+        final EnvironmentSelection envSelection = new EnvironmentSelection(MainWindow.envs);
+
         final InfoBox infoBox = new InfoBox();
         selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
-                new Separator());
+                new Separator(), new Separator(), envSelection);
         // selections.getStylesheets().add("aboidsim/view/prova.css");
 
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
@@ -66,6 +69,10 @@ public class MainWindow extends Application {
 
     static void setRules(final List<String> rulesList) {
         MainWindow.rules = rulesList;
+    }
+
+    static void setEnvs(final List<String> envsList) {
+        MainWindow.envs = envsList;
     }
 
 }

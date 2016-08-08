@@ -36,6 +36,8 @@ public interface View {
      *            list of the rules
      * @param listForImages
      *            list used to create the images of the entities to draw
+     * @param envs
+     *            list of the envinvironment to load
      */
     void start(final List<String> boids, final List<String> rules, final List<Pair<Integer, String>> listForImages,
             final List<String> envs);

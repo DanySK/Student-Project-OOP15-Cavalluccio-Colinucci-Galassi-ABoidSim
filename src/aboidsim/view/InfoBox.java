@@ -18,6 +18,7 @@ public class InfoBox extends GridPane {
     private static Label numHerbivores = new Label("0");
     private static Label numPredator = new Label("0");
     private static Label numTrees = new Label("0");
+    private static final int LASTH = 5;
 
     InfoBox() {
         super();
@@ -51,16 +52,15 @@ public class InfoBox extends GridPane {
         int pred = 0;
 
         for (final int i : levels) {
-            if (i > 0 && i < 6) {
+            if (i > 0 && i <= InfoBox.LASTH) {
                 herb++;
-            } else if (i > 5) {
+            } else if (i > InfoBox.LASTH) {
                 pred++;
             } else {
                 tree++;
             }
         }
 
-        System.out.println("sto aggiornando le info");
         InfoBox.numTotBoids.setText(String.valueOf(levels.size()));
         InfoBox.numHerbivores.setText(String.valueOf(herb));
         InfoBox.numPredator.setText(String.valueOf(pred));

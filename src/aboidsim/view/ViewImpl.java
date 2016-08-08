@@ -38,6 +38,7 @@ public class ViewImpl implements View {
         System.out.println(rules.toString()); // debug
         MainWindow.setBoids(boids);
         MainWindow.setRules(rules);
+        MainWindow.setEnvs(envs);
         Application.launch(MainWindow.class);
     }
 

@@ -20,7 +20,7 @@ import aboidsim.util.Vector;
 public final class EnvironmentImpl implements Environment {
 
 	private static final EnvironmentImpl ENVIRONMENT_IMPL = new EnvironmentImpl();
-	private final Set<Boid> environment = new HashSet<>();
+	private Set<Boid> environment = new HashSet<>();
 	private static final double COLLISION_RADIUS = 30.0; // DEBUG
 	private final RuleSet rules = new RuleSet();
 	// Dimension will change when the application starts.
@@ -103,6 +103,12 @@ public final class EnvironmentImpl implements Environment {
 	@Override
 	public Set<Boid> getEnvironment() {
 		return this.environment;
+	}
+	
+	@Override
+	public void loadDefaultEnvironment(final int idEnv) {
+		this.environment = Arrays.stream(DefaultEnvironmentImpl.values()).filter(env -> env.getIdEnv() == idEnv)
+				.findFirst().get().getDefaultEnvironment();
 	}
 
 	/**

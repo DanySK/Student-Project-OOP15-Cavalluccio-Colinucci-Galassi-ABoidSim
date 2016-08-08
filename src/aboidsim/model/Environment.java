@@ -68,6 +68,14 @@ public interface Environment {
      * @return The whole environment
      */
     Set<Boid> getEnvironment();
+    
+    /**
+     * Set a new environment.
+     * 
+     * @param idEnv
+     * 		Environment id
+     */
+    void loadDefaultEnvironment(final int idEnv);
 
     /**
      * This method updates the state of the simulation.

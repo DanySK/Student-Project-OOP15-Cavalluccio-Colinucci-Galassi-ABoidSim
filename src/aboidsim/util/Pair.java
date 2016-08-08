@@ -48,17 +48,23 @@ public class Pair<X, Y> {
 	}
 	
 	/**
-	 * Set x
+	 * Set x.
+	 * 
+	 * @param newX
+	 * 		set new x.
 	 */
-	public void setX(final X x) {
-		this.x = x;
+	public void setX(final X newX) {
+		this.x = newX;
 	}
 	
 	/**
-	 * Set y
+	 * Set y.
+	 * 
+	 * @param newY
+	 * 		set new y.
 	 */
-	public void setY(final Y y) {
-		this.y = y;
+	public void setY(final Y newY) {
+		this.y = newY;
 	}
 	
 	@Override

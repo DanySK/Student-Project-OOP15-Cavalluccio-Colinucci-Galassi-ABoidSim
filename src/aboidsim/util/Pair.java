@@ -12,8 +12,8 @@ package aboidsim.util;
  */
 public class Pair<X, Y> {
 
-	private final X x;
-	private final Y y;
+	private X x;
+	private Y y;
 
 	/**
 	 * Constructor.
@@ -37,7 +37,7 @@ public class Pair<X, Y> {
 	public X getX() {
 		return this.x;
 	}
-
+	
 	/**
 	 * Getter. This method returns the second element
 	 * 
@@ -46,7 +46,21 @@ public class Pair<X, Y> {
 	public Y getY() {
 		return this.y;
 	}
-
+	
+	/**
+	 * Set x
+	 */
+	public void setX(final X x) {
+		this.x = x;
+	}
+	
+	/**
+	 * Set y
+	 */
+	public void setY(final Y y) {
+		this.y = y;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

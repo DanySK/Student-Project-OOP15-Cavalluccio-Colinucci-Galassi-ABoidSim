@@ -58,12 +58,6 @@ public interface Environment {
 
     /**
      *
-     * @return simulation dimension.
-     */
-    Pair<Integer, Integer> getSimulationDimension();
-
-    /**
-     *
      * @return all the entities of the environment with position and image path.
      */
     Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> getSimulationComponents();

@@ -23,7 +23,7 @@ public final class EnvironmentImpl implements Environment {
 	private static final double COLLISION_RADIUS = 30.0; // DEBUG
 	private final RuleSet rules = new RuleSet();
 	// Dimension will change when the application starts.
-	private Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);
+	private static Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);
 
 	/**
 	 * Constructor.
@@ -86,13 +86,9 @@ public final class EnvironmentImpl implements Environment {
 	}
 
 	@Override
-	public void setScreenDimension(final aboidsim.util.Pair<Integer, Integer> dimension) {
-		this.simulationDimension = dimension;
-	}
-
-	@Override
-	public Pair<Integer, Integer> getSimulationDimension() {
-		return this.simulationDimension;
+	public void setScreenDimension(final Pair<Integer, Integer> dimension) {
+		simulationDimension.setX(dimension.getX());
+		simulationDimension.setY(dimension.getY());
 	}
 
 	@Override
@@ -298,13 +294,13 @@ public final class EnvironmentImpl implements Environment {
 	 */
 	private void checkBorders(final Boid boid) {
 		if (boid.getPosition().getX() <= 0) {
-			boid.getPosition().setX(this.simulationDimension.getX());
-		} else if (boid.getPosition().getX() >= this.simulationDimension.getX()) {
+			boid.getPosition().setX(simulationDimension.getX());
+		} else if (boid.getPosition().getX() >= simulationDimension.getX()) {
 			boid.getPosition().setX(0.0);
 		}
 		if (boid.getPosition().getY() <= 0) {
-			boid.getPosition().setY(this.simulationDimension.getY());
-		} else if (boid.getPosition().getY() >= this.simulationDimension.getY()) {
+			boid.getPosition().setY(simulationDimension.getY());
+		} else if (boid.getPosition().getY() >= simulationDimension.getY()) {
 			boid.getPosition().setY(0.0);
 		}
 	}
@@ -316,5 +312,13 @@ public final class EnvironmentImpl implements Environment {
 	public static double getCollisionRadius() {
 		return EnvironmentImpl.COLLISION_RADIUS;
 	}
+	
 
+    /**
+     *
+     * @return simulation dimension.
+     */
+    public static Pair<Integer, Integer> getSimulationDimension() {
+    	return simulationDimension;
+    }
 }

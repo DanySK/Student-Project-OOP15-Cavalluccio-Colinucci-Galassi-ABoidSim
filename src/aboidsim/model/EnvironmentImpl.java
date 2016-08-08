@@ -2,6 +2,7 @@ package aboidsim.model;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
@@ -92,14 +93,20 @@ public final class EnvironmentImpl implements Environment {
 	}
 
 	@Override
-	public Set<Pair<Pair<Vector, Double>, Pair<Integer, String>>> getSimulationComponents() {
+	public Set<Pair<Pair<Vector, Double>, Integer>> getSimulationComponents() {
 		return this.environment.stream()
 				.map(boid -> new Pair<>(new Pair<>(boid.getPosition(), boid.getRotationAngle()),
-						new Pair<>(boid.getLevel(), Arrays.stream(Entities.values())
-								.filter(ent -> ent.getId() == boid.getLevel()).findFirst().get().getImage())))
+						boid.getLevel()))
 				.collect(Collectors.toSet());
 	}
-
+	
+	@Override
+	public List<Pair<Integer,String>> getLevelAndImages() {
+		return this.environment.stream().map(boid -> new Pair<>(boid.getLevel(),
+				Arrays.stream(Entities.values()).filter(e -> e.getId() == boid.getLevel()).findFirst().get().getImage()))
+				.collect(Collectors.toList());
+	};
+	
 	@Override
 	public Set<Boid> getEnvironment() {
 		return this.environment;

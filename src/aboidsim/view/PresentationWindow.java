@@ -7,9 +7,11 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -31,7 +33,8 @@ public class PresentationWindow {
             + "simulationBackground.jpg";
 
     /**
-     * constructor of the class.
+     * constructor of the class. it creates a new window with the explanation of
+     * the program.
      *
      * @throws FileNotFoundException
      */
@@ -47,23 +50,32 @@ public class PresentationWindow {
 
         final VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
+
         final Label text = new Label();
         try {
             text.setText(this.readFromFile());
         } catch (final FileNotFoundException e1) {
             e1.printStackTrace();
         }
-        text.setWrapText(true);
+        final ScrollPane scrollPane = new ScrollPane(text);
+        scrollPane.setStyle("-fx-background-color: transparent;");
+
         final Button confirm = new Button("Ok!");
         confirm.setOnAction(e -> stage.close());
 
-        vbox.getChildren().addAll(text, confirm);
+        vbox.getChildren().addAll(scrollPane, confirm);
+        vbox.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(image, vbox);
 
         stage.setScene(new Scene(layout, PresentationWindow.WIDTH, PresentationWindow.HEIGHT));
         stage.showAndWait();
     }
 
+    /**
+     *
+     * @return the string representint the content of the text file in res
+     * @throws FileNotFoundException
+     */
     String readFromFile() throws FileNotFoundException {
         final BufferedReader br = new BufferedReader(new FileReader(new File(PresentationWindow.TEXT)));
         final StringBuffer text = new StringBuffer();

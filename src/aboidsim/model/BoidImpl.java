@@ -89,13 +89,17 @@ class BoidImpl implements Boid {
 	@Override
 	public void incrementLife() {
 		if (this.isNotTree()) {
-			this.life = this.life + 10;
+			if (this.life + 10 > this.getInfo(this.level).getLife()) {
+				this.life = this.getInfo(this.level).getLife();
+			} else {
+				this.life = this.life + 10;
+			}
 		}
 	}
 
 	@Override
 	public void decrementLife() {
-		this.life = this.life - 1;
+		this.life = this.life - 10;
 	}
 
 	@Override

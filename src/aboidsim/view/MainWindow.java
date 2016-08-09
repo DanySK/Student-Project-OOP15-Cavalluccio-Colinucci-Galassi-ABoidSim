@@ -6,6 +6,7 @@ import aboidsim.util.Pair;
 import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,10 +47,12 @@ public class MainWindow extends Application {
         final RulesSelection rulesSelection = new RulesSelection(MainWindow.rules);
         final BoidSelection boidSelection = new BoidSelection(MainWindow.boids);
         final EnvironmentSelection envSelection = new EnvironmentSelection(MainWindow.envs);
+        final Button pres = new Button("Show Presentation");
+        pres.setOnAction(e -> new PresentationWindow());
 
         final InfoBox infoBox = new InfoBox();
         selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
-                new Separator(), envSelection);
+                new Separator(), envSelection, new Separator(), pres);
         // selections.getStylesheets().add("aboidsim/view/prova.css");
 
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);

@@ -64,6 +64,7 @@ public class PresentationWindow {
         confirm.setOnAction(e -> stage.close());
 
         vbox.getChildren().addAll(scrollPane, confirm);
+        vbox.setSpacing(5);
         vbox.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(image, vbox);
 

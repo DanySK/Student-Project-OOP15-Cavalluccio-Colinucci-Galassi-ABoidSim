@@ -22,8 +22,9 @@ enum Entities {
 													14), PREDATOR_L10("PREDATOR - LEVEL 10", "predator4.png", 10, 100,
 															95, 1, 15);
 
-	private final String image;
+	
 	private final String name;
+	private final String image;
 	private final int id;
 	private final int life;
 	private final double influenceRadius;

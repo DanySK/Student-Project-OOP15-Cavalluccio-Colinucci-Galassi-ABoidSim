@@ -55,17 +55,17 @@ class BoidImpl implements Boid {
 
 	/**
 	 *
-	 * @param pos
+	 * @param v
 	 *            Boid position
 	 * @param liv
 	 *            Boid level
 	 */
 
-	BoidImpl(final Vector pos, final int liv) {
+	BoidImpl(final Vector v, final int liv) {
 
 		final Random r = new Random();
 
-		this.position = pos;
+		this.position = v;
 		this.acceleration = new Vector(0, 0);
 		final double angleOfSpeed = r.doubles(0, Math.PI * 2).findAny().getAsDouble();
 		this.speed = new Vector(Math.cos(angleOfSpeed), Math.sin(angleOfSpeed));
@@ -99,7 +99,7 @@ class BoidImpl implements Boid {
 
 	@Override
 	public void decrementLife() {
-		this.life = this.life - 10;
+		this.life = this.life - 1;
 	}
 
 	@Override

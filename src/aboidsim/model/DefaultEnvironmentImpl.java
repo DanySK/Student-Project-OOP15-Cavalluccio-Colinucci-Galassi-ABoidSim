@@ -1,7 +1,12 @@
 package aboidsim.model;
 
+
 import java.util.HashSet;
+import java.util.Random;
 import java.util.Set;
+import java.util.stream.IntStream;
+
+import aboidsim.util.Vector;
 
 /**
  * This is an enumeration that shows all the available environments.
@@ -17,6 +22,18 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 		@Override
 		public Set<Boid> getDefaultEnvironment() {
 			final Set<Boid> environment = new HashSet<>();
+			final Random r = new Random();
+			final int rangeMaxX = EnvironmentImpl.getSimulationDimension().getX();
+			final int rangeMaxY = EnvironmentImpl.getSimulationDimension().getY();
+			
+			//rangeMin + (rangeMax - rangeMin) * r.nextDouble();
+			
+			IntStream.range(Entities.TREE_L0.getId(), Entities.HERBIVORE_L3.getId()).forEach(x -> {
+				IntStream.range(Entities.PREDATOR_L6.getId(), Entities.PREDATOR_L10.getId() + 1).forEach(i -> {
+					environment.add(new BoidImpl(new Vector(rangeMaxX * r.nextDouble(), rangeMaxY * r.nextDouble()), i));
+				});
+			});
+			
 			return environment;
 		}
 	},

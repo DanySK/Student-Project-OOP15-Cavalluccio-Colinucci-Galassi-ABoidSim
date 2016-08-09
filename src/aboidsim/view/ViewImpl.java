@@ -35,7 +35,6 @@ public class ViewImpl implements View {
     @Override
     public void start(final List<String> boids, final List<String> rules,
             final List<Pair<Integer, String>> listForImages, final List<String> envs) {
-        System.out.println(rules.toString()); // debug
         MainWindow.setBoids(boids);
         MainWindow.setRules(rules);
         MainWindow.setEnvs(envs);
@@ -49,7 +48,6 @@ public class ViewImpl implements View {
         final List<Integer> levels = new ArrayList<>();
         entities.stream().forEach(e -> levels.add(e.getY()));
         Platform.runLater(() -> InfoBox.updateInfo(levels));
-        System.out.println("simulation screen: " + ViewImpl.simulationScreen);
         Platform.runLater(() -> ViewImpl.simulationScreen.drawOnScreen(entities));
 
     }

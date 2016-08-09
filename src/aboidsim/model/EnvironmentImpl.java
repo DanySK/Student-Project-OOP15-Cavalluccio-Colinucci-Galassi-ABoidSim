@@ -57,9 +57,11 @@ public final class EnvironmentImpl implements Environment {
 				boid.getSameLevelNearBoids().clear();
 				boid.getSameLevelNearBoids()
 						.addAll(this.environment.stream().filter(b -> boid.getLevel() == b.getLevel())
-								.filter(b -> !b.equals(boid))
-								.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
-								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
+								.filter(bo -> !bo.equals(boid))
+								.filter(boi -> boid.getPosition().dist(boi.getPosition()) < boid.getInfluenceRadius())
+								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
+								.limit(boid.getMaxMembers())
+								.collect(Collectors.toSet()));
 			}
 		}
 	}

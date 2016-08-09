@@ -93,11 +93,12 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				System.out.println("Error in viewThread join");
 			}
 			final long timePassed = System.currentTimeMillis() - lastTime;
-			System.out.println("last time: " + lastTime); // DEBUG
-			System.out.println("time passed: " + timePassed); // DEBUG
+			// System.out.println("last time: " + lastTime); // DEBUG
+			// System.out.println("time passed: " + timePassed); // DEBUG
 			if (timePassed < this.msPerFrame) {
 				try {
-					System.out.println("sleep for: " + (this.msPerFrame - timePassed)); // DEBUG
+					// System.out.println("sleep for: " + (this.msPerFrame -
+					// timePassed)); // DEBUG
 					Thread.sleep(this.msPerFrame - timePassed);
 				} catch (final InterruptedException e) {
 					System.out.println("Sleep exception");

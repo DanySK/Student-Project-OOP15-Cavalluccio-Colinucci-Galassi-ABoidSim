@@ -1,7 +1,6 @@
 package aboidsim.model;
 
 import java.util.Arrays;
-
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Random;
@@ -88,23 +87,22 @@ public final class EnvironmentImpl implements Environment {
 
 	@Override
 	public void setScreenDimension(final Pair<Integer, Integer> dimension) {
-		simulationDimension.setX(dimension.getX());
-		simulationDimension.setY(dimension.getY());
+		EnvironmentImpl.simulationDimension.setX(dimension.getX());
+		EnvironmentImpl.simulationDimension.setY(dimension.getY());
 	}
 
 	@Override
 	public Set<Pair<Pair<Vector, Double>, Integer>> getSimulationComponents() {
 		return this.environment.stream()
-				.map(boid -> new Pair<>(new Pair<>(boid.getPosition(), boid.getRotationAngle()),
-						boid.getLevel()))
+				.map(boid -> new Pair<>(new Pair<>(boid.getPosition(), boid.getRotationAngle()), boid.getLevel()))
 				.collect(Collectors.toSet());
 	}
-	
+
 	@Override
 	public Set<Boid> getEnvironment() {
 		return this.environment;
 	}
-	
+
 	@Override
 	public void loadDefaultEnvironment(final int idEnv) {
 		this.environment = Arrays.stream(DefaultEnvironmentImpl.values()).filter(env -> env.getIdEnv() == idEnv)
@@ -118,7 +116,7 @@ public final class EnvironmentImpl implements Environment {
 	@Override
 	public void updateEnvironment() {
 		// The flock checking is done in the loop
-		System.out.println("Chiamata all'update"); // DEBUG
+		// System.out.println("Chiamata all'update"); // DEBUG
 		/*
 		 * This set will prevent any ConcurrentModificationException
 		 */
@@ -300,13 +298,13 @@ public final class EnvironmentImpl implements Environment {
 	 */
 	private void checkBorders(final Boid boid) {
 		if (boid.getPosition().getX() <= 0) {
-			boid.getPosition().setX(simulationDimension.getX());
-		} else if (boid.getPosition().getX() >= simulationDimension.getX()) {
+			boid.getPosition().setX(EnvironmentImpl.simulationDimension.getX());
+		} else if (boid.getPosition().getX() >= EnvironmentImpl.simulationDimension.getX()) {
 			boid.getPosition().setX(0.0);
 		}
 		if (boid.getPosition().getY() <= 0) {
-			boid.getPosition().setY(simulationDimension.getY());
-		} else if (boid.getPosition().getY() >= simulationDimension.getY()) {
+			boid.getPosition().setY(EnvironmentImpl.simulationDimension.getY());
+		} else if (boid.getPosition().getY() >= EnvironmentImpl.simulationDimension.getY()) {
 			boid.getPosition().setY(0.0);
 		}
 	}
@@ -318,13 +316,12 @@ public final class EnvironmentImpl implements Environment {
 	public static double getCollisionRadius() {
 		return EnvironmentImpl.COLLISION_RADIUS;
 	}
-	
 
-    /**
-     *
-     * @return simulation dimension.
-     */
-    public static Pair<Integer, Integer> getSimulationDimension() {
-    	return simulationDimension;
-    }
+	/**
+	 *
+	 * @return simulation dimension.
+	 */
+	public static Pair<Integer, Integer> getSimulationDimension() {
+		return EnvironmentImpl.simulationDimension;
+	}
 }

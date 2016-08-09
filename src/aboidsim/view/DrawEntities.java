@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
  */
 public class DrawEntities {
 
-    private static final String SEP = System.getProperty("file.separator");
+    static final String SEP = System.getProperty("file.separator");
 
     private static final String BOID_IMG = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
             + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "boids" + DrawEntities.SEP;

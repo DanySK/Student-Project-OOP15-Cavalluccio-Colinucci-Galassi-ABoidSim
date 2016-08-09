@@ -49,7 +49,7 @@ public class MainWindow extends Application {
 
         final InfoBox infoBox = new InfoBox();
         selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
-                new Separator(), new Separator(), envSelection);
+                new Separator(), envSelection);
         // selections.getStylesheets().add("aboidsim/view/prova.css");
 
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
@@ -62,6 +62,8 @@ public class MainWindow extends Application {
             // ViewImpl.getController().close();
             System.exit(0);
         });
+
+        new PresentationWindow();
 
         stage.show();
 

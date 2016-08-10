@@ -60,8 +60,7 @@ public final class EnvironmentImpl implements Environment {
 								.filter(bo -> !bo.equals(boid))
 								.filter(boi -> boid.getPosition().dist(boi.getPosition()) < boid.getInfluenceRadius())
 								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
-								.limit(boid.getMaxMembers())
-								.collect(Collectors.toSet()));
+								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
 			}
 		}
 	}
@@ -246,7 +245,7 @@ public final class EnvironmentImpl implements Environment {
 							// We create a normalized vector parallel to the
 							// y-axis and we scale it to the circle radius
 							final Vector vec = new Vector(0.0, 1.0);
-							vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
+							vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS * 2);
 							// We set a random angle
 							final Random rng = new Random();
 							// The angle is already in radians

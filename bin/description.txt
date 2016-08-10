@@ -1,0 +1,42 @@
+Welcome to ABoidSim, an interactive simulation of a prey-predator system with flock-based decision making.
+
+--- DESCRIPTION ---
+
+A "boid" is an autonomous entity that models a living creature which tries to survive in an environment full of other species.
+Any boid owns life and hunger meters and tries to keep himself alive by eating other boids.
+
+There are three types of boids:
+- Tree: Level 0
+- Herbivore: Levels 1-5
+	A herbivore boid cannot eat other boids besides trees
+- Carnivore: Levels 6-10
+	A carnivore boid can eat any other lower levels boids besides trees
+	
+In normal circumstances, a hungry boid stops following its flock and tries to find a prey.
+A prey tries to avoid any contact with a hungry predator.
+
+A boid which is not hungry nor escaping tries to form a flock with other boids of the same species.
+Different boids allow different flock sizes.
+As soon as a boid enters or forms a flock, it begins to make group decisions: his way of moving will be influenced by its flock's other boids.
+
+There are four basic rules that controls this behaviour:
+- Alignment
+	A boid tries to follow the direction of the flock
+- Cohesion
+	A boid tries to keep close to the other boids
+- Separation
+	A boid tries to keep a certain distance from the other boids. It's the opposite of Cohesion
+- Evasion
+	A boid tries to evade from a predator. It's the same of Separation but focused on a single target.
+
+--- FEATURES ---
+
+The rules can be combined in different ways and can be toggled whenever the user wants to allow different simulations.
+
+The user is also able to create or destroy a boid of any level/type as he wishes.
+
+The application also provides some "default environments" to try out.
+These simulations were created from scratch and can be loaded at any time.
+Beware that loading an environment will wipe out the current simulation.
+
+Finally, information about the current simulation are shown on the right panel.

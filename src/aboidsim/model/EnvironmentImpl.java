@@ -123,18 +123,18 @@ public final class EnvironmentImpl implements Environment {
 		 */
 		final Set<Boid> toRemove = new HashSet<>();
 		for (final Boid boid : this.environment) {
-			System.out.println("Boid - lv: " + boid.getLevel() + " life: " + boid.getLife()); // DEBUG
 			final Vector sumVector = new Vector(0.0, 0.0);
 			if (boid.isNotTree()) {
 				boid.decrementLife(); // Life is decremented here
 			}
-			if (boid.getLife() <= 0) { // If the boid is dead, we remove it from
-										// the simulation
+			if (boid.getLife() <= 0) {
+				/*
+				 * If the boid is dead, we remove it from the simulation
+				 */
 				toRemove.add(boid);
 			}
 
 			final Set<Boid> closeOtherLevelBoids = boid.getOtherLevelNearBoids();
-			System.out.println("closeOtherLevelBoids" + closeOtherLevelBoids); // DEBUG
 			Set<Boid> closePredators;
 			/*
 			 * We have to find the boid possible predators. If the boid is a
@@ -151,11 +151,11 @@ public final class EnvironmentImpl implements Environment {
 						.filter(pred -> pred.getLevel() > 0 && pred.getLevel() <= Entities.HERBIVORE_L5.getId())
 						.collect(Collectors.toSet());
 			}
-			System.out.println("closePredators" + closePredators); // DEBUG
 			for (final Boid pred : closePredators) {
 				if (boid.isCollidingWith(pred)) {
-					System.out.println("the boid is being eaten"); // DEBUG
 					boid.decrementLife();
+					// MAYBE DECREMENT LIFE BEIG EATEN SHOULD BE A DIFFERENT
+					// METHOD
 					pred.incrementLife();
 				}
 			}
@@ -163,20 +163,13 @@ public final class EnvironmentImpl implements Environment {
 			 * If the boid is a Tree Boid, there is nothing left to do
 			 */
 			if (boid.isNotTree()) {
-				System.out.println("The boid is not a tree"); // DEBUG
 				// If the boid is still alive
 				final Set<Boid> closeSameLevelBoids = boid.getSameLevelNearBoids();
-
 				if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
-					System.out.println("The boid is escaping"); // DEBUG
 					// Safety has the bigger priority
 					sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
 				} else {
 					// The boid seeks a target to eat
-					System.out.println("The boid is not in danger"); // DEBUG
-					if (boid.isHungry()) {
-						System.out.println("The boid is hungry");
-					}
 					if (!closeOtherLevelBoids.isEmpty() && closePredators.isEmpty() && boid.isHungry()) {
 						// If there are no predators around
 						Optional<Boid> prey = Optional.empty();
@@ -192,17 +185,14 @@ public final class EnvironmentImpl implements Environment {
 							prey = closeOtherLevelBoids.stream().filter(b -> !b.isNotTree()).findFirst();
 						}
 						if (prey.isPresent()) {
-							System.out.println("The boid is hunting another boid"); // DEBUG
 							/*
 							 * If there is an available prey, we want to boid to
 							 * approach it
 							 */
-							System.out.println(prey.get());
 							final Vector desiredDirection = Vector.sub(prey.get().getPosition(), boid.getPosition());
 							desiredDirection.norm();
 							desiredDirection.mul(boid.getAverageSpeed());
 							final double distance = boid.getPosition().dist(prey.get().getPosition());
-							System.out.println("DISTANCE: " + distance); // DEBUG
 							desiredDirection.limitTo(distance);
 							/*
 							 * We want the boid to steer towards the target
@@ -216,20 +206,15 @@ public final class EnvironmentImpl implements Environment {
 						 * If there are some same level boids around and the
 						 * boid is not seeking food
 						 */
-						System.out.println("The boid is not hunting"); // DEBUG
 						if (!closeSameLevelBoids.isEmpty() && !this.rules.getRules().isEmpty()) {
-							System.out.println("The boid follows a flock"); // DEBUG
 							if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
 								sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
-								System.out.println("After ALIGNMENT: " + sumVector.toString()); // DEBUG
 							}
 							if (this.rules.getRules().contains(RuleImpl.COHESION)) {
 								sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
-								System.out.println("After COHESION: " + sumVector.toString()); // DEBUG
 							}
 							if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
 								sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
-								System.out.println("After SEPARATION: " + sumVector.toString()); // DEBUG
 							}
 						} else {
 							/*
@@ -238,7 +223,6 @@ public final class EnvironmentImpl implements Environment {
 							 * and it feels more "real"
 							 */
 							// We create a circle at the right distance
-							System.out.println("The boid is wandering"); // DEBUG
 							final Vector circleOrigin = new Vector(boid.getSpeed().getX(), boid.getSpeed().getY());
 							circleOrigin.norm();
 							circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
@@ -260,7 +244,6 @@ public final class EnvironmentImpl implements Environment {
 							circleOrigin.add(boid.getPosition());
 							final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
 							desiredDirection.norm();
-							// CHECK THIS
 							desiredDirection.mul(boid.getAverageSpeed());
 							final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
 							steer.limitTo(BoidImpl.MAX_FORCE);
@@ -271,16 +254,10 @@ public final class EnvironmentImpl implements Environment {
 
 				// sumVector.mul(boid.getAverageSpeed());
 				// We add the combining movements to the boid position
-				System.out.println("sumVector: " + sumVector.toString()); // DEBUG
 				boid.getAcceleration().add(sumVector);
-				// boid.getAcceleration().limitTo(BoidImpl.MAX_FORCE);
-				System.out.println("ACC: " + boid.getAcceleration().toString()); // DEBUG
 				boid.getSpeed().add(boid.getAcceleration());
-				// boid.getSpeed().mul(boid.getAverageSpeed());
 				boid.getSpeed().limitTo(boid.getAverageSpeed());
-				System.out.println("SPD: " + boid.getSpeed().toString()); // DEBUG
 				boid.getPosition().add(boid.getSpeed());
-				System.out.println("POS: " + boid.getPosition().toString()); // DEBUG
 				// Acceleration must be reset to 0
 				boid.getAcceleration().mul(0.0);
 				this.checkBorders(boid);

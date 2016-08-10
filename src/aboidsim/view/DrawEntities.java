@@ -1,5 +1,6 @@
 package aboidsim.view;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -28,18 +29,20 @@ public class DrawEntities {
         DrawEntities.images = new ArrayList<>();
         for (final Pair<Integer, String> p : list) {
             if (p.getX().intValue() == 0) {
-                DrawEntities.images.add(DrawEntities.createEntity(DrawEntities.BOID_IMG + p.getY(),
-                        SimulationScreen.BOID_HEIGHT, SimulationScreen.BOID_HEIGHT));
+                DrawEntities.images
+                        .add(DrawEntities.createEntity(DrawEntities.class.getResourceAsStream("/boids/" + p.getY()),
+                                SimulationScreen.BOID_HEIGHT, SimulationScreen.BOID_HEIGHT));
             } else {
-                DrawEntities.images.add(DrawEntities.createEntity(DrawEntities.BOID_IMG + p.getY(),
-                        SimulationScreen.BOID_WIDTH, SimulationScreen.BOID_HEIGHT));
+                DrawEntities.images
+                        .add(DrawEntities.createEntity(DrawEntities.class.getResourceAsStream("/boids/" + p.getY()),
+                                SimulationScreen.BOID_WIDTH, SimulationScreen.BOID_HEIGHT));
             }
         }
     }
 
     /**
      *
-     * @param url
+     * @param inputStream
      *            url of the image to draw
      * @param width
      *            with of the image
@@ -47,8 +50,8 @@ public class DrawEntities {
      *            height of the image
      * @return
      */
-    private static ImageView createEntity(final String url, final double width, final double height) {
-        final ImageView boid = new ImageView(new Image(url, width, height, false, false));
+    private static ImageView createEntity(final InputStream inputStream, final double width, final double height) {
+        final ImageView boid = new ImageView(new Image(inputStream, width, height, false, false));
         return boid;
     }
 

@@ -1,10 +1,9 @@
 package aboidsim.view;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -28,9 +27,6 @@ public class PresentationWindow {
     private static final int HEIGHT = 600;
     private static final int WIDTH = 800;
     private static final String TEXT = System.getProperty("user.dir") + "/res/description.txt";
-    private static final String BACKGROUND_IMG = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
-            + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "images" + DrawEntities.SEP
-            + "simulationBackground.jpg";
 
     /**
      * constructor of the class. it creates a new window with the explanation of
@@ -44,8 +40,9 @@ public class PresentationWindow {
         stage.initModality(Modality.APPLICATION_MODAL);
         final StackPane layout = new StackPane();
 
-        final ImageView image = new ImageView(new Image(PresentationWindow.BACKGROUND_IMG, PresentationWindow.WIDTH,
-                PresentationWindow.HEIGHT, false, false));
+        final ImageView image = new ImageView(
+                new Image(this.getClass().getResourceAsStream("/images/simulationBackground.jpg"),
+                        PresentationWindow.WIDTH, PresentationWindow.HEIGHT, false, false));
         image.setOpacity(0.5);
 
         final VBox vbox = new VBox();
@@ -78,7 +75,8 @@ public class PresentationWindow {
      * @throws FileNotFoundException
      */
     String readFromFile() throws FileNotFoundException {
-        final BufferedReader br = new BufferedReader(new FileReader(new File(PresentationWindow.TEXT)));
+        final BufferedReader br = new BufferedReader(
+                new InputStreamReader(this.getClass().getResourceAsStream("/description.txt")));
         final StringBuffer text = new StringBuffer();
         String line;
         try {

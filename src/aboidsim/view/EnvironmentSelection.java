@@ -40,6 +40,7 @@ public class EnvironmentSelection extends VBox {
         });
 
         this.setPadding(new Insets(10));
+        this.setSpacing(5);
         this.getChildren().addAll(title, this.menu, load);
 
     }

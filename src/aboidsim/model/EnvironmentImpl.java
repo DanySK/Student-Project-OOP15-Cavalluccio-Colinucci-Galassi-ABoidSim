@@ -179,7 +179,8 @@ public final class EnvironmentImpl implements Environment {
 							 * (except the tree) in his radius. HE MAY WANT TO
 							 * CHANGE TARGET
 							 */
-							prey = closeOtherLevelBoids.stream().filter(b -> b.isNotTree()).findFirst();
+							prey = closeOtherLevelBoids.stream().filter(b -> b.isNotTree())
+									.filter(b -> b.getLevel() < boid.getLevel()).findFirst();
 						} else {
 							// This boid is an herbivore
 							prey = closeOtherLevelBoids.stream().filter(b -> !b.isNotTree()).findFirst();

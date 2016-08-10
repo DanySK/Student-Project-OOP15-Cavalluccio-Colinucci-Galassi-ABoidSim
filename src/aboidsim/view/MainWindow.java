@@ -58,7 +58,6 @@ public class MainWindow extends Application {
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
         totalLayout.setStyle("-fx-background-color: WHITE;");
         final Scene scene = new Scene(totalLayout);
-        // scene.getStylesheets().add("prova.css");
         stage.setScene(scene);
 
         // da modificare

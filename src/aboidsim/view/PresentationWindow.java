@@ -44,9 +44,8 @@ public class PresentationWindow {
         stage.initModality(Modality.APPLICATION_MODAL);
         final StackPane layout = new StackPane();
 
-        final Image img = new Image(PresentationWindow.BACKGROUND_IMG, PresentationWindow.WIDTH,
-                PresentationWindow.HEIGHT, false, false);
-        final ImageView image = new ImageView(img);
+        final ImageView image = new ImageView(new Image(PresentationWindow.BACKGROUND_IMG, PresentationWindow.WIDTH,
+                PresentationWindow.HEIGHT, false, false));
         image.setOpacity(0.5);
 
         final VBox vbox = new VBox();
@@ -69,9 +68,7 @@ public class PresentationWindow {
         vbox.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(image, vbox);
 
-        final Scene scene = new Scene(layout, PresentationWindow.WIDTH, PresentationWindow.HEIGHT);
-        scene.getStylesheets().add("style.css");
-        stage.setScene(scene);
+        stage.setScene(new Scene(layout, PresentationWindow.WIDTH, PresentationWindow.HEIGHT));
         stage.showAndWait();
     }
 

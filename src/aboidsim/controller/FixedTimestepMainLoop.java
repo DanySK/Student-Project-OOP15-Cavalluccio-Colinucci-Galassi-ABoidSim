@@ -69,7 +69,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 		// The following flag controls how many times we have to check the
 		// flocks
 		int checkFlockFlag = 0;
-		while (this.getStatus().equals(LoopStatus.RUNNING)) {
+		while (!this.getStatus().equals(LoopStatus.KILLED)) {
 			final long lastTime = System.currentTimeMillis();
 			inputResolver.resolveInputList(this.view.getInputs());
 			// This thread will be used to speed up the application
@@ -81,12 +81,14 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				}
 			};
 			viewThread.start();
-			if (checkFlockFlag % 3 == 0) {
-				this.model.getSimulation().checkBoidSameLevel();
-				this.model.getSimulation().checkBoidOtherLevel();
+			if (this.getStatus().equals(LoopStatus.RUNNING)) {
+				if (checkFlockFlag % 3 == 0) {
+					this.model.getSimulation().checkBoidSameLevel();
+					this.model.getSimulation().checkBoidOtherLevel();
+				}
+				this.model.getSimulation().updateEnvironment();
+				checkFlockFlag++;
 			}
-			this.model.getSimulation().updateEnvironment();
-			checkFlockFlag++;
 			try {
 				viewThread.join();
 			} catch (final InterruptedException e) {
@@ -110,7 +112,22 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 
 	@Override
 	public void abortLoop() {
+		this.setStatus(LoopStatus.KILLED);
 		this.controller.close();
+	}
+
+	@Override
+	public void pauseLoop() {
+		if (this.getStatus().equals(LoopStatus.RUNNING)) {
+			this.setStatus(LoopStatus.PAUSED);
+		}
+	}
+
+	@Override
+	public void resumeLoop() {
+		if (this.getStatus().equals(LoopStatus.PAUSED)) {
+			this.setStatus(LoopStatus.RUNNING);
+		}
 	}
 
 }

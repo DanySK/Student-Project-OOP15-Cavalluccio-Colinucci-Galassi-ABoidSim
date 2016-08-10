@@ -11,7 +11,7 @@ abstract class AbstractMainLoop extends Thread {
 	 */
 	enum LoopStatus {
 
-		RUNNING, PAUSED;
+		RUNNING, PAUSED, KILLED;
 	}
 
 	private LoopStatus status;

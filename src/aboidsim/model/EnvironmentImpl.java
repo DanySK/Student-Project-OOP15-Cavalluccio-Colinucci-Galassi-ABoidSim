@@ -290,10 +290,8 @@ public final class EnvironmentImpl implements Environment {
 				this.checkBorders(boid);
 			}
 		}
-
 		// Dead boids will be removed
 		this.environment.removeAll(toRemove);
-
 	}
 
 	/**

@@ -1,5 +1,7 @@
 package aboidsim.controller;
 
+import java.util.ConcurrentModificationException;
+
 import aboidsim.model.Model;
 import aboidsim.util.Input;
 import aboidsim.view.View;
@@ -83,8 +85,15 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			final Thread viewThread = new Thread() {
 				@Override
 				public void run() {
-					FixedTimestepMainLoop.this.view
-							.drawEntities(FixedTimestepMainLoop.this.model.getSimulation().getSimulationComponents());
+					try {
+						FixedTimestepMainLoop.this.view.drawEntities(
+								FixedTimestepMainLoop.this.model.getSimulation().getSimulationComponents());
+					} catch (final ConcurrentModificationException e) {
+						/*
+						 * The exception is caused by the fact that the
+						 * checkNearBoids() method is not called every frame
+						 */
+					}
 				}
 			};
 			viewThread.start();

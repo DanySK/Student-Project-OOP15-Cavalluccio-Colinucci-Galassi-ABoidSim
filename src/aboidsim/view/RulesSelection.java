@@ -43,6 +43,12 @@ public class RulesSelection extends VBox {
 
     }
 
+    /**
+     * adds a new input info to the list of rules in InputHandler.
+     *
+     * @param rule
+     *            number of the rule selected
+     */
     void addInput(final Integer rule) {
         InputHandler.getInputHandler().addInput(new InputInfo(Input.TOGGLE_RULE, rule));
     }

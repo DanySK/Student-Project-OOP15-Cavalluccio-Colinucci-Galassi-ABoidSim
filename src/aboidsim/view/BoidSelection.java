@@ -85,7 +85,7 @@ public class BoidSelection extends GridPane {
     /**
      *
      * @param list
-     *            of elements (es boids) to insert in the choisebox
+     *            of elements (es. boids) to insert in the choisebox
      */
     private void insertElements(final List<String> elem) {
         this.box.setValue(elem.get(0));

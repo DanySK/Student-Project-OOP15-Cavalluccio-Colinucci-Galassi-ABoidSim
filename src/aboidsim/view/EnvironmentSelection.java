@@ -22,6 +22,12 @@ public class EnvironmentSelection extends VBox {
     private final ComboBox<String> menu;
     private Optional<String> selectedEnv;
 
+    /**
+     * constructor of the class.
+     * 
+     * @param envs
+     *            list of the names of the environments
+     */
     EnvironmentSelection(final List<String> envs) {
 
         EnvironmentSelection.envList = envs;
@@ -44,6 +50,12 @@ public class EnvironmentSelection extends VBox {
 
     }
 
+    /**
+     * add the environment inputInfo to the list of input in InputHandler.
+     * 
+     * @param env
+     *            number of the environment selected
+     */
     void addInput(final int env) {
         InputHandler.getInputHandler().addInput(new InputInfo(Input.LOAD_ENV, env));
     }

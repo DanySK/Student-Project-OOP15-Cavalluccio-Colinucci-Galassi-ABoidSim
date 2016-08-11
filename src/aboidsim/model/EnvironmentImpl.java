@@ -43,29 +43,12 @@ public final class EnvironmentImpl implements Environment {
 
 	@Override
 	public void destroyBoid(final Vector pos) {
-		final Optional<Boid> b = this.environment.stream()
+		final Optional<Boid> b = this.environment.parallelStream()
 				.filter(boid -> boid.getPosition().dist(pos) < EnvironmentImpl.COLLISION_RADIUS).findFirst();
 		if (b.isPresent()) {
 			this.environment.remove(b.get());
 		}
 	}
-
-	// @Override
-	// public void checkBoidSameLevel() {
-	// for (final Boid boid : this.environment) {
-	// if (boid.isNotTree()) {
-	// boid.getSameLevelNearBoids().clear();
-	// boid.getSameLevelNearBoids()
-	// .addAll(this.environment.parallelStream().filter(b -> boid.getLevel() ==
-	// b.getLevel())
-	// .filter(bo -> !bo.equals(boid))
-	// .filter(boi -> boid.getPosition().dist(boi.getPosition()) <
-	// boid.getInfluenceRadius())
-	// .filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
-	// .limit(boid.getMaxMembers()).collect(Collectors.toSet()));
-	// }
-	// }
-	// }
 
 	@Override
 	public void checkNearBoids() {
@@ -89,19 +72,6 @@ public final class EnvironmentImpl implements Environment {
 					.collect(Collectors.toSet()));
 		});
 	}
-
-	// @Override
-	// public void checkBoidOtherLevel() {
-	// for (final Boid boid : this.environment) {
-	// boid.getOtherLevelNearBoids().clear();
-	// boid.getOtherLevelNearBoids()
-	// .addAll(this.environment.parallelStream().filter(b -> boid.getLevel() !=
-	// b.getLevel())
-	// .filter(bo -> boid.getPosition().dist(bo.getPosition()) <
-	// boid.getInfluenceRadius())
-	// .collect(Collectors.toSet()));
-	// }
-	// }
 
 	@Override
 	public void toggleRule(final int ruleId) {

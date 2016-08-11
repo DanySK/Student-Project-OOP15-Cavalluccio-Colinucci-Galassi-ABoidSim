@@ -38,7 +38,7 @@ public class RulesSelection extends VBox {
             });
         });
         this.boxes.stream().forEach(e -> e.setSelected(true));
-        final Text titolo = new Text("Seleziona regole da abilitare: ");
+        final Text titolo = new Text("SELECT RULES TO ENABLE: ");
         this.getChildren().add(titolo);
         this.getChildren().addAll(this.boxes);
 

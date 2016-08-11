@@ -38,7 +38,7 @@ public class BoidSelection extends GridPane {
     BoidSelection() {
         super();
         this.box = new ChoiceBox<>();
-        final Text title = new Text("Seleziona tipo di elemento da inserire");
+        final Text title = new Text("SELECT TYPE OF ELEMENT TO INSERT:");
         this.insertElements(BoidSelection.boidList);
 
         this.box.setOnAction(e -> BoidSelection.selectedItem = Optional.of(this.box.getValue()));
@@ -123,7 +123,7 @@ public class BoidSelection extends GridPane {
 
     /**
      * set the list of entities
-     * 
+     *
      * @param boidsList
      *            list of the name of the entities
      */

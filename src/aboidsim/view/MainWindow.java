@@ -49,7 +49,7 @@ public class MainWindow extends Application {
         selections.setSpacing(10);
 
         totalLayout.getChildren().addAll(boidsScreen, selections);
-        totalLayout.setStyle("-fx-background-color: BLACK;");
+        totalLayout.setStyle("-fx-background-color: DarkSlateGrey ;");
         final Scene scene = new Scene(totalLayout);
         stage.setScene(scene);
         stage.setOnCloseRequest(e -> {

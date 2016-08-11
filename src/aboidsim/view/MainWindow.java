@@ -3,7 +3,7 @@ package aboidsim.view;
 import aboidsim.util.Input;
 import aboidsim.util.InputInfo;
 import javafx.application.Application;
-import javafx.geometry.Orientation;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Separator;
@@ -28,15 +28,13 @@ public class MainWindow extends Application {
 
         this.mainStage = stage;
         this.mainStage.setTitle("BOIDS");
-
+        stage.sizeToScene();
         stage.setResizable(false);
-        final HBox totalLayout = new HBox(8);
+        final HBox totalLayout = new HBox();
         final SimulationScreen boidsScreen = new SimulationScreen();
         ViewImpl.setSimulationScreen(boidsScreen);
 
-        final Separator vSeparator = new Separator(Orientation.VERTICAL);
-
-        final VBox selections = new VBox(5);
+        final VBox selections = new VBox();
         final RulesSelection rulesSelection = new RulesSelection();
         final BoidSelection boidSelection = new BoidSelection();
         final EnvironmentSelection envSelection = new EnvironmentSelection();
@@ -46,10 +44,12 @@ public class MainWindow extends Application {
         final InfoBox infoBox = new InfoBox();
         selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
                 new Separator(), envSelection, new Separator(), pres);
-        // selections.getStylesheets().add("style.css");
+        selections.setStyle("-fx-background-color: WHITE;");
+        selections.setPadding(new Insets(10));
+        selections.setSpacing(10);
 
-        totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
-        totalLayout.setStyle("-fx-background-color: WHITE;");
+        totalLayout.getChildren().addAll(boidsScreen, selections);
+        totalLayout.setStyle("-fx-background-color: BLACK;");
         final Scene scene = new Scene(totalLayout);
         stage.setScene(scene);
         stage.setOnCloseRequest(e -> {

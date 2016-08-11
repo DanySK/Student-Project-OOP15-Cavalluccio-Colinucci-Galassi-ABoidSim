@@ -1,4 +1,17 @@
 
+#border-sim {
+	-fx-border-color: blue;
+	-fx-border-insets: 5;
+	-fx-border-width: 1;
+}
+
+
+.canvas {
+    -fx-background-color: antiquewhite, white ;
+    -fx-background-insets: 0, 20 ;
+    -fx-padding: 20 ;
+}
+
 .background {
     -fx-background-color: #1d1d1d;
 }
@@ -6,7 +19,7 @@
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-opacity: 0.6;
 }
 

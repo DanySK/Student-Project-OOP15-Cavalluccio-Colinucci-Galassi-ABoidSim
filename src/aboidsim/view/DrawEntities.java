@@ -20,11 +20,15 @@ public class DrawEntities {
 
     static final String SEP = System.getProperty("file.separator");
 
-    private static final String BOID_IMG = "file:" + DrawEntities.SEP + DrawEntities.SEP + DrawEntities.SEP
-            + System.getProperty("user.dir") + DrawEntities.SEP + "res" + DrawEntities.SEP + "boids" + DrawEntities.SEP;
-
     private static List<ImageView> images;
 
+    /**
+     * set the list of image view.
+     * 
+     * @param list
+     *            list of the level and the string representing the path of the
+     *            image of each type of entity
+     */
     static void setImages(final List<Pair<Integer, String>> list) {
         DrawEntities.images = new ArrayList<>();
         for (final Pair<Integer, String> p : list) {

@@ -35,10 +35,10 @@ public class ViewImpl implements View {
     @Override
     public void start(final List<String> boids, final List<String> rules,
             final List<Pair<Integer, String>> listForImages, final List<String> envs) {
-        MainWindow.setBoids(boids);
-        MainWindow.setRules(rules);
-        MainWindow.setEnvs(envs);
-        MainWindow.setImages(listForImages);
+        BoidSelection.setBoids(boids);
+        RulesSelection.setRules(rules);
+        EnvironmentSelection.setEnvs(envs);
+        DrawEntities.setImages(listForImages);
         Application.launch(MainWindow.class);
 
     }

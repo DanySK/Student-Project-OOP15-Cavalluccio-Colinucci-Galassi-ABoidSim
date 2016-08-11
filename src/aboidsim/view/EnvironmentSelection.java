@@ -1,7 +1,6 @@
 package aboidsim.view;
 
 import java.util.List;
-import java.util.Optional;
 
 import aboidsim.util.Input;
 import aboidsim.util.InputInfo;
@@ -20,31 +19,35 @@ public class EnvironmentSelection extends VBox {
 
     private static List<String> envList;
     private final ComboBox<String> menu;
-    private Optional<String> selectedEnv;
+    private String selectedEnv;
 
     /**
      * constructor of the class.
-     * 
+     *
      * @param envs
      *            list of the names of the environments
      */
-    EnvironmentSelection(final List<String> envs) {
+    EnvironmentSelection() {
 
-        EnvironmentSelection.envList = envs;
         final Label title = new Label("CONFIGURATION SELECTION");
         final Button load = new Button("Load");
         this.menu = new ComboBox<>();
         this.menu.setPromptText("Select the config to load");
         EnvironmentSelection.envList.forEach(e -> this.menu.getItems().add(e));
 
-        this.menu.setOnAction(e -> this.selectedEnv = Optional.ofNullable(this.menu.getValue()));
-
-        load.setOnAction(e -> {
-            if (this.selectedEnv.isPresent()) {
-                this.addInput(EnvironmentSelection.envList.indexOf(this.selectedEnv.get()));
+        this.menu.setOnAction(e -> {
+            if (this.menu.getValue() != null) {
+                this.selectedEnv = this.menu.getValue();
             }
         });
 
+        load.setOnAction(e -> {
+            if (this.selectedEnv != null) {
+                this.addInput(EnvironmentSelection.envList.indexOf(this.selectedEnv));
+            }
+        });
+
+        this.setSpacing(10);
         this.setPadding(new Insets(10));
         this.getChildren().addAll(title, this.menu, load);
 
@@ -52,12 +55,22 @@ public class EnvironmentSelection extends VBox {
 
     /**
      * add the environment inputInfo to the list of input in InputHandler.
-     * 
+     *
      * @param env
      *            number of the environment selected
      */
     void addInput(final int env) {
         InputHandler.getInputHandler().addInput(new InputInfo(Input.LOAD_ENV, env));
+    }
+
+    /**
+     * set the list of environments
+     * 
+     * @param env
+     *            list of the environment names
+     */
+    static void setEnvs(final List<String> env) {
+        EnvironmentSelection.envList = env;
     }
 
 }

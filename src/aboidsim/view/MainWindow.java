@@ -1,8 +1,7 @@
 package aboidsim.view;
 
-import java.util.List;
-
-import aboidsim.util.Pair;
+import aboidsim.util.Input;
+import aboidsim.util.InputInfo;
 import javafx.application.Application;
 import javafx.geometry.Orientation;
 import javafx.scene.Scene;
@@ -20,10 +19,6 @@ import javafx.stage.Stage;
 public class MainWindow extends Application {
 
     private Stage mainStage = new Stage();
-    private static List<String> boids;
-    private static List<String> rules;
-    private static List<String> envs;
-    private static List<Pair<Integer, String>> list;
 
     /**
      *
@@ -34,8 +29,6 @@ public class MainWindow extends Application {
         this.mainStage = stage;
         this.mainStage.setTitle("BOIDS");
 
-        DrawEntities.setImages(MainWindow.list);
-
         stage.setResizable(false);
         final HBox totalLayout = new HBox(8);
         final SimulationScreen boidsScreen = new SimulationScreen();
@@ -44,48 +37,31 @@ public class MainWindow extends Application {
         final Separator vSeparator = new Separator(Orientation.VERTICAL);
 
         final VBox selections = new VBox(5);
-        final RulesSelection rulesSelection = new RulesSelection(MainWindow.rules);
-        final BoidSelection boidSelection = new BoidSelection(MainWindow.boids);
-        final EnvironmentSelection envSelection = new EnvironmentSelection(MainWindow.envs);
+        final RulesSelection rulesSelection = new RulesSelection();
+        final BoidSelection boidSelection = new BoidSelection();
+        final EnvironmentSelection envSelection = new EnvironmentSelection();
         final Button pres = new Button("Show Presentation");
         pres.setOnAction(e -> new PresentationWindow());
 
         final InfoBox infoBox = new InfoBox();
         selections.getChildren().addAll(rulesSelection, new Separator(), boidSelection, new Separator(), infoBox,
                 new Separator(), envSelection, new Separator(), pres);
-        // selections.getStylesheets().add("aboidsim/view/prova.css");
+        // selections.getStylesheets().add("style.css");
 
         totalLayout.getChildren().addAll(boidsScreen, vSeparator, selections);
         totalLayout.setStyle("-fx-background-color: WHITE;");
         final Scene scene = new Scene(totalLayout);
         stage.setScene(scene);
-
-        // da modificare
         stage.setOnCloseRequest(e -> {
-            // ViewImpl.getController().close();
-            System.exit(0);
+            e.consume();
+            InputHandler.getInputHandler().addInput(new InputInfo(Input.CLOSE));
+
         });
 
         new PresentationWindow();
 
         stage.show();
 
-    }
-
-    static void setBoids(final List<String> boidsList) {
-        MainWindow.boids = boidsList;
-    }
-
-    static void setRules(final List<String> rulesList) {
-        MainWindow.rules = rulesList;
-    }
-
-    static void setEnvs(final List<String> envsList) {
-        MainWindow.envs = envsList;
-    }
-
-    static void setImages(final List<Pair<Integer, String>> l) {
-        MainWindow.list = l;
     }
 
 }

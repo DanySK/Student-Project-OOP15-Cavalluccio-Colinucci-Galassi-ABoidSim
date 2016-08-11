@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -26,7 +27,6 @@ public class PresentationWindow {
 
     private static final int HEIGHT = 600;
     private static final int WIDTH = 800;
-    private static final String TEXT = System.getProperty("user.dir") + "/res/description.txt";
 
     /**
      * constructor of the class. it creates a new window with the explanation of
@@ -61,7 +61,7 @@ public class PresentationWindow {
         confirm.setOnAction(e -> stage.close());
 
         vbox.getChildren().addAll(scrollPane, confirm);
-        vbox.setSpacing(5);
+        vbox.setSpacing(10);
         vbox.setAlignment(Pos.CENTER);
         layout.getChildren().addAll(image, vbox);
 
@@ -75,8 +75,8 @@ public class PresentationWindow {
      * @throws FileNotFoundException
      */
     String readFromFile() throws FileNotFoundException {
-        final BufferedReader br = new BufferedReader(
-                new InputStreamReader(this.getClass().getResourceAsStream("/description.txt")));
+        final BufferedReader br = new BufferedReader(new InputStreamReader(
+                this.getClass().getResourceAsStream("/description.txt"), Charset.forName("UTF-8")));
         final StringBuffer text = new StringBuffer();
         String line;
         try {
@@ -85,7 +85,12 @@ public class PresentationWindow {
                 text.append(System.getProperty("line.separator"));
             }
         } catch (final IOException e) {
-            e.printStackTrace();
+            System.out.println("error in reading new line");
+        }
+        try {
+            br.close();
+        } catch (final IOException e) {
+            System.out.println("error in closing buffered reader");
         }
         return text.toString();
     }

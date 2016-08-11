@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
  */
 public class RulesSelection extends VBox {
 
-    private final List<String> rules;
+    private static List<String> rules;
     private final List<CheckBox> boxes = new ArrayList<>();
 
     /**
@@ -24,11 +24,11 @@ public class RulesSelection extends VBox {
      * @param rules
      *            list of the rules
      */
-    RulesSelection(final List<String> theRules) {
+    RulesSelection() {
         super();
         this.setPadding(new Insets(10));
-        this.rules = theRules;
-        this.rules.stream().forEach(e -> {
+
+        RulesSelection.rules.stream().forEach(e -> {
             final CheckBox c = new CheckBox(e);
             this.boxes.add(c);
             c.setOnAction(r -> {
@@ -51,6 +51,16 @@ public class RulesSelection extends VBox {
      */
     void addInput(final Integer rule) {
         InputHandler.getInputHandler().addInput(new InputInfo(Input.TOGGLE_RULE, rule));
+    }
+
+    /**
+     * set the list of rules
+     * 
+     * @param rulesList
+     *            list of the rule names
+     */
+    static void setRules(final List<String> rulesList) {
+        RulesSelection.rules = rulesList;
     }
 
 }

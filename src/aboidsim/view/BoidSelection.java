@@ -35,12 +35,11 @@ public class BoidSelection extends GridPane {
      * @param elements
      *            the list of the rules's names
      */
-    BoidSelection(final List<String> elements) {
+    BoidSelection() {
         super();
-        BoidSelection.boidList = elements;
         this.box = new ChoiceBox<>();
         final Text title = new Text("Seleziona tipo di elemento da inserire");
-        this.insertElements(elements);
+        this.insertElements(BoidSelection.boidList);
 
         this.box.setOnAction(e -> BoidSelection.selectedItem = Optional.of(this.box.getValue()));
 
@@ -120,6 +119,16 @@ public class BoidSelection extends GridPane {
         } else {
             return new InputInfo(Input.DESTROY_BOID, v);
         }
+    }
+
+    /**
+     * set the list of entities
+     * 
+     * @param boidsList
+     *            list of the name of the entities
+     */
+    static void setBoids(final List<String> boidsList) {
+        BoidSelection.boidList = boidsList;
     }
 
 }

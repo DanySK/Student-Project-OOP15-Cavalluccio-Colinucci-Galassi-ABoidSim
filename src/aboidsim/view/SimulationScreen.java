@@ -44,7 +44,6 @@ public class SimulationScreen extends Group {
         // print the coordinates of the clicked point and calls addInputs method
         // passing scene's coordinates
         canvas.setOnMouseClicked(e -> {
-            System.out.println("x: " + e.getSceneX() + " y:  " + e.getSceneY());
             this.addInputs(new Vector(e.getSceneX(), e.getSceneY()));
         });
 

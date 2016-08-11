@@ -90,8 +90,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			viewThread.start();
 			if (this.getStatus().equals(LoopStatus.RUNNING)) {
 				if (checkFlockFlag % 3 == 0) {
-					this.model.getSimulation().checkBoidSameLevel();
-					this.model.getSimulation().checkBoidOtherLevel();
+					this.model.getSimulation().checkNearBoids();
 				}
 				this.model.getSimulation().updateEnvironment();
 				checkFlockFlag++;

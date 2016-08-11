@@ -50,61 +50,59 @@ public final class EnvironmentImpl implements Environment {
 		}
 	}
 
-//	@Override
-//	public void checkBoidSameLevel() {
-//		for (final Boid boid : this.environment) {
-//			if (boid.isNotTree()) {
-//				boid.getSameLevelNearBoids().clear();
-//				boid.getSameLevelNearBoids()
-//						.addAll(this.environment.parallelStream().filter(b -> boid.getLevel() == b.getLevel())
-//								.filter(bo -> !bo.equals(boid))
-//								.filter(boi -> boid.getPosition().dist(boi.getPosition()) < boid.getInfluenceRadius())
-//								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
-//								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
-//			}
-//		}
-//	}
-	
+	// @Override
+	// public void checkBoidSameLevel() {
+	// for (final Boid boid : this.environment) {
+	// if (boid.isNotTree()) {
+	// boid.getSameLevelNearBoids().clear();
+	// boid.getSameLevelNearBoids()
+	// .addAll(this.environment.parallelStream().filter(b -> boid.getLevel() ==
+	// b.getLevel())
+	// .filter(bo -> !bo.equals(boid))
+	// .filter(boi -> boid.getPosition().dist(boi.getPosition()) <
+	// boid.getInfluenceRadius())
+	// .filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
+	// .limit(boid.getMaxMembers()).collect(Collectors.toSet()));
+	// }
+	// }
+	// }
+
 	@Override
 	public void checkNearBoids() {
 		this.environment.stream().forEach(boid -> {
-				
-				final Set<Boid> tempBoids = this.environment.parallelStream()
-						.filter(b -> !b.equals(boid))
-						.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
-						.collect(Collectors.toSet());
-				
-				boid.getSameLevelNearBoids().clear();
-				
-				if (boid.isNotTree()) {	
+
+			final Set<Boid> tempBoids = this.environment.parallelStream().filter(b -> !b.equals(boid))
+					.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
+					.collect(Collectors.toSet());
+
+			boid.getSameLevelNearBoids().clear();
+
+			if (boid.isNotTree()) {
 				boid.getSameLevelNearBoids()
-						.addAll(tempBoids.parallelStream()
-								.filter(b -> boid.getLevel() == b.getLevel())
+						.addAll(tempBoids.parallelStream().filter(b -> boid.getLevel() == b.getLevel())
 								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
 								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
-				}
-				
-				boid.getOtherLevelNearBoids().clear();
-				boid.getOtherLevelNearBoids()
-					.addAll(tempBoids.parallelStream()
-							.filter(b -> boid.getLevel() != b.getLevel())
-							.collect(Collectors.toSet()));
-		});	
+			}
+
+			boid.getOtherLevelNearBoids().clear();
+			boid.getOtherLevelNearBoids().addAll(tempBoids.parallelStream().filter(b -> boid.getLevel() != b.getLevel())
+					.collect(Collectors.toSet()));
+		});
 	}
 
+	// @Override
+	// public void checkBoidOtherLevel() {
+	// for (final Boid boid : this.environment) {
+	// boid.getOtherLevelNearBoids().clear();
+	// boid.getOtherLevelNearBoids()
+	// .addAll(this.environment.parallelStream().filter(b -> boid.getLevel() !=
+	// b.getLevel())
+	// .filter(bo -> boid.getPosition().dist(bo.getPosition()) <
+	// boid.getInfluenceRadius())
+	// .collect(Collectors.toSet()));
+	// }
+	// }
 
-//	@Override
-//	public void checkBoidOtherLevel() {
-//		for (final Boid boid : this.environment) {
-//			boid.getOtherLevelNearBoids().clear();
-//			boid.getOtherLevelNearBoids()
-//					.addAll(this.environment.parallelStream().filter(b -> boid.getLevel() != b.getLevel())
-//							.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
-//							.collect(Collectors.toSet()));
-//		}
-//	}
-
-	
 	@Override
 	public void toggleRule(final int ruleId) {
 		final RuleImpl rule = Arrays.stream(RuleImpl.values()).filter(r -> r.getID() == ruleId).findFirst().get();
@@ -177,7 +175,8 @@ public final class EnvironmentImpl implements Environment {
 						.collect(Collectors.toSet());
 			} else {
 				closePredators = closeOtherLevelBoids.stream().filter(pred -> pred.isHungry())
-						.filter(pred -> pred.getLevel() > 0 && pred.getLevel() <= Entities.HERBIVORE_L5.getId())
+						.filter(pred -> pred.getLevel() >= Entities.HERBIVORE_L1.getId()
+								&& pred.getLevel() <= Entities.HERBIVORE_L5.getId())
 						.collect(Collectors.toSet());
 			}
 			for (final Boid pred : closePredators) {
@@ -214,8 +213,8 @@ public final class EnvironmentImpl implements Environment {
 						}
 						if (prey.isPresent()) {
 							/*
-							 * If there is an available prey, we want to boid to
-							 * approach it
+							 * If there is an available prey, we want the boid
+							 * to approach it
 							 */
 							final Vector desiredDirection = Vector.sub(prey.get().getPosition(), boid.getPosition());
 							desiredDirection.norm();

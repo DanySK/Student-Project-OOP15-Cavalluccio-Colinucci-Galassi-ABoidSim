@@ -2,11 +2,14 @@ package aboidsim.view;
 
 import java.util.Set;
 
+import aboidsim.util.Input;
+import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
 import aboidsim.util.Vector;
 import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import javafx.scene.paint.Color;
 
 /**
@@ -20,6 +23,8 @@ public class SimulationScreen extends Group {
     static final int WIDTH = 600 + SimulationScreen.BOID_HEIGHT;
     private final DrawEntities drawEntities = new DrawEntities();
     private final GraphicsContext gc;
+    private static final String PAUSE = "PAUSE";
+    private static final String RESUME = "RESUME";
 
     /**
      * constructor.
@@ -42,6 +47,20 @@ public class SimulationScreen extends Group {
             System.out.println("x: " + e.getSceneX() + " y:  " + e.getSceneY());
             this.addInputs(new Vector(e.getSceneX(), e.getSceneY()));
         });
+
+        final Button playPause = new Button(SimulationScreen.PAUSE);
+        playPause.setOnAction(e -> {
+            if (playPause.getText().equals(SimulationScreen.PAUSE)) {
+                System.out.println("pause the simulation");
+                InputHandler.getInputHandler().addInput(new InputInfo(Input.PAUSE));
+                playPause.setText(SimulationScreen.RESUME);
+            } else {
+                System.out.println("resume the simulation");
+                InputHandler.getInputHandler().addInput(new InputInfo(Input.RESUME));
+                playPause.setText(SimulationScreen.PAUSE);
+            }
+        });
+        this.getChildren().add(playPause);
 
     }
 

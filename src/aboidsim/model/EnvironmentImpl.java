@@ -50,32 +50,61 @@ public final class EnvironmentImpl implements Environment {
 		}
 	}
 
+//	@Override
+//	public void checkBoidSameLevel() {
+//		for (final Boid boid : this.environment) {
+//			if (boid.isNotTree()) {
+//				boid.getSameLevelNearBoids().clear();
+//				boid.getSameLevelNearBoids()
+//						.addAll(this.environment.parallelStream().filter(b -> boid.getLevel() == b.getLevel())
+//								.filter(bo -> !bo.equals(boid))
+//								.filter(boi -> boid.getPosition().dist(boi.getPosition()) < boid.getInfluenceRadius())
+//								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
+//								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
+//			}
+//		}
+//	}
+	
 	@Override
-	public void checkBoidSameLevel() {
-		for (final Boid boid : this.environment) {
-			if (boid.isNotTree()) {
+	public void checkNearBoids() {
+		this.environment.stream().forEach(boid -> {
+				
+				final Set<Boid> tempBoids = this.environment.parallelStream()
+						.filter(b -> !b.equals(boid))
+						.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
+						.collect(Collectors.toSet());
+				
 				boid.getSameLevelNearBoids().clear();
+				
+				if (boid.isNotTree()) {	
 				boid.getSameLevelNearBoids()
-						.addAll(this.environment.stream().filter(b -> boid.getLevel() == b.getLevel())
-								.filter(bo -> !bo.equals(boid))
-								.filter(boi -> boid.getPosition().dist(boi.getPosition()) < boid.getInfluenceRadius())
+						.addAll(tempBoids.parallelStream()
+								.filter(b -> boid.getLevel() == b.getLevel())
 								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())
 								.limit(boid.getMaxMembers()).collect(Collectors.toSet()));
-			}
-		}
-	}
-
-	@Override
-	public void checkBoidOtherLevel() {
-		for (final Boid boid : this.environment) {
-			boid.getOtherLevelNearBoids().clear();
-			boid.getOtherLevelNearBoids()
-					.addAll(this.environment.stream().filter(b -> boid.getLevel() != b.getLevel())
-							.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
+				}
+				
+				boid.getOtherLevelNearBoids().clear();
+				boid.getOtherLevelNearBoids()
+					.addAll(tempBoids.parallelStream()
+							.filter(b -> boid.getLevel() != b.getLevel())
 							.collect(Collectors.toSet()));
-		}
+		});	
 	}
 
+
+//	@Override
+//	public void checkBoidOtherLevel() {
+//		for (final Boid boid : this.environment) {
+//			boid.getOtherLevelNearBoids().clear();
+//			boid.getOtherLevelNearBoids()
+//					.addAll(this.environment.parallelStream().filter(b -> boid.getLevel() != b.getLevel())
+//							.filter(bo -> boid.getPosition().dist(bo.getPosition()) < boid.getInfluenceRadius())
+//							.collect(Collectors.toSet()));
+//		}
+//	}
+
+	
 	@Override
 	public void toggleRule(final int ruleId) {
 		final RuleImpl rule = Arrays.stream(RuleImpl.values()).filter(r -> r.getID() == ruleId).findFirst().get();
@@ -94,7 +123,7 @@ public final class EnvironmentImpl implements Environment {
 
 	@Override
 	public Set<Pair<Pair<Vector, Double>, Integer>> getSimulationComponents() {
-		return this.environment.stream()
+		return this.environment.parallelStream()
 				.map(boid -> new Pair<>(new Pair<>(boid.getPosition(), boid.getRotationAngle()), boid.getLevel()))
 				.collect(Collectors.toSet());
 	}

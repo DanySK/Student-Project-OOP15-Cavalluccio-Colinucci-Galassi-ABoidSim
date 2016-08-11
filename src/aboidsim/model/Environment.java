@@ -30,15 +30,9 @@ public interface Environment {
     void destroyBoid(final Vector pos);
 
     /**
-     * Add all the closest boids to the "sameLevelNearBoids" field until max
-     * size (maxMembers).
+     * check all the near boids in influence radius.
      */
-    void checkBoidSameLevel();
-
-    /**
-     * Add all the closest boids to the "otherLevelNearBoids" field.
-     */
-    void checkBoidOtherLevel();
+    void checkNearBoids();
 
     /**
      * Rule management.

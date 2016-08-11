@@ -19,10 +19,10 @@ public class ViewImpl implements View {
 
     private static Controller controller;
     private static SimulationScreen simulationScreen;
-
+    
     @Override
     public void setController(final Controller control) {
-        ViewImpl.controller = control;
+        settingController(control);
     }
 
     @Override
@@ -57,17 +57,36 @@ public class ViewImpl implements View {
         return new Pair<>(SimulationScreen.WIDTH - SimulationScreen.BOID_HEIGHT,
                 SimulationScreen.HEIGHT - SimulationScreen.BOID_HEIGHT);
     }
+    
+    /**
+     * Set simulation screen.
+     * @param screen
+     */
 
     static void setSimulationScreen(final SimulationScreen screen) {
         ViewImpl.simulationScreen = screen;
     }
-
+    
+    /**
+     * 
+     * @return simulation screen
+     */
     static SimulationScreen getSimulationSceen() {
         return ViewImpl.simulationScreen;
     }
-
+    
+    /**
+     * @return the controller
+     */
     static Controller getController() {
         return ViewImpl.controller;
     }
-
+    
+    /**
+     * This method sets the controller
+     * @param control
+     */
+    static void settingController(final Controller control) {
+    	ViewImpl.controller = control;
+    }
 }

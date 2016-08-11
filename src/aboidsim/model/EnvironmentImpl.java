@@ -290,7 +290,7 @@ public final class EnvironmentImpl implements Environment {
 	 *
 	 * @return Collision radius of the environment.
 	 */
-	public static double getCollisionRadius() {
+	static double getCollisionRadius() {
 		return EnvironmentImpl.COLLISION_RADIUS;
 	}
 
@@ -298,7 +298,7 @@ public final class EnvironmentImpl implements Environment {
 	 *
 	 * @return simulation dimension.
 	 */
-	public static Pair<Integer, Integer> getSimulationDimension() {
+	static Pair<Integer, Integer> getSimulationDimension() {
 		return EnvironmentImpl.simulationDimension;
 	}
 }

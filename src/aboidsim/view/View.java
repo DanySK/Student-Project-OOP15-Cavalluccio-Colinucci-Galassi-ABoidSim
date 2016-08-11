@@ -57,5 +57,6 @@ public interface View {
      * @return width and height of the screen that displays the entities
      */
     Pair<Integer, Integer> getScreenDimensions();
-
+    
+    
 }

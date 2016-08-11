@@ -44,7 +44,8 @@ public final class EnvironmentImpl implements Environment {
 	@Override
 	public void destroyBoid(final Vector pos) {
 		final Optional<Boid> b = this.environment.stream()
-				.filter(boid -> boid.getPosition().dist(pos) < EnvironmentImpl.COLLISION_RADIUS).findFirst();
+				.filter(boid -> boid.getPosition().dist(pos) < EnvironmentImpl.COLLISION_RADIUS)
+				.findFirst();
 		if (b.isPresent()) {
 			this.environment.remove(b.get());
 		}
@@ -56,7 +57,8 @@ public final class EnvironmentImpl implements Environment {
 			if (boid.isNotTree()) {
 				boid.getSameLevelNearBoids().clear();
 				boid.getSameLevelNearBoids()
-						.addAll(this.environment.stream().filter(b -> boid.getLevel() == b.getLevel())
+						.addAll(this.environment.stream()
+								.filter(b -> boid.getLevel() == b.getLevel())
 								.filter(bo -> !bo.equals(boid))
 								.filter(boi -> boid.getPosition().dist(boi.getPosition()) < boid.getInfluenceRadius())
 								.filter(b -> b.getSameLevelNearBoids().size() < b.getMaxMembers())

@@ -21,6 +21,11 @@ interface Boid {
      * decrement life each loop iteration.
      */
     void decrementLife();
+    
+    /**
+     * decrement life when a boid is eaten.
+     */
+    void decrementLifeWhenEaten();
 
     /**
      *

@@ -103,6 +103,11 @@ class BoidImpl implements Boid {
 	}
 
 	@Override
+	public void decrementLifeWhenEaten() {
+		this.life = this.life - 10;
+	};
+	
+	@Override
 	public boolean isCollidingWith(final Boid boid) {
 		return this.position.dist(boid.getPosition()) < EnvironmentImpl.getCollisionRadius();
 	}

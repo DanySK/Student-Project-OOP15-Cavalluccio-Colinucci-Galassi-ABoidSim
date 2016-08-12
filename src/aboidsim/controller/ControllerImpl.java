@@ -60,7 +60,7 @@ public class ControllerImpl implements Controller {
 	}
 
 	@Override
-	public void start() {
+	public void startApp() {
 		this.model.getSimulation().setScreenDimension(this.view.getScreenDimensions());
 		this.mainLoop.start();
 		this.view.start(this.model.getEntitiesNames(), this.model.getRules(), this.model.getLevelAndImages(),

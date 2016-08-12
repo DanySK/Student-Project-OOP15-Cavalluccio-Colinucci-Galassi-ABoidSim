@@ -75,8 +75,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 			System.out.println("Sleep exception");
 			this.abortLoop();
 		}
-		// The following flag controls how many times we have to check the
-		// flocks
+		// This flag controls how many times we have to check the flocks
 		int checkFlockFlag = 0;
 		while (!this.getStatus().equals(LoopStatus.KILLED)) {
 			final long lastTime = System.currentTimeMillis();

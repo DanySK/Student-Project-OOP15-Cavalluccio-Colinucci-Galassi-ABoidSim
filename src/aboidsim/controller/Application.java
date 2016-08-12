@@ -22,7 +22,7 @@ public final class Application {
 		final View view = new ViewImpl();
 		final Controller controller = new ControllerImpl(model, view);
 		view.setController(controller);
-		controller.start();
+		controller.startApp();
 	}
 
 	private Application() {

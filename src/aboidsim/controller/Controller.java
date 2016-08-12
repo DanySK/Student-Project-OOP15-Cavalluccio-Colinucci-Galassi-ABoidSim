@@ -58,9 +58,9 @@ public interface Controller {
 	AbstractMainLoop getMainLoop();
 
 	/**
-	 * The method that starts the loop.
+	 * The method that starts the application.
 	 */
-	void start();
+	void startApp();
 
 	/**
 	 * The method that stops the loop and closes the application.

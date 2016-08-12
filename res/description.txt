@@ -28,6 +28,8 @@ There are four basic rules that controls this behaviour:
 	A boid tries to keep a certain distance from the other boids. It's the opposite of Cohesion
 - Evasion
 	A boid tries to evade from a predator. It's the same of Separation but focused on a single target.
+	
+A boid which is not in a flock is "wandering": its movement is random yet believable.
 
 --- FEATURES ---
 
@@ -38,5 +40,7 @@ The user is also able to create or destroy a boid of any level/type as he wishes
 The application also provides some "default environments" to try out.
 These simulations were created from scratch and can be loaded at any time.
 Beware that loading an environment will wipe out the current simulation.
+
+A pause button has been added to allow a more precise usage of the previously described features.
 
 Finally, information about the current simulation are shown on the right panel.

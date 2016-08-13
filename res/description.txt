@@ -3,7 +3,7 @@ Welcome to ABoidSim, an interactive simulation of a prey-predator system with fl
 --- DESCRIPTION ---
 
 A "boid" is an autonomous entity that models a living creature which tries to survive in an environment full of other species.
-Any boid owns life and hunger meters and tries to keep himself alive by eating other boids.
+Any boid owns life and hunger meters, moves at a certain speed and tries to keep itself alive by eating other boids.
 
 There are three types of boids:
 - Tree: Level 0

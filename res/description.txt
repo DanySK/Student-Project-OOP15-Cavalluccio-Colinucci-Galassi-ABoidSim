@@ -33,7 +33,7 @@ A boid which is not in a flock is "wandering": its movement is random yet believ
 
 --- FEATURES ---
 
-The rules can be combined in different ways and can be toggled whenever the user wants to allow different simulations.
+The rules can be combined in different ways and can be toggled whenever the user wants to allow different behaviours.
 
 The user is also able to create or destroy a boid of any level/type as he wishes.
 

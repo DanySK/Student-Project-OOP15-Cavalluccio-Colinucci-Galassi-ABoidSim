@@ -106,7 +106,7 @@ class BoidImpl implements Boid {
 	public void decrementLifeWhenEaten() {
 		this.life = this.life - 10;
 	};
-	
+
 	@Override
 	public boolean isCollidingWith(final Boid boid) {
 		return this.position.dist(boid.getPosition()) < EnvironmentImpl.getCollisionRadius();
@@ -183,6 +183,10 @@ class BoidImpl implements Boid {
 
 	@Override
 	public double getRotationAngle() {
+		/*
+		 * The value returned by atan2 must be fixed by adding a 90° clockwise
+		 * angle (PI/2 in radians)
+		 */
 		return java.lang.Math.toDegrees(java.lang.Math.atan2(this.speed.getY(), this.speed.getX()) + Math.PI / 2);
 	}
 

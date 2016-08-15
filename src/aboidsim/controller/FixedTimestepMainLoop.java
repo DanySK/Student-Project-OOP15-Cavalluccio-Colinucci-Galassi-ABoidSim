@@ -33,7 +33,7 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	FixedTimestepMainLoop(final Model m, final View v, final Controller c, final long desiredFps) {
 		super(desiredFps);
 		this.msPerFrame = 1000 / this.getFPS();
-		System.out.println(this.msPerFrame + " " + this.getFPS());
+		System.out.println(this.msPerFrame + " " + this.getFPS()); // DEBUG
 		this.model = m;
 		this.controller = c;
 		this.view = v;
@@ -43,32 +43,32 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	public void run() {
 		final InputResolver inputResolver = i -> {
 			if (i.getInput().equals(Input.CREATE_BOID)) {
-				System.out.println("A boid has been created");
+				System.out.println("A boid has been created"); // DEBUG
 				FixedTimestepMainLoop.this.model.getSimulation().createBoid(i.getPosition(), i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.DESTROY_BOID)) {
-				System.out.println("A boid has been destroyed");
+				System.out.println("A boid has been destroyed"); // DEBUG
 				FixedTimestepMainLoop.this.model.getSimulation().destroyBoid(i.getPosition());
 			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
-				System.out.println("A rule has been changed");
+				System.out.println("A rule has been changed"); // DEBUG
 				FixedTimestepMainLoop.this.model.getSimulation().toggleRule(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.LOAD_ENV)) {
-				System.out.println("A default environment has been loaded");
+				System.out.println("A default environment has been loaded"); // DEBUG
 				FixedTimestepMainLoop.this.model.getSimulation().loadDefaultEnvironment(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.PAUSE)) {
-				System.out.println("The application has been paused");
+				System.out.println("The application has been paused"); // DEBUG
 				FixedTimestepMainLoop.this.pauseLoop();
 			} else if (i.getInput().equals(Input.RESUME)) {
-				System.out.println("The application has been resumed");
+				System.out.println("The application has been resumed"); // DEBUG
 				FixedTimestepMainLoop.this.resumeLoop();
 			} else if (i.getInput().equals(Input.CLOSE)) {
-				System.out.println("The application has been closed");
+				System.out.println("The application has been closed"); // DEBUG
 				FixedTimestepMainLoop.this.abortLoop();
 			}
 		};
 
 		final int wait = 3;
 		try {
-			System.out.println("Aspetto " + wait + " secondi per settare la view");
+			System.out.println("Aspetto " + wait + " secondi per settare la view"); // DEBUG
 			// We wait a couple of seconds
 			Thread.sleep(wait * 1000);
 		} catch (final InterruptedException e) {

@@ -114,7 +114,6 @@ public final class EnvironmentImpl implements Environment {
 	@Override
 	public void updateEnvironment() {
 		// The flock checking is done in the loop
-		// System.out.println("Chiamata all'update"); // DEBUG
 		/*
 		 * This set will prevent any ConcurrentModificationException
 		 */

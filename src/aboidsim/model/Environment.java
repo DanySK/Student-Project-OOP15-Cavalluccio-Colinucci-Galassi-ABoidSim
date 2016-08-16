@@ -46,7 +46,7 @@ public interface Environment {
      * 
      * @return active rules
      */
-    RuleSet getRules();
+    RuleSet getActiveRuleSet();
     
     /**
      * Set simulation dimension.

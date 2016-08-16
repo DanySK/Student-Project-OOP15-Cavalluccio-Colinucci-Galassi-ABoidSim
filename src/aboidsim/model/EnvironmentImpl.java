@@ -21,7 +21,7 @@ public final class EnvironmentImpl implements Environment {
 	private static final EnvironmentImpl ENVIRONMENT_IMPL = new EnvironmentImpl();
 	private Set<Boid> environment = new HashSet<>();
 	private static final double COLLISION_RADIUS = 30.0; // DEBUG
-	private final RuleSet rules = new RuleSet();
+	private final RuleSet activeRuleSet = new RuleSet();
 	// Dimension will change when the application starts.
 	private static Pair<Integer, Integer> simulationDimension = new Pair<Integer, Integer>(0, 0);
 
@@ -76,16 +76,16 @@ public final class EnvironmentImpl implements Environment {
 	@Override
 	public void toggleRule(final int ruleId) {
 		final RuleImpl rule = Arrays.stream(RuleImpl.values()).filter(r -> r.getID() == ruleId).findFirst().get();
-		if (this.rules.getRules().contains(rule)) {
-			this.rules.removeRule(rule);
+		if (this.activeRuleSet.getRules().contains(rule)) {
+			this.activeRuleSet.removeRule(rule);
 		} else {
-			this.rules.addRule(rule);
+			this.activeRuleSet.addRule(rule);
 		}
 	}
 	
 	@Override
 	public RuleSet getRules() {
-		return this.rules;
+		return this.activeRuleSet;
 	}
 
 	@Override
@@ -165,7 +165,7 @@ public final class EnvironmentImpl implements Environment {
 			if (boid.isNotTree()) {
 				// If the boid is still alive
 				final Set<Boid> closeSameLevelBoids = boid.getSameLevelNearBoids();
-				if (!closePredators.isEmpty() && this.rules.getRules().contains(RuleImpl.EVASION)) {
+				if (!closePredators.isEmpty() && this.activeRuleSet.getRules().contains(RuleImpl.EVASION)) {
 					// Safety has the bigger priority
 					sumVector.add(RuleImpl.EVASION.apply(boid, closePredators));
 				} else {
@@ -207,14 +207,14 @@ public final class EnvironmentImpl implements Environment {
 						 * If there are some same level boids around and the
 						 * boid is not seeking food
 						 */
-						if (!closeSameLevelBoids.isEmpty() && !this.rules.getRules().isEmpty()) {
-							if (this.rules.getRules().contains(RuleImpl.ALIGNMENT)) {
+						if (!closeSameLevelBoids.isEmpty() && !this.activeRuleSet.getRules().isEmpty()) {
+							if (this.activeRuleSet.getRules().contains(RuleImpl.ALIGNMENT)) {
 								sumVector.add(RuleImpl.ALIGNMENT.apply(boid, closeSameLevelBoids));
 							}
-							if (this.rules.getRules().contains(RuleImpl.COHESION)) {
+							if (this.activeRuleSet.getRules().contains(RuleImpl.COHESION)) {
 								sumVector.add(RuleImpl.COHESION.apply(boid, closeSameLevelBoids));
 							}
-							if (this.rules.getRules().contains(RuleImpl.SEPARATION)) {
+							if (this.activeRuleSet.getRules().contains(RuleImpl.SEPARATION)) {
 								sumVector.add(RuleImpl.SEPARATION.apply(boid, closeSameLevelBoids));
 							}
 						} else {

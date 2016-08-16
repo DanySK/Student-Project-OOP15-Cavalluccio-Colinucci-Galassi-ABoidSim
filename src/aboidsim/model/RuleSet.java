@@ -9,7 +9,7 @@ import aboidsim.util.Vector;
  * Container class that represent a set of Rule implementation.
  *
  */
-class RuleSet {
+public class RuleSet {
 
 	private final Set<RuleImpl> rules;
 

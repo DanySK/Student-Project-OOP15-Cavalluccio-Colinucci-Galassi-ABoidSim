@@ -11,7 +11,7 @@ import aboidsim.util.Vector;
  * Each rule describes a different behavior.
  *
  */
-enum RuleImpl implements Rule {
+public enum RuleImpl implements Rule {
 	/**
 	 * Cohesion. This rule keep the boids of the same group close to each other.
 	 */

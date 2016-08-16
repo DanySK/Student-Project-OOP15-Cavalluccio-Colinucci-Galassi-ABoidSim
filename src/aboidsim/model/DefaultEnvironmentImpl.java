@@ -94,7 +94,7 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 			environment.add(new BoidImpl(center, Entities.TREE_L0.getId()));
 			
 			
-			/********************+ Insert Boids ***********************************/
+			/******************** Insert Boids ***********************************/
 			
 			IntStream.range(Entities.TREE_L0.getId(), Entities.HERBIVORE_L3.getId()).forEach(x -> {
 				IntStream.range(Entities.HERBIVORE_L1.getId(), Entities.HERBIVORE_L5.getId() + 1).forEach(i -> {

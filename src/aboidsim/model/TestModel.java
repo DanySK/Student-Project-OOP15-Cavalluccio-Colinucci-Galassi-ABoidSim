@@ -14,7 +14,7 @@ import aboidsim.util.Vector;
  * This is a testing class for the model.
  *
  */
-public class Testing {
+public class TestModel {
 
 	/**
 	 * This method test the behavior of the environment according to create and destroy method in EnvironmentImpl.
@@ -40,7 +40,7 @@ public class Testing {
 		
 		final Set<Integer> tempSet = environment.getSimulationComponents().stream()
 				.map(boid -> boid.getY()).collect(Collectors.toSet());
-			
+		
 		assertTrue(tempSet.contains(boid2.getLevel()));
 		assertTrue(tempSet.contains(boid3.getLevel()));
 		assertFalse(tempSet.contains(boid1.getLevel()));

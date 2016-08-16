@@ -84,7 +84,7 @@ public final class EnvironmentImpl implements Environment {
 	}
 	
 	@Override
-	public RuleSet getRules() {
+	public RuleSet getActiveRuleSet() {
 		return this.activeRuleSet;
 	}
 

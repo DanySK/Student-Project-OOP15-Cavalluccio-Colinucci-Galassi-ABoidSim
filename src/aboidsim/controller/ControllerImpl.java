@@ -63,7 +63,7 @@ public class ControllerImpl implements Controller {
 	public void startApp() {
 		this.model.getSimulation().setScreenDimension(this.view.getScreenDimensions());
 		this.mainLoop.start();
-		this.view.start(this.model.getEntitiesNames(), this.model.getRules(), this.model.getLevelAndImages(),
+		this.view.start(this.model.getEntitiesNames(), this.model.getRulesNames(), this.model.getLevelAndImages(),
 				this.model.getAllEnvironmentsNames());
 	}
 

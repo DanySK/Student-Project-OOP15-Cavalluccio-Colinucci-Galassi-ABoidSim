@@ -27,7 +27,7 @@ public class ModelImpl implements Model {
 	}
 
 	@Override
-	public List<String> getRules() {
+	public List<String> getRulesNames() {
 		return Arrays.stream(RuleImpl.values()).map(r -> r.getName()).collect(Collectors.toList());
 	}
 

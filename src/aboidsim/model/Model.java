@@ -28,7 +28,7 @@ public interface Model {
      *
      * @return a list of active rules.
      */
-    List<String> getRules();
+    List<String> getRulesNames();
     
     /**
      * 

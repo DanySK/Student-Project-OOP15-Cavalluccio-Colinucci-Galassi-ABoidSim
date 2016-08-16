@@ -41,7 +41,13 @@ public interface Environment {
      *            id rule.
      */
     void toggleRule(final int ruleId);
-
+    
+    /**
+     * 
+     * @return active rules
+     */
+    RuleSet getRules();
+    
     /**
      * Set simulation dimension.
      *

@@ -82,6 +82,11 @@ public final class EnvironmentImpl implements Environment {
 			this.rules.addRule(rule);
 		}
 	}
+	
+	@Override
+	public RuleSet getRules() {
+		return this.rules;
+	}
 
 	@Override
 	public void setScreenDimension(final Pair<Integer, Integer> dimension) {

@@ -4,7 +4,6 @@ import java.util.List;
 
 import aboidsim.util.Input;
 import aboidsim.util.InputInfo;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -30,6 +29,7 @@ public class EnvironmentSelection extends VBox {
     EnvironmentSelection() {
 
         final Label title = new Label("CONFIGURATION SELECTION");
+        title.setId("title");
         final Button load = new Button("Load");
         this.menu = new ComboBox<>();
         this.menu.setPromptText("Select the config to load");
@@ -48,7 +48,6 @@ public class EnvironmentSelection extends VBox {
         });
 
         this.setSpacing(10);
-        this.setPadding(new Insets(10));
         this.getChildren().addAll(title, this.menu, load);
 
     }
@@ -65,7 +64,7 @@ public class EnvironmentSelection extends VBox {
 
     /**
      * set the list of environments
-     * 
+     *
      * @param env
      *            list of the environment names
      */

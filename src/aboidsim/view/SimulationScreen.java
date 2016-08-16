@@ -48,6 +48,7 @@ public class SimulationScreen extends Pane {
         });
 
         final Button playPause = new Button(SimulationScreen.PAUSE);
+        playPause.setId("pause-button");
         playPause.setOnAction(e -> {
             if (playPause.getText().equals(SimulationScreen.PAUSE)) {
                 System.out.println("pause the simulation");

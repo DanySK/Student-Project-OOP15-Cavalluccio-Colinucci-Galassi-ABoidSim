@@ -52,6 +52,7 @@ public class MainWindow extends Application {
 
         final Scene scene = new Scene(totalLayout);
         stage.setScene(scene);
+        scene.getStylesheets().add("style.css");
         stage.setOnCloseRequest(e -> {
             e.consume();
             InputHandler.getInputHandler().addInput(new InputInfo(Input.CLOSE));

@@ -12,8 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
@@ -40,11 +38,6 @@ public class PresentationWindow {
         stage.initModality(Modality.APPLICATION_MODAL);
         final StackPane layout = new StackPane();
 
-        final ImageView image = new ImageView(
-                new Image(this.getClass().getResourceAsStream("/images/simulationBackground.jpg"),
-                        PresentationWindow.WIDTH, PresentationWindow.HEIGHT, false, false));
-        image.setOpacity(0.5);
-
         final VBox vbox = new VBox();
         vbox.setPadding(new Insets(10));
 
@@ -55,7 +48,6 @@ public class PresentationWindow {
             e1.printStackTrace();
         }
         final ScrollPane scrollPane = new ScrollPane(text);
-        scrollPane.setStyle("-fx-background-color: transparent;");
 
         final Button confirm = new Button("Ok!");
         confirm.setOnAction(e -> stage.close());
@@ -63,9 +55,12 @@ public class PresentationWindow {
         vbox.getChildren().addAll(scrollPane, confirm);
         vbox.setSpacing(10);
         vbox.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(image, vbox);
+        layout.getChildren().addAll(vbox);
+        layout.setId("presentation");
 
-        stage.setScene(new Scene(layout, PresentationWindow.WIDTH, PresentationWindow.HEIGHT));
+        final Scene scene = new Scene(layout, PresentationWindow.WIDTH, PresentationWindow.HEIGHT);
+        scene.getStylesheets().add("style.css");
+        stage.setScene(scene);
         stage.showAndWait();
     }
 

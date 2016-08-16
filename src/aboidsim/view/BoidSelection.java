@@ -6,7 +6,6 @@ import java.util.Optional;
 import aboidsim.util.Input;
 import aboidsim.util.InputInfo;
 import aboidsim.util.Vector;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
@@ -39,10 +38,10 @@ public class BoidSelection extends GridPane {
         super();
         this.box = new ChoiceBox<>();
         final Text title = new Text("SELECT TYPE OF ELEMENT TO INSERT:");
+        title.setId("title");
         this.insertElements(BoidSelection.boidList);
 
         this.box.setOnAction(e -> BoidSelection.selectedItem = Optional.of(this.box.getValue()));
-
         final ToggleGroup toggleGroup = new ToggleGroup();
         this.create.setToggleGroup(toggleGroup);
         this.delete.setToggleGroup(toggleGroup);
@@ -62,9 +61,7 @@ public class BoidSelection extends GridPane {
         GridPane.setConstraints(this.create, 0, 1);
         GridPane.setConstraints(this.delete, 0, 2);
         GridPane.setConstraints(this.box, 1, 1);
-
         this.create.setSelected(true);
-
         this.create.setOnAction(e -> {
             if (this.create.isSelected()) {
                 this.create.setSelected(true);
@@ -73,10 +70,8 @@ public class BoidSelection extends GridPane {
         });
 
         this.setAlignment(Pos.CENTER);
-        this.setPadding(new Insets(8));
         this.setHgap(10);
         this.setVgap(10);
-
         this.getChildren().addAll(title, this.create, this.delete, this.box);
 
     }

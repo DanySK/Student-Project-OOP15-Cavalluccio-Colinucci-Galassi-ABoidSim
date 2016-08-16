@@ -2,7 +2,6 @@ package aboidsim.view;
 
 import java.util.List;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -13,7 +12,6 @@ import javafx.scene.layout.GridPane;
  */
 public class InfoBox extends GridPane {
 
-    private final Label title;
     private static Label numTotBoids = new Label("0");
     private static Label numHerbivores = new Label("0");
     private static Label numPredator = new Label("0");
@@ -22,15 +20,15 @@ public class InfoBox extends GridPane {
 
     InfoBox() {
         super();
-        this.setPadding(new Insets(10));
 
-        this.title = new Label("INFORMATION BOX");
+        final Label title = new Label("INFORMATION BOX");
+        title.setId("title");
         final Label totLabel = new Label("Total boids: ");
         final Label herbLabel = new Label("Total herbivores: ");
         final Label predLabel = new Label("Total predators: ");
         final Label treesLabel = new Label("Total trees: ");
 
-        GridPane.setConstraints(this.title, 0, 0, 2, 1);
+        GridPane.setConstraints(title, 0, 0, 2, 1);
         GridPane.setConstraints(totLabel, 0, 1);
         GridPane.setConstraints(herbLabel, 0, 2);
         GridPane.setConstraints(predLabel, 0, 3);
@@ -39,13 +37,19 @@ public class InfoBox extends GridPane {
         GridPane.setConstraints(InfoBox.numHerbivores, 1, 2);
         GridPane.setConstraints(InfoBox.numPredator, 1, 3);
         GridPane.setConstraints(InfoBox.numTrees, 1, 4);
-        this.title.setAlignment(Pos.CENTER);
+        title.setAlignment(Pos.CENTER);
 
-        this.getChildren().addAll(this.title, totLabel, herbLabel, predLabel, treesLabel, InfoBox.numTotBoids,
+        this.getChildren().addAll(title, totLabel, herbLabel, predLabel, treesLabel, InfoBox.numTotBoids,
                 InfoBox.numHerbivores, InfoBox.numPredator, InfoBox.numTrees);
 
     }
 
+    /**
+     * it updates the information of the labels
+     *
+     * @param levels
+     *            list containing the boids number for each level
+     */
     static void updateInfo(final List<Integer> levels) {
         int herb = 0;
         int tree = 0;

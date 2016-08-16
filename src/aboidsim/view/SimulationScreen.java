@@ -6,16 +6,16 @@ import aboidsim.util.Input;
 import aboidsim.util.InputInfo;
 import aboidsim.util.Pair;
 import aboidsim.util.Vector;
-import javafx.scene.Group;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 
 /**
  * section of the interface containing the moving boids.
  */
-public class SimulationScreen extends Group {
+public class SimulationScreen extends Pane {
 
     static final int BOID_HEIGHT = 20;
     static final int BOID_WIDTH = 10;
@@ -35,7 +35,7 @@ public class SimulationScreen extends Group {
         final Canvas canvas = new Canvas(SimulationScreen.WIDTH, SimulationScreen.HEIGHT);
 
         this.getChildren().add(canvas);
-
+        this.setStyle("-fx-background-color: DarkSlateGrey ;");
         this.gc = canvas.getGraphicsContext2D();
         this.gc.setFill(Color.RED);
         this.gc.setStroke(Color.BLACK);

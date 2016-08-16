@@ -27,7 +27,7 @@ public class MainWindow extends Application {
     public void start(final Stage stage) throws Exception {
 
         this.mainStage = stage;
-        this.mainStage.setTitle("BOIDS");
+        this.mainStage.setTitle("aBoidSim");
         stage.sizeToScene();
         stage.setResizable(false);
         final HBox totalLayout = new HBox();

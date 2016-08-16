@@ -34,7 +34,7 @@ public class PresentationWindow {
      */
     PresentationWindow() {
         final Stage stage = new Stage();
-        stage.setTitle("BOIDS PROGRAM DESCRIPTION");
+        stage.setTitle("aBoidSim Description");
         stage.initModality(Modality.APPLICATION_MODAL);
         final StackPane layout = new StackPane();
 

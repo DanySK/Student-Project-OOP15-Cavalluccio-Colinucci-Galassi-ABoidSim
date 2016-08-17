@@ -26,7 +26,7 @@ class BoidImpl implements Boid {
 	private final Set<Boid> otherLevelNearBoids;
 	private final Set<Boid> sameLevelNearBoids;
 
-	private static final int PREDATOR_HUNGER = 100;
+	private static final int PREDATOR_HUNGER = 150;
 	private static final int HERBIVORE_HUNGER = 50;
 
 	/**

@@ -15,7 +15,7 @@ import javafx.scene.paint.Color;
 /**
  * section of the interface containing the moving boids.
  */
-public class SimulationScreen extends Pane {
+class SimulationScreen extends Pane {
 
     static final int BOID_HEIGHT = 20;
     static final int BOID_WIDTH = 10;
@@ -29,7 +29,7 @@ public class SimulationScreen extends Pane {
     /**
      * constructor.
      */
-    public SimulationScreen() {
+    SimulationScreen() {
         super();
 
         final Canvas canvas = new Canvas(SimulationScreen.WIDTH, SimulationScreen.HEIGHT);

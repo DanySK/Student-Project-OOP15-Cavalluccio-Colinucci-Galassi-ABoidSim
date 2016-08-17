@@ -14,7 +14,7 @@ import javafx.scene.layout.VBox;
  * simulation.
  *
  */
-public class EnvironmentSelection extends VBox {
+class EnvironmentSelection extends VBox {
 
     private static List<String> envList;
     private final ComboBox<String> menu;

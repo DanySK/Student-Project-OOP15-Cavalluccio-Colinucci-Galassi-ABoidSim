@@ -9,7 +9,7 @@ import aboidsim.util.InputInfo;
  * it handles the input of the interface.
  *
  */
-public final class InputHandler {
+final class InputHandler {
 
     private static final InputHandler INPUTHANDLER = new InputHandler();
 
@@ -52,7 +52,7 @@ public final class InputHandler {
      * @param input
      *            InputInfo object
      */
-    public void addInput(final InputInfo input) {
+    void addInput(final InputInfo input) {
         this.inputs.add(input);
     }
 

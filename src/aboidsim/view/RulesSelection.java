@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
  * contains the checkbox for choose the rules to apply to the simulation.
  *
  */
-public class RulesSelection extends VBox {
+class RulesSelection extends VBox {
 
     private static List<String> rules;
     private final List<CheckBox> boxes = new ArrayList<>();

@@ -21,7 +21,7 @@ import javafx.stage.Stage;
  * class used to show information about the simulation.
  *
  */
-public class PresentationWindow {
+class PresentationWindow {
 
     private static final int HEIGHT = 600;
     private static final int WIDTH = 800;

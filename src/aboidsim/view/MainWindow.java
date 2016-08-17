@@ -16,7 +16,7 @@ import javafx.stage.Stage;
  * interface.
  *
  */
-public class MainWindow extends Application {
+class MainWindow extends Application {
 
     private Stage mainStage = new Stage();
 

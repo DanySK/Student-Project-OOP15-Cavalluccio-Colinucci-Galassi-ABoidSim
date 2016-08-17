@@ -16,7 +16,7 @@ import javafx.scene.image.ImageView;
  * class used to draw all the entities in the simulation screen.
  *
  */
-public class DrawEntities {
+class DrawEntities {
 
     static final String SEP = System.getProperty("file.separator");
 
@@ -24,7 +24,7 @@ public class DrawEntities {
 
     /**
      * set the list of image view.
-     * 
+     *
      * @param list
      *            list of the level and the string representing the path of the
      *            image of each type of entity

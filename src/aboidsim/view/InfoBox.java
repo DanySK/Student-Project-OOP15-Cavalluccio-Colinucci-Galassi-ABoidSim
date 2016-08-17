@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
  * part of the interface used to show some information about the simulation.
  *
  */
-public class InfoBox extends GridPane {
+class InfoBox extends GridPane {
 
     private static Label numTotBoids = new Label("0");
     private static Label numHerbivores = new Label("0");

@@ -39,6 +39,11 @@ class InfoBox extends GridPane {
         GridPane.setConstraints(InfoBox.numTrees, 1, 4);
         title.setAlignment(Pos.CENTER);
 
+        InfoBox.numHerbivores.setId("info-label");
+        InfoBox.numPredator.setId("info-label");
+        InfoBox.numTotBoids.setId("info-label");
+        InfoBox.numTrees.setId("info-label");
+
         this.getChildren().addAll(title, totLabel, herbLabel, predLabel, treesLabel, InfoBox.numTotBoids,
                 InfoBox.numHerbivores, InfoBox.numPredator, InfoBox.numTrees);
 

@@ -16,6 +16,10 @@
     -fx-padding: 8  15 8 15;
 }
 
+#info-label {
+	-fx-text-fill: red;
+}
+
 
 #title {
     -fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);

@@ -58,7 +58,7 @@ class EnvironmentSelection extends VBox {
      * @param env
      *            number of the environment selected
      */
-    void addInput(final int env) {
+    private void addInput(final int env) {
         InputHandler.getInputHandler().addInput(new InputInfo(Input.LOAD_ENV, env));
     }
 

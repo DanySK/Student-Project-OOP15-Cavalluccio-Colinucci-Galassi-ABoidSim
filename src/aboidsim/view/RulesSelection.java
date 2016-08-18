@@ -50,7 +50,7 @@ class RulesSelection extends VBox {
      * @param rule
      *            number of the rule selected
      */
-    void addInput(final Integer rule) {
+    private void addInput(final Integer rule) {
         InputHandler.getInputHandler().addInput(new InputInfo(Input.TOGGLE_RULE, rule));
     }
 

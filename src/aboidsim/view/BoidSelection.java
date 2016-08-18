@@ -90,12 +90,12 @@ public class BoidSelection extends GridPane {
      *
      * @return the selected boid in the choise box
      */
-    static Optional<Integer> getSelectedBoid() {
+    private static Integer getSelectedBoid() {
         final Optional<String> item = BoidSelection.selectedItem;
         if (item.isPresent()) {
-            return Optional.of(BoidSelection.boidList.indexOf(item.get()));
+            return BoidSelection.boidList.indexOf(item.get());
         } else {
-            return Optional.of(0);
+            return 0;
         }
 
     }
@@ -110,7 +110,7 @@ public class BoidSelection extends GridPane {
      */
     static InputInfo getInput(final Vector v) {
         if (BoidSelection.action) {
-            return new InputInfo(Input.CREATE_BOID, BoidSelection.getSelectedBoid().get(), v);
+            return new InputInfo(Input.CREATE_BOID, BoidSelection.getSelectedBoid(), v);
         } else {
             return new InputInfo(Input.DESTROY_BOID, v);
         }

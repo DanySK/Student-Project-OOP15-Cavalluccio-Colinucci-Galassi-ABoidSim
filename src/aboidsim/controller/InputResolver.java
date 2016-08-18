@@ -20,8 +20,8 @@ interface InputResolver {
 	void resolveInput(InputInfo input);
 
 	/**
-	 * Default method. We resolve any Input contained in a list. The order of
-	 * them is considered important
+	 * Template method. Default method. We resolve any Input contained in a
+	 * list.
 	 *
 	 * @param inputList
 	 *            A list of inputs

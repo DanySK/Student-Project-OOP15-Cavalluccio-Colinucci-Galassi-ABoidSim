@@ -34,31 +34,23 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	FixedTimestepMainLoop(final Model m, final View v, final Controller c, final long desiredFps) {
 		super(desiredFps);
 		this.msPerFrame = 1000 / this.getFPS();
-		System.out.println(this.msPerFrame + " " + this.getFPS()); // DEBUG
 		this.model = m;
 		this.controller = c;
 		this.view = v;
 		this.inputResolver = i -> {
 			if (i.getInput().equals(Input.CREATE_BOID)) {
-				System.out.println("A boid has been created"); // DEBUG
 				this.model.getSimulation().createBoid(i.getPosition(), i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.DESTROY_BOID)) {
-				System.out.println("A boid has been destroyed"); // DEBUG
 				this.model.getSimulation().destroyBoid(i.getPosition());
 			} else if (i.getInput().equals(Input.TOGGLE_RULE)) {
-				System.out.println("A rule has been changed"); // DEBUG
 				this.model.getSimulation().toggleRule(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.LOAD_ENV)) {
-				System.out.println("A default environment has been loaded"); // DEBUG
 				this.model.getSimulation().loadDefaultEnvironment(i.getNumber().intValue());
 			} else if (i.getInput().equals(Input.PAUSE)) {
-				System.out.println("The application has been paused"); // DEBUG
 				this.pauseLoop();
 			} else if (i.getInput().equals(Input.RESUME)) {
-				System.out.println("The application has been resumed"); // DEBUG
 				this.resumeLoop();
 			} else if (i.getInput().equals(Input.CLOSE)) {
-				System.out.println("The application has been closed"); // DEBUG
 				this.abortLoop();
 			}
 		};
@@ -68,7 +60,6 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 	public void run() {
 		final int wait = 3;
 		try {
-			System.out.println("Aspetto " + wait + " secondi per settare la view"); // DEBUG
 			// We wait a couple of seconds
 			Thread.sleep(wait * 1000);
 		} catch (final InterruptedException e) {
@@ -88,11 +79,11 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 						FixedTimestepMainLoop.this.view.drawEntities(
 								FixedTimestepMainLoop.this.model.getSimulation().getSimulationComponents());
 					} catch (final ConcurrentModificationException e) {
-						/*
-						 * The exception is caused by the fact that the
-						 * checkNearBoids() method is not called every frame
-						 */
 					}
+					/*
+					 * The above exception is caused by the fact that the
+					 * checkNearBoids() method is not called every frame
+					 */
 				}
 			};
 			viewThread.start();
@@ -109,12 +100,8 @@ class FixedTimestepMainLoop extends AbstractMainLoop {
 				System.out.println("Error in viewThread join");
 			}
 			final long timePassed = System.currentTimeMillis() - lastTime;
-			// System.out.println("last time: " + lastTime); // DEBUG
-			// System.out.println("time passed: " + timePassed); // DEBUG
 			if (timePassed < this.msPerFrame) {
 				try {
-					// System.out.println("sleep for: " + (this.msPerFrame -
-					// timePassed)); // DEBUG
 					Thread.sleep(this.msPerFrame - timePassed);
 				} catch (final InterruptedException e) {
 					System.out.println("Sleep exception");

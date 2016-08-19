@@ -69,10 +69,6 @@ class BoidImpl implements Boid {
 		this.acceleration = new Vector(0, 0);
 		final double angleOfSpeed = r.doubles(0, Math.PI * 2).findAny().getAsDouble();
 		this.speed = new Vector(Math.cos(angleOfSpeed), Math.sin(angleOfSpeed));
-		System.out.println("INITIAL CONDITION"); // DEBUGGGGGGGG
-		this.position.print();
-		this.speed.print();
-		this.acceleration.print();
 
 		final Entities lev = this.getInfo(liv);
 

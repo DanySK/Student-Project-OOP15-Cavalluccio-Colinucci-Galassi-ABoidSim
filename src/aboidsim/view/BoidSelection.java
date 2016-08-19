@@ -52,7 +52,6 @@ public class BoidSelection extends GridPane {
                 this.box.setDisable(false);
                 BoidSelection.action = true;
             }
-            System.out.println(BoidSelection.action);
         });
 
         GridPane.setConstraints(title, 0, 0, 2, 1);

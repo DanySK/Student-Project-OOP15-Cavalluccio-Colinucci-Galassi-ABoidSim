@@ -82,7 +82,7 @@ public final class EnvironmentImpl implements Environment {
 			this.activeRuleSet.addRule(rule);
 		}
 	}
-	
+
 	@Override
 	public RuleSet getActiveRuleSet() {
 		return this.activeRuleSet;
@@ -230,7 +230,7 @@ public final class EnvironmentImpl implements Environment {
 							// We create a normalized vector parallel to the
 							// y-axis and we scale it to the circle radius
 							final Vector vec = new Vector(0.0, 1.0);
-							vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS * 2);
+							vec.scaleTo(BoidImpl.WANDER_CIRCLE_RADIUS);
 							// We set a random angle
 							final Random rng = new Random();
 							// The angle is already in radians

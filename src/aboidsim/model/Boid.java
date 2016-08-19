@@ -47,7 +47,7 @@ interface Boid {
 
     /**
      *
-     * @return Boid level
+     * @return boid level
      */
     int getLevel();
 
@@ -61,13 +61,13 @@ interface Boid {
 
     /**
      *
-     * @return Boid position
+     * @return boid position
      */
     Vector getPosition();
 
     /**
      *
-     * @return Boid life
+     * @return boid life
      */
     int getLife();
 
@@ -85,31 +85,31 @@ interface Boid {
 
     /**
      *
-     * @return Boid acceleration
+     * @return boid acceleration
      */
     Vector getAcceleration();
 
     /**
      *
-     * @return Boid speed
+     * @return boid velocity
      */
-    Vector getSpeed();
+    Vector getVelocity();
 
     /**
      *
-     * @return Boid average speed
+     * @return boid max speed
      */
-    double getAverageSpeed();
+    double getMaxSpeed();
 
     /**
      *
-     * @return max Member of a Boid group
+     * @return max Member of a boid group
      */
     int getMaxMembers();
 
     /**
      *
-     * @return Boid influence radius
+     * @return boid influence radius
      */
     double getInfluenceRadius();
 

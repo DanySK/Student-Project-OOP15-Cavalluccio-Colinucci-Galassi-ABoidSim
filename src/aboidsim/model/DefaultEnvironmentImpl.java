@@ -56,7 +56,7 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 	}, 
 	
 	/**
-	 * Environment with trees.
+	 * Environment with trees and herbivores.
 	 */
 	FOREST("FOREST", 2) {
 		@Override
@@ -94,7 +94,7 @@ public enum DefaultEnvironmentImpl implements DefaultEnvironment {
 			environment.add(new BoidImpl(center, Entities.TREE_L0.getId()));
 			
 			
-			/******************** Insert Boids ***********************************/
+			/******************** Insert Herbivore boids ***********************************/
 			
 			IntStream.range(Entities.TREE_L0.getId(), Entities.HERBIVORE_L3.getId()).forEach(x -> {
 				IntStream.range(Entities.HERBIVORE_L1.getId(), Entities.HERBIVORE_L5.getId() + 1).forEach(i -> {

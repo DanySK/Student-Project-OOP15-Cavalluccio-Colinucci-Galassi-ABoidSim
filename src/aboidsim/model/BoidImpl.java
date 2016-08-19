@@ -15,10 +15,10 @@ class BoidImpl implements Boid {
 
 	private final Vector position;
 	private final Vector acceleration;
-	private final Vector speed;
+	private final Vector velocity;
 
 	private final int level;
-	private final double averageSpeed;
+	private final double maxSpeed;
 	private int life;
 	private final int maxMembers;
 
@@ -56,9 +56,9 @@ class BoidImpl implements Boid {
 	/**
 	 *
 	 * @param v
-	 *            Boid position
+	 *            boid position
 	 * @param liv
-	 *            Boid level
+	 *            boid level
 	 */
 
 	BoidImpl(final Vector v, final int liv) {
@@ -68,7 +68,7 @@ class BoidImpl implements Boid {
 		this.position = v;
 		this.acceleration = new Vector(0, 0);
 		final double angleOfSpeed = r.doubles(0, Math.PI * 2).findAny().getAsDouble();
-		this.speed = new Vector(Math.cos(angleOfSpeed), Math.sin(angleOfSpeed));
+		this.velocity = new Vector(Math.cos(angleOfSpeed), Math.sin(angleOfSpeed));
 
 		final Entities lev = this.getInfo(liv);
 
@@ -77,7 +77,7 @@ class BoidImpl implements Boid {
 		this.life = lev.getLife();
 		this.influenceRadius = lev.getInfluenceRadius();
 		this.maxMembers = lev.getMaxMembers();
-		this.averageSpeed = lev.getAverageSpeed();
+		this.maxSpeed = lev.getMaxSpeed();
 		this.sameLevelNearBoids = new HashSet<>();
 		this.otherLevelNearBoids = new HashSet<>();
 	}
@@ -158,13 +158,13 @@ class BoidImpl implements Boid {
 	}
 
 	@Override
-	public Vector getSpeed() {
-		return this.speed;
+	public Vector getVelocity() {
+		return this.velocity;
 	}
 
 	@Override
-	public double getAverageSpeed() {
-		return this.averageSpeed;
+	public double getMaxSpeed() {
+		return this.maxSpeed;
 	}
 
 	@Override
@@ -183,7 +183,7 @@ class BoidImpl implements Boid {
 		 * The value returned by atan2 must be fixed by adding a 90° clockwise
 		 * angle (PI/2 in radians)
 		 */
-		return java.lang.Math.toDegrees(java.lang.Math.atan2(this.speed.getY(), this.speed.getX()) + Math.PI / 2);
+		return java.lang.Math.toDegrees(java.lang.Math.atan2(this.velocity.getY(), this.velocity.getX()) + Math.PI / 2);
 	}
 
 	/**

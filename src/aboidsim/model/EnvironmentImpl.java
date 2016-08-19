@@ -192,13 +192,13 @@ public final class EnvironmentImpl implements Environment {
 							 */
 							final Vector desiredDirection = Vector.sub(prey.get().getPosition(), boid.getPosition());
 							desiredDirection.norm();
-							desiredDirection.mul(boid.getAverageSpeed());
+							desiredDirection.mul(boid.getMaxSpeed());
 							final double distance = boid.getPosition().dist(prey.get().getPosition());
 							desiredDirection.limitTo(distance);
 							/*
 							 * We want the boid to steer towards the target
 							 */
-							final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
+							final Vector steer = Vector.sub(desiredDirection, boid.getVelocity());
 							steer.limitTo(BoidImpl.MAX_FORCE);
 							sumVector.add(steer);
 						}
@@ -224,7 +224,7 @@ public final class EnvironmentImpl implements Environment {
 							 * and it feels more "real"
 							 */
 							// We create a circle at the right distance
-							final Vector circleOrigin = new Vector(boid.getSpeed().getX(), boid.getSpeed().getY());
+							final Vector circleOrigin = new Vector(boid.getVelocity().getX(), boid.getVelocity().getY());
 							circleOrigin.norm();
 							circleOrigin.scaleTo(BoidImpl.WANDER_CIRCLE_DISTANCE);
 							// We create a normalized vector parallel to the
@@ -245,8 +245,8 @@ public final class EnvironmentImpl implements Environment {
 							circleOrigin.add(boid.getPosition());
 							final Vector desiredDirection = Vector.sub(circleOrigin, boid.getPosition());
 							desiredDirection.norm();
-							desiredDirection.mul(boid.getAverageSpeed());
-							final Vector steer = Vector.sub(desiredDirection, boid.getSpeed());
+							desiredDirection.mul(boid.getMaxSpeed());
+							final Vector steer = Vector.sub(desiredDirection, boid.getVelocity());
 							steer.limitTo(BoidImpl.MAX_FORCE);
 							sumVector.add(steer);
 						}
@@ -256,9 +256,9 @@ public final class EnvironmentImpl implements Environment {
 				// sumVector.mul(boid.getAverageSpeed());
 				// We add the combining movements to the boid position
 				boid.getAcceleration().add(sumVector);
-				boid.getSpeed().add(boid.getAcceleration());
-				boid.getSpeed().limitTo(boid.getAverageSpeed());
-				boid.getPosition().add(boid.getSpeed());
+				boid.getVelocity().add(boid.getAcceleration());
+				boid.getVelocity().limitTo(boid.getMaxSpeed());
+				boid.getPosition().add(boid.getVelocity());
 				// Acceleration must be reset to 0
 				boid.getAcceleration().mul(0.0);
 				this.checkBorders(boid);

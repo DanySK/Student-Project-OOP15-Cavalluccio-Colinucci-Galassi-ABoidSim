@@ -18,8 +18,6 @@ import javafx.scene.image.ImageView;
  */
 class DrawEntities {
 
-    static final String SEP = System.getProperty("file.separator");
-
     private static List<ImageView> images;
 
     /**
@@ -47,7 +45,7 @@ class DrawEntities {
     /**
      *
      * @param inputStream
-     *            url of the image to draw
+     *            the image to draw
      * @param width
      *            with of the image
      * @param height
@@ -64,7 +62,7 @@ class DrawEntities {
      * @param g
      *            graphics context used to draw entities
      * @param entities
-     *            set of the position and the url of the image of each entity to
+     *            set of the position, the rotation and level of each entity to
      *            draw
      */
     void drawEntities(final GraphicsContext g, final Set<Pair<Pair<Vector, Double>, Integer>> entities) {

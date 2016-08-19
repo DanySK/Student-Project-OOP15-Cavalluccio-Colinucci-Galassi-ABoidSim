@@ -19,9 +19,7 @@ class RulesSelection extends VBox {
     private final List<CheckBox> boxes = new ArrayList<>();
 
     /**
-     *
-     * @param rules
-     *            list of the rules
+     * constructor of the class
      */
     RulesSelection() {
         super();

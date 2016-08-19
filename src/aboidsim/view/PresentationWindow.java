@@ -1,7 +1,6 @@
 package aboidsim.view;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
@@ -30,7 +29,6 @@ class PresentationWindow {
      * constructor of the class. it creates a new window with the explanation of
      * the program.
      *
-     * @throws FileNotFoundException
      */
     PresentationWindow() {
         final Stage stage = new Stage();
@@ -42,11 +40,8 @@ class PresentationWindow {
         vbox.setPadding(new Insets(10));
 
         final Label text = new Label();
-        try {
-            text.setText(this.readFromFile());
-        } catch (final FileNotFoundException e1) {
-            e1.printStackTrace();
-        }
+        text.setText(this.readFromFile());
+
         final ScrollPane scrollPane = new ScrollPane(text);
 
         final Button confirm = new Button("Ok!");
@@ -65,11 +60,11 @@ class PresentationWindow {
     }
 
     /**
+     * read the content of the description file
      *
-     * @return the string representint the content of the text file in res
-     * @throws FileNotFoundException
+     * @return the string representing the content of the text file in res
      */
-    String readFromFile() throws FileNotFoundException {
+    String readFromFile() {
         final BufferedReader br = new BufferedReader(new InputStreamReader(
                 this.getClass().getResourceAsStream("/description.txt"), Charset.forName("UTF-8")));
         final StringBuffer text = new StringBuffer();

@@ -31,8 +31,6 @@ public class BoidSelection extends GridPane {
     /**
      * constructor of the class.
      *
-     * @param elements
-     *            the list of the rules's names
      */
     BoidSelection() {
         super();

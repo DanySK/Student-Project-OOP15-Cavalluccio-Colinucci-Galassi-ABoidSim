@@ -22,9 +22,6 @@ class EnvironmentSelection extends VBox {
 
     /**
      * constructor of the class.
-     *
-     * @param envs
-     *            list of the names of the environments
      */
     EnvironmentSelection() {
 

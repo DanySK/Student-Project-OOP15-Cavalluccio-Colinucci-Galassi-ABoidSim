@@ -21,7 +21,8 @@ public class MainWindow extends Application {
     private Stage mainStage = new Stage();
 
     /**
-     *
+     * start method of the application, creates all the elements of the
+     * interface and it puts them together.
      */
     @Override
     public void start(final Stage stage) throws Exception {

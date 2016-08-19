@@ -45,7 +45,7 @@ class BoidImpl implements Boid {
 	 * The distance of the circle from the boid used in the implementation of
 	 * "wandering movement".
 	 */
-	public static final double WANDER_CIRCLE_DISTANCE = 5;
+	public static final double WANDER_CIRCLE_DISTANCE = 10;
 
 	/**
 	 * The radius of the circle used in the implementation of

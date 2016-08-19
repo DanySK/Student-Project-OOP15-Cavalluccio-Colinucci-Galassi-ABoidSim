@@ -29,7 +29,7 @@ interface Boid {
 
     /**
      *
-     * @return Is Boid hungry or not
+     * @return Is boid hungry or not
      */
     boolean isHungry();
 

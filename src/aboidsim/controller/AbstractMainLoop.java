@@ -33,18 +33,42 @@ abstract class AbstractMainLoop extends Thread {
 		}
 	}
 
+	/**
+	 * Setter. This method sets a new status.
+	 *
+	 * @param newStatus
+	 *            the new status
+	 */
 	public void setStatus(final LoopStatus newStatus) {
 		this.status = newStatus;
 	}
 
+	/**
+	 * Getter. This method return the current status.
+	 *
+	 * @return the current status
+	 *
+	 */
 	public LoopStatus getStatus() {
 		return this.status;
 	}
 
+	/**
+	 * Setter. This method sets the new fps.
+	 *
+	 * @param newFps
+	 *            the new fps
+	 */
 	public void setFPS(final long newFps) {
 		this.fps = newFps;
 	}
 
+	/**
+	 * Getter. This method return the current fps.
+	 *
+	 * @return the current fps
+	 *
+	 */
 	public long getFPS() {
 		return this.fps;
 	}
@@ -52,9 +76,18 @@ abstract class AbstractMainLoop extends Thread {
 	@Override
 	public abstract void run();
 
+	/**
+	 * Abstract method. This method stops the loop.
+	 */
 	public abstract void abortLoop();
 
+	/**
+	 * Abstract method. This method pauses the loop.
+	 */
 	public abstract void pauseLoop();
 
+	/**
+	 * Abstract method. This method resumes the loop.
+	 */
 	public abstract void resumeLoop();
 }

@@ -1,0 +1,139 @@
+Found a 10 line (92 tokens) duplication in the following files: 
+Starting at line 21 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 41 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+	JURASSIC_WORLD("JURASSIC WORLD", 0) {
+		@Override
+		public Set<Boid> getDefaultEnvironment() {
+			final Set<Boid> environment = new HashSet<>();
+			final Random r = new Random();
+			final int rangeMaxX = EnvironmentImpl.getSimulationDimension().getX();
+			final int rangeMaxY = EnvironmentImpl.getSimulationDimension().getY();
+
+			IntStream.range(Entities.TREE_L0.getId(), Entities.HERBIVORE_L4.getId()).forEach(x -> {
+				IntStream.range(Entities.PREDATOR_L6.getId(), Entities.PREDATOR_L10.getId() + 1).forEach(i -> {
+=====================================================================
+Found a 8 line (78 tokens) duplication in the following files: 
+Starting at line 49 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 99 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+			IntStream.range(Entities.TREE_L0.getId(), Entities.HERBIVORE_L4.getId()).forEach(x -> {
+				IntStream.range(Entities.HERBIVORE_L1.getId(), Entities.HERBIVORE_L5.getId() + 1).forEach(i -> {
+					environment.add(new BoidImpl(new Vector(rangeMaxX * r.nextDouble(), rangeMaxY * r.nextDouble()), i));
+				});
+			});
+			return environment;
+		}
+	}, 
+=====================================================================
+Found a 9 line (74 tokens) duplication in the following files: 
+Starting at line 21 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 41 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 111 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+	JURASSIC_WORLD("JURASSIC WORLD", 0) {
+		@Override
+		public Set<Boid> getDefaultEnvironment() {
+			final Set<Boid> environment = new HashSet<>();
+			final Random r = new Random();
+			final int rangeMaxX = EnvironmentImpl.getSimulationDimension().getX();
+			final int rangeMaxY = EnvironmentImpl.getSimulationDimension().getY();
+
+			IntStream.range(Entities.TREE_L0.getId(), Entities.HERBIVORE_L4.getId()).forEach(x -> {
+=====================================================================
+Found a 14 line (72 tokens) duplication in the following files: 
+Starting at line 49 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+Starting at line 79 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+
+					desiredDirection.add(boid.getVelocity());
+				}
+				desiredDirection.div(boids.size());
+				desiredDirection.norm();
+				desiredDirection.mul(theBoid.getMaxSpeed());
+				final Vector steer = Vector.sub(desiredDirection, theBoid.getVelocity());
+				steer.limitTo(BoidImpl.MAX_FORCE);
+				steer.mul(this.getDefaultModifier());
+				return steer;
+			} else {
+				return desiredDirection;
+			}
+		}
+	},
+=====================================================================
+Found a 7 line (60 tokens) duplication in the following files: 
+Starting at line 21 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 41 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 61 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 111 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+	JURASSIC_WORLD("JURASSIC WORLD", 0) {
+		@Override
+		public Set<Boid> getDefaultEnvironment() {
+			final Set<Boid> environment = new HashSet<>();
+			final Random r = new Random();
+			final int rangeMaxX = EnvironmentImpl.getSimulationDimension().getX();
+			final int rangeMaxY = EnvironmentImpl.getSimulationDimension().getY();
+=====================================================================
+Found a 7 line (59 tokens) duplication in the following files: 
+Starting at line 30 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 120 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+				IntStream.range(Entities.PREDATOR_L6.getId(), Entities.PREDATOR_L10.getId() + 1).forEach(i -> {
+					environment.add(new BoidImpl(new Vector(rangeMaxX * r.nextDouble(), rangeMaxY * r.nextDouble()), i));
+				});
+			});
+			return environment;
+		}
+	},
+=====================================================================
+Found a 9 line (58 tokens) duplication in the following files: 
+Starting at line 27 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+Starting at line 51 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+Starting at line 81 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+
+				final Vector desiredDirection = Vector.sub(vectorSum, theBoid.getPosition());
+				desiredDirection.norm();
+				desiredDirection.mul(theBoid.getMaxSpeed());
+				final Vector steer = Vector.sub(desiredDirection, theBoid.getVelocity());
+				steer.limitTo(BoidImpl.MAX_FORCE);
+				steer.mul(this.getDefaultModifier());
+				return steer;
+			} else {
+				return vectorSum;
+=====================================================================
+Found a 7 line (52 tokens) duplication in the following files: 
+Starting at line 30 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 50 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 100 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+				IntStream.range(Entities.PREDATOR_L6.getId(), Entities.PREDATOR_L10.getId() + 1).forEach(i -> {
+					environment.add(new BoidImpl(new Vector(rangeMaxX * r.nextDouble(), rangeMaxY * r.nextDouble()), i));
+				});
+			});
+			return environment;
+		}
+	},
+=====================================================================
+Found a 6 line (52 tokens) duplication in the following files: 
+Starting at line 43 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+Starting at line 67 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/RuleImpl.java
+
+	ALIGNMENT("Alignment", 1, 2.0) {
+		@Override
+		public Vector apply(final Boid theBoid, final Set<Boid> boids) {
+			final Vector desiredDirection = new Vector(0.0, 0.0);
+			if (!boids.isEmpty()) {
+				for (final Boid boid : boids) {
+=====================================================================
+Found a 7 line (51 tokens) duplication in the following files: 
+Starting at line 50 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 100 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+Starting at line 120 of /home/danysk/Dropbox/Didattica/2015-16/Programmazione ad Oggetti/Progetti/oop15-aboidsim-galassi-colinucci-cavalluzzo/src/aboidsim/model/DefaultEnvironmentImpl.java
+
+				IntStream.range(Entities.HERBIVORE_L1.getId(), Entities.HERBIVORE_L5.getId() + 1).forEach(i -> {
+					environment.add(new BoidImpl(new Vector(rangeMaxX * r.nextDouble(), rangeMaxY * r.nextDouble()), i));
+				});
+			});
+			return environment;
+		}
+	}, 

@@ -1,0 +1,177 @@
+Violated encapsulation: 24
+src/aboidsim/model/EnvironmentImpl.java:34:	Use explicit scoping instead of the default package private level
+src/aboidsim/model/EnvironmentImpl.java:293:	Use explicit scoping instead of the default package private level
+src/aboidsim/model/EnvironmentImpl.java:301:	Use explicit scoping instead of the default package private level
+src/aboidsim/model/RuleSet.java:83:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/BoidSelection.java:108:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/BoidSelection.java:122:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/DrawEntities.java:30:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/DrawEntities.java:68:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/EnvironmentSelection.java:68:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/InfoBox.java:58:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/InputHandler.java:28:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/InputHandler.java:35:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/InputHandler.java:44:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/InputHandler.java:55:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/PresentationWindow.java:67:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/RulesSelection.java:60:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/SimulationScreen.java:20:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/SimulationScreen.java:21:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/SimulationScreen.java:22:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/SimulationScreen.java:23:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/SimulationScreen.java:83:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/ViewImpl.java:67:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/ViewImpl.java:75:	Use explicit scoping instead of the default package private level
+src/aboidsim/view/ViewImpl.java:82:	Use explicit scoping instead of the default package private level
+
+Poor design: 8
+src/aboidsim/controller/TestInputResolver.java:42:	The String literal "Wrong arguments for that constructor" appears 4 times in this file; the first occurrence is on line 42
+src/aboidsim/util/InputInfo.java:28:	The String literal "Wrong constructor for the selected input" appears 4 times in this file; the first occurrence is on line 28
+src/aboidsim/view/BoidSelection.java:24:	Possible unsafe assignment to a non-final static field in a constructor.
+src/aboidsim/view/BoidSelection.java:29:	Possible unsafe assignment to a non-final static field in a constructor.
+src/aboidsim/view/EnvironmentSelection.java:20:	Perhaps 'menu' could be replaced by a local variable.
+src/aboidsim/view/InfoBox.java:13:	All methods are static.  Consider using a utility class instead. Alternatively, you could add a private constructor or make the class abstract to silence this warning.
+src/aboidsim/view/InfoBox.java:42:	The String literal "info-label" appears 4 times in this file; the first occurrence is on line 42
+src/aboidsim/view/MainWindow.java:21:	Perhaps 'mainStage' could be replaced by a local variable.
+
+Very bad code practices and potential bugs: 4
+src/aboidsim/controller/FixedTimestepMainLoop.java:50:	Overridable method 'pauseLoop' called during object construction
+src/aboidsim/controller/FixedTimestepMainLoop.java:52:	Overridable method 'resumeLoop' called during object construction
+src/aboidsim/controller/FixedTimestepMainLoop.java:54:	Overridable method 'abortLoop' called during object construction
+src/aboidsim/view/PresentationWindow.java:43:	Overridable method 'readFromFile' called during object construction
+
+Bad exception handling: 2
+src/aboidsim/controller/FixedTimestepMainLoop.java:81:	Avoid empty catch blocks
+src/aboidsim/view/MainWindow.java:28:	A method/constructor shouldnt explicitly throw java.lang.Exception
+
+Portability issues: 0
+
+Bad naming: 1
+src/aboidsim/view/InputHandler.java:14:	It is somewhat confusing to have a field name matching the declaring class name
+
+Bad code practices: 28
+src/aboidsim/model/Boid.java:66:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/Boid.java:90:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/Boid.java:96:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/BoidImpl.java:16:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/BoidImpl.java:17:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/BoidImpl.java:18:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/BoidImpl.java:64:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/Environment.java:22:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/Environment.java:30:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/EnvironmentImpl.java:31:	Document empty constructor
+src/aboidsim/model/Rule.java:24:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/model/RuleSet.java:83:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/InputInfo.java:26:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/InputInfo.java:45:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/InputInfo.java:122:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:32:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:81:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:92:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:225:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:238:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:238:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:238:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:253:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:253:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/util/Vector.java:253:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/view/BoidSelection.java:108:	Avoid using implementation types like 'Vector'; use the interface instead
+src/aboidsim/view/PresentationWindow.java:73:	Avoid assignments in operands
+src/aboidsim/view/SimulationScreen.java:71:	Avoid using implementation types like 'Vector'; use the interface instead
+
+Use modern Java: 61
+src/aboidsim/controller/TestInputResolver.java:55:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/Boid.java:66:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/Boid.java:90:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/Boid.java:96:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:16:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:17:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:18:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:64:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:136:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:156:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/BoidImpl.java:161:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/DefaultEnvironmentImpl.java:68:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/DefaultEnvironmentImpl.java:82:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/DefaultEnvironmentImpl.java:85:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/DefaultEnvironmentImpl.java:88:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/DefaultEnvironmentImpl.java:91:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/Environment.java:22:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/Environment.java:30:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:39:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:45:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:127:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:193:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:201:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:227:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:232:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:246:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/EnvironmentImpl.java:249:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/Rule.java:24:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:20:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:21:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:27:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:30:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:45:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:46:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:54:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:69:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:70:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:77:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:84:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleImpl.java:100:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleSet.java:83:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/model/RuleSet.java:84:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/InputInfo.java:26:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/InputInfo.java:45:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/InputInfo.java:122:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:32:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:81:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:92:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:225:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:238:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:238:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:238:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:239:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:239:	Use ArrayList instead of Vector
+src/aboidsim/util/Vector.java:253:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:253:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:253:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:254:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/util/Vector.java:254:	Use ArrayList instead of Vector
+src/aboidsim/view/BoidSelection.java:108:	Consider replacing this Vector with the newer java.util.List
+src/aboidsim/view/SimulationScreen.java:71:	Consider replacing this Vector with the newer java.util.List
+
+Performance and resource waste: 3
+src/aboidsim/util/Vector.java:269:	Consider simply returning the value vs storing it in local variable 'str'
+src/aboidsim/view/DrawEntities.java:57:	Consider simply returning the value vs storing it in local variable 'boid'
+src/aboidsim/view/InputHandler.java:46:	Consider simply returning the value vs storing it in local variable 'list'
+
+Potentially dangerous side effects: 0
+
+Use final: 6
+src/aboidsim/model/TestModel.java:25:	Local variable 'environment' could be declared final
+src/aboidsim/model/TestModel.java:26:	Local variable 'boid1' could be declared final
+src/aboidsim/model/TestModel.java:27:	Local variable 'boid2' could be declared final
+src/aboidsim/model/TestModel.java:28:	Local variable 'boid3' could be declared final
+src/aboidsim/model/TestModel.java:56:	Local variable 'boid' could be declared final
+src/aboidsim/model/TestModel.java:61:	Local variable 'boid2' could be declared final
+
+Complex code: 0
+
+Concurrency issues: 0
+
+Testing issues: 4
+src/aboidsim/model/TestModel.java:22:	JUnit 4 tests that execute tests should use the @Test annotation
+src/aboidsim/model/TestModel.java:53:	JUnit 4 tests that execute tests should use the @Test annotation
+src/aboidsim/model/TestModel.java:65:	Use assertSame(x, y) instead of assertTrue(x==y), or assertNotSame(x,y) vs assertFalse(x==y)
+src/aboidsim/model/TestModel.java:66:	Use assertSame(x, y) instead of assertTrue(x==y), or assertNotSame(x,y) vs assertFalse(x==y)
+
+Android-specific issues: 0
+
+Minor issues: 2
+src/aboidsim/controller/AbstractMainLoop.java:28:	It is a good practice to call super() in a constructor
+src/aboidsim/view/EnvironmentSelection.java:26:	It is a good practice to call super() in a constructor
+
+Other errors: 0
+
